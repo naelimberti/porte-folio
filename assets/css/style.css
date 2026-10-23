@@ -929,3 +929,7 @@ strong { color: var(--ink); font-weight: 600; }
 @media (max-width: 760px) { .deck--3d .deck__stage > .card:not(.is-active) { opacity: calc(.45 - var(--ad, 0) * .1); } }
 @media (max-width: 480px) { .brand { font-size: 15.5px; gap: 8px; } .brand img { width: 34px; height: 34px; } .header__actions { gap: 6px; } }
 .chrono__bar.is-right::after { left: auto !important; right: 0; transform: none !important; }
+/* home: no key-figures band between the hero and "About" anymore */
+.hero { padding-bottom: 40px; }
+.hero + .section { padding-top: 72px; }
+@media (max-width: 700px) { .hero + .section { padding-top: 48px; } }

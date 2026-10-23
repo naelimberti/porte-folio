@@ -34,10 +34,6 @@
     'hero.cta1': 'Voir mes projets',
     'hero.cta2': 'Me contacter',
 
-    'fig.1': "étudiants internationaux accueillis à la rentrée 2026",
-    'fig.2': "projets menés dans des programmes de l'université",
-    'fig.3': "lauréat Proj'Impact avec Silva Edita",
-    'fig.4': "statut étudiant-entrepreneur depuis juillet 2025",
 
     'about.eyebrow': 'À propos',
     'about.title': "En quelques <span class=\"hl\">mots</span>",
