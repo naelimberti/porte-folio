@@ -281,21 +281,212 @@
     revealables.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  /* ───────── Hero gold waves (echo of the LinkedIn banner) ───────── */
-  var svg = document.getElementById('waves');
-  if (svg) {
-    var ns = 'http://www.w3.org/2000/svg';
-    for (var i = 0; i < 16; i++) {
-      var t = i / 15;
-      var d = 'M ' + (-50 + t * 80) + ' ' + (760) +
-        ' C ' + (300 + t * 120) + ' ' + (520 - t * 160) + ', ' +
-        (520 + t * 60) + ' ' + (40 + t * 60) + ', ' +
-        (1650) + ' ' + (60 + t * 140);
-      var path = document.createElementNS(ns, 'path');
-      path.setAttribute('d', d);
-      svg.appendChild(path);
+  /* ───────── Ambient: golden silk ribbons ─────────
+     Evolution of the previous portfolio's twisting "DNA" ribbon:
+     depth-shaded threads (violet behind, gold in front), soft glow,
+     sparks travelling along the threads, scroll twist, idle drift and
+     pointer parallax. A second, fainter ribbon echoes the LinkedIn banner. */
+  (function () {
+    var cv = document.getElementById('ribbon');
+    if (!cv || !cv.getContext) return;
+    var ctx = cv.getContext('2d');
+    var ambient = cv.parentNode;
+    var headerEl = document.querySelector('.header');
+    var DW = 1920, DH = 1080, BUCKETS = 14, TAU = Math.PI * 2;
+    var small = window.matchMedia('(max-width: 760px)');
+
+    function makeRibbon(o) {
+      var segs = o.segs, P = o.p, sp = [], nm = [];
+      for (var j = 0; j <= segs; j++) {
+        var t = j / segs, u = 1 - t;
+        sp.push([
+          u * u * u * P[0][0] + 3 * u * u * t * P[1][0] + 3 * u * t * t * P[2][0] + t * t * t * P[3][0],
+          u * u * u * P[0][1] + 3 * u * u * t * P[1][1] + 3 * u * t * t * P[2][1] + t * t * t * P[3][1]
+        ]);
+        var tx = 3 * u * u * (P[1][0] - P[0][0]) + 6 * u * t * (P[2][0] - P[1][0]) + 3 * t * t * (P[3][0] - P[2][0]);
+        var ty = 3 * u * u * (P[1][1] - P[0][1]) + 6 * u * t * (P[2][1] - P[1][1]) + 3 * t * t * (P[3][1] - P[2][1]);
+        var L = Math.hypot(tx, ty) || 1;
+        nm.push([-ty / L, tx / L]);
+      }
+      var X = [], Y = [], D = [];
+      for (var i = 0; i < o.n; i++) { X.push(new Float32Array(segs + 1)); Y.push(new Float32Array(segs + 1)); D.push(new Float32Array(segs + 1)); }
+      o.sp = sp; o.nm = nm; o.X = X; o.Y = Y; o.D = D;
+      return o;
     }
-  }
+
+    var ribbons = [
+      makeRibbon({ p: [[1852, -180], [1565, 320], [1652, 800], [1060, 1250]], n: 14, r: 165, turns: .62, segs: 84, alpha: 1, dir: 1, par: 26 }),
+      makeRibbon({ p: [[-260, 760], [260, 860], [560, 1080], [980, 1320]], n: 9, r: 95, turns: .5, segs: 56, alpha: .55, dir: -1, par: 14, desktopOnly: true })
+    ];
+
+    var dpr = 1, vw = 0, vh = 0, scale = 1, ox = 0, oy = 0;
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, small.matches ? 1.5 : 2);
+      vw = window.innerWidth; vh = window.innerHeight;
+      cv.width = Math.round(vw * dpr); cv.height = Math.round(vh * dpr);
+      scale = Math.max(vw / DW, vh / DH);
+      ox = (vw - DW * scale) / 2; oy = (vh - DH * scale) / 2;
+      if (small.matches) { scale *= 1.15; ox = vw - DW * scale * .98; }
+    }
+
+    function active(rb) { return !(rb.desktopOnly && small.matches); }
+
+    var mx = 0, my = 0, tmx = 0, tmy = 0, drift = 0;
+    function build(phase) {
+      ribbons.forEach(function (rb) {
+        if (!active(rb)) return;
+        var n = rb.n, segs = rb.segs, px = mx * rb.par, py = my * rb.par;
+        for (var i = 0; i < n; i++) {
+          var s = (i / (n - 1)) * 2 - 1, xs = rb.X[i], ys = rb.Y[i], ds = rb.D[i];
+          for (var j = 0; j <= segs; j++) {
+            var phi = rb.turns * TAU * (j / segs) + phase * rb.dir + s * .17;
+            var off = s * rb.r * Math.cos(phi);
+            xs[j] = ox + (rb.sp[j][0] + rb.nm[j][0] * off) * scale + px;
+            ys[j] = oy + (rb.sp[j][1] + rb.nm[j][1] * off) * scale + py;
+            ds[j] = s * Math.sin(phi);
+          }
+        }
+      });
+    }
+
+    // Depth -> colour: violet behind, gold in the middle, pale gold in front
+    function colour(f) {
+      var r, g, b;
+      if (f < .5) { var k = f / .5; r = 120 + 120 * k; g = 70 + 115 * k; b = 215 - 125 * k; }
+      else { var q = (f - .5) / .5; r = 240 + 15 * q; g = 185 + 50 * q; b = 90 + 80 * q; }
+      return [r | 0, g | 0, b | 0];
+    }
+    var palette = [];
+    for (var k = 0; k < BUCKETS; k++) palette.push(colour((k + .5) / BUCKETS));
+
+    // Pre-rendered spark sprite
+    var sprite = document.createElement('canvas');
+    sprite.width = sprite.height = 48;
+    (function () {
+      var c = sprite.getContext('2d'), g = c.createRadialGradient(24, 24, 0, 24, 24, 24);
+      g.addColorStop(0, 'rgba(255,250,225,1)');
+      g.addColorStop(.18, 'rgba(255,224,130,.9)');
+      g.addColorStop(.45, 'rgba(255,200,80,.25)');
+      g.addColorStop(1, 'rgba(255,200,80,0)');
+      c.fillStyle = g; c.fillRect(0, 0, 48, 48);
+    })();
+
+    var sparks = [];
+    function seedSparks() {
+      sparks = [];
+      var count = reduce ? 0 : (small.matches ? 10 : 28);
+      for (var i = 0; i < count; i++) sparks.push(newSpark(Math.random()));
+    }
+    function newSpark(t) {
+      var rb = Math.random() < .78 || small.matches ? 0 : 1;
+      return { rb: rb, fil: (Math.random() * ribbons[rb].n) | 0, t: t, v: .025 + Math.random() * .05, tw: Math.random() * TAU, size: 10 + Math.random() * 16 };
+    }
+
+    function render(time) {
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, vw, vh);
+      ctx.globalCompositeOperation = 'lighter';
+      ctx.lineCap = 'round';
+
+      ribbons.forEach(function (rb) {
+        if (!active(rb)) return;
+        // Bucket segments by depth so each colour/width is stroked once
+        var buckets = [];
+        for (var b = 0; b < BUCKETS; b++) buckets.push([]);
+        for (var i = 0; i < rb.n; i++) {
+          var xs = rb.X[i], ys = rb.Y[i], ds = rb.D[i];
+          for (var j = 0; j < rb.segs; j++) {
+            var f = ((ds[j] + ds[j + 1]) * .5 + 1) / 2;
+            buckets[Math.min(BUCKETS - 1, (f * BUCKETS) | 0)].push(xs[j], ys[j], xs[j + 1], ys[j + 1]);
+          }
+        }
+        for (var bk = 0; bk < BUCKETS; bk++) {
+          var segsArr = buckets[bk];
+          if (!segsArr.length) continue;
+          var fv = (bk + .5) / BUCKETS, c = palette[bk];
+          var alpha = (.035 + .6 * fv * fv) * rb.alpha * (small.matches ? .6 : 1);
+          var w = (.4 + 2.5 * fv * fv) * scale * (small.matches ? 1.2 : 1);
+          ctx.beginPath();
+          for (var m = 0; m < segsArr.length; m += 4) { ctx.moveTo(segsArr[m], segsArr[m + 1]); ctx.lineTo(segsArr[m + 2], segsArr[m + 3]); }
+          if (fv > .55) { // soft glow under the front threads
+            ctx.strokeStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + (alpha * .11).toFixed(3) + ')';
+            ctx.lineWidth = w * 6;
+            ctx.stroke();
+          }
+          ctx.strokeStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + alpha.toFixed(3) + ')';
+          ctx.lineWidth = w;
+          ctx.stroke();
+        }
+      });
+
+      // Sparks riding the threads
+      for (var p = 0; p < sparks.length; p++) {
+        var sk = sparks[p], rbs = ribbons[sk.rb];
+        if (!active(rbs)) continue;
+        var pos = sk.t * rbs.segs, j0 = Math.min(rbs.segs - 1, pos | 0), fr = pos - j0;
+        var x = rbs.X[sk.fil][j0] + (rbs.X[sk.fil][j0 + 1] - rbs.X[sk.fil][j0]) * fr;
+        var y = rbs.Y[sk.fil][j0] + (rbs.Y[sk.fil][j0 + 1] - rbs.Y[sk.fil][j0]) * fr;
+        var depth = (rbs.D[sk.fil][j0] + 1) / 2;
+        var edge = Math.min(1, sk.t * 8, (1 - sk.t) * 8);
+        var tw = .65 + .35 * Math.sin(time * .004 + sk.tw);
+        ctx.globalAlpha = Math.max(0, depth * depth * edge * tw * rbs.alpha);
+        var sz = sk.size * (.6 + depth * .6);
+        ctx.drawImage(sprite, x - sz / 2, y - sz / 2, sz, sz);
+      }
+      ctx.globalAlpha = 1;
+      ctx.globalCompositeOperation = 'source-over';
+    }
+
+    var cur = 0, target = 0, last = 0, lastFrame = 0, raf = null, sy = 0;
+    function frame(now) {
+      raf = requestAnimationFrame(frame);
+      var cap = small.matches ? 33 : 16;
+      if (now - lastFrame < cap) return;
+      var dt = Math.min(64, now - (last || now)) / 1000;
+      last = now; lastFrame = now;
+      cur += (target - cur) * .08;
+      mx += (tmx - mx) * .05; my += (tmy - my) * .05;
+      drift += dt * .06;
+      for (var i = 0; i < sparks.length; i++) {
+        sparks[i].t += sparks[i].v * dt;
+        if (sparks[i].t > 1) sparks[i] = newSpark(0);
+      }
+      build(cur + drift); render(now);
+    }
+    function start() { if (!raf && !reduce) { last = 0; raf = requestAnimationFrame(frame); } }
+    function stop() { if (raf) { cancelAnimationFrame(raf); raf = null; } }
+
+    function onScroll() {
+      sy = window.scrollY || document.documentElement.scrollTop || 0;
+      target = sy * .005;
+      ambient.style.setProperty('--sy', sy.toFixed(0));
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      if (headerEl) headerEl.style.setProperty('--p', max > 0 ? (sy / max).toFixed(4) : 0);
+      if (reduce) { build(target); render(0); }
+    }
+
+    resize(); seedSparks(); onScroll(); cur = target; build(cur); render(0);
+    window.addEventListener('resize', function () { resize(); build(cur + drift); render(0); }, { passive: true });
+    if (small.addEventListener) small.addEventListener('change', seedSparks);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('pointermove', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      tmx = e.clientX / vw * 2 - 1; tmy = e.clientY / vh * 2 - 1;
+    }, { passive: true });
+    document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
+    start();
+  })();
+
+  /* ───────── Cursor light on glass surfaces ───────── */
+  var GLASS = '.figures__card, .roles, .card, .feature, .skills__group';
+  document.addEventListener('pointermove', function (e) {
+    if (e.pointerType !== 'mouse' || !e.target.closest) return;
+    var el = e.target.closest(GLASS);
+    if (!el) return;
+    var r = el.getBoundingClientRect();
+    el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    el.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, { passive: true });
 
   var year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
