@@ -933,3 +933,23 @@ strong { color: var(--ink); font-weight: 600; }
 .hero { padding-bottom: 40px; }
 .hero + .section { padding-top: 72px; }
 @media (max-width: 700px) { .hero + .section { padding-top: 48px; } }
+
+/* ==========================================================================
+   Calmer headings: Syne 600 (800 is both heavier and much wider),
+   smaller sizes. The name in the hero keeps 800, like the logo/banner.
+   ========================================================================== */
+.title { font-weight: 600; font-size: clamp(1.75rem, 2.9vw, 2.6rem); line-height: 1.14; letter-spacing: -.01em; }
+.page-hero__title { font-weight: 600; font-size: clamp(2.1rem, 4.2vw, 3.5rem); line-height: 1.08; letter-spacing: -.015em; }
+.next__title { font-weight: 600; font-size: clamp(1.7rem, 3.8vw, 3.1rem); letter-spacing: -.01em; }
+.cta__title { font-weight: 600; font-size: clamp(1.6rem, 2.8vw, 2.3rem); line-height: 1.15; letter-spacing: -.01em; }
+.project__title { font-weight: 600; font-size: clamp(1.7rem, 2.8vw, 2.3rem); }
+.hero__name { font-size: clamp(2.5rem, 5.4vw, 4.5rem); }
+.card__head h3, .case__h, .explore__card h3, .roles__title, .skills__group h3, .steps__item h3 { font-weight: 600; letter-spacing: 0; }
+.explore__card h3 { font-size: 1.35rem; }
+.case__h { font-size: 1.35rem; }
+.hl::after { height: .08em; bottom: .02em; opacity: .75; }
+@media (max-width: 480px) {
+  .title { font-size: 1.6rem; }
+  .page-hero__title { font-size: 2rem; }
+  .next__title { font-size: 1.6rem; }
+}
