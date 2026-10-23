@@ -986,3 +986,25 @@ strong { color: var(--ink); font-weight: 600; }
 .related__sub { font-size: 14px; color: var(--gold); }
 .related__arrow { position: absolute; right: 22px; top: 50%; transform: translateY(-50%); color: var(--gold); font-size: 1.3rem; transition: transform .35s var(--ease-out); }
 .related__item:hover .related__arrow { transform: translate(5px, -50%); }
+
+/* ───────── Languages (CEFR level in 6 steps) ───────── */
+.langs { display: flex; flex-direction: column; gap: 14px; }
+.langs li { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "name lvl" "bar bar" "note note"; gap: 6px 12px; align-items: baseline; }
+.langs__name { grid-area: name; color: #fff; font-weight: 600; }
+.langs__lvl { grid-area: lvl; font-family: var(--display); font-weight: 700; color: var(--gold); letter-spacing: .06em; }
+.langs__lvl--wide { font-family: var(--sans); font-weight: 600; font-size: 13px; letter-spacing: 0; }
+.langs__bar { grid-area: bar; display: grid; grid-template-columns: repeat(6, 1fr); gap: 4px; }
+.langs__bar i { height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .1); }
+.langs__bar i.on { background: linear-gradient(90deg, var(--violet-soft), var(--gold)); }
+.langs__note { grid-area: note; font-size: 13px; color: var(--muted); }
+
+/* Skills: 6 groups -> 3 columns on large screens */
+@media (min-width: 1280px) { .skills { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* Education timeline: 3 items, chronological from left to right on wide screens */
+@media (min-width: 1100px) {
+  .timeline { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .timeline__item:first-child { order: 3; }
+  .timeline__item:nth-child(2) { order: 2; }
+  .timeline__item:nth-child(3) { order: 1; }
+}

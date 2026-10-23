@@ -26,9 +26,9 @@
     'nav.contact': 'Contact',
 
     'hero.status': 'Open to work · Stage à partir de mars 2027',
-    'hero.role': 'Business Developer en formation',
-    'hero.lead': "Je suis en troisième année de licence de gestion à l'IAE Rouen Normandie, après deux ans de maths-éco. À côté des cours, je m'occupe du pôle commercial d'IAE Rouen Junior Conseil et je monte des projets en tant qu'étudiant-entrepreneur.",
-    'hero.tag1': 'Responsable Pôle Commercial · IAE Rouen Junior Conseil',
+    'hero.role': "Développement commercial &amp; projets · International",
+    'hero.lead': "Je suis en troisième année de licence de gestion à l'IAE Rouen Normandie, après deux ans de maths-éco. À côté des cours, je fais partie de l'équipe qui crée IAE Rouen Junior Conseil, où je m'occupe du développement commercial, et je monte des projets en tant qu'étudiant-entrepreneur.",
+    'hero.tag1': "Responsable développement commercial · IAE Rouen Junior Conseil",
     'hero.tag2': "Statut National d'Étudiant-Entrepreneur · SNEE Pépite Normandie",
     'hero.tag3': "Lauréat Proj'Impact 2026",
     'hero.cta1': 'Voir mes projets',
@@ -37,12 +37,12 @@
 
     'about.eyebrow': 'À propos',
     'about.title': "En quelques <span class=\"hl\">mots</span>",
-    'about.p1': "Je suis en L3 Gestion à l'IAE Rouen Normandie. Ce qui m'intéresse le plus : la gestion de projet, le management international et l'entrepreneuriat.",
+    'about.p1': "Je suis en L3 Gestion à l'IAE Rouen Normandie. Ce qui m'intéresse : développer des marchés à l'international, coordonner des projets dans un contexte international et accompagner la transformation des organisations.",
     'about.p2': "J'ai commencé par une double licence maths-éco. J'y ai appris à poser un problème et à travailler avec des chiffres. La gestion m'apprend maintenant à m'en servir sur de vrais projets.",
-    'about.p3': "J'ai le statut d'étudiant-entrepreneur (SNEE) avec Pépite Normandie et je suis responsable du pôle commercial d'IAE Rouen Junior Conseil. Les deux me font organiser, coordonner et chercher des partenaires.",
+    'about.p3': "J'ai le statut d'étudiant-entrepreneur (SNEE) avec Pépite Normandie et je fais partie des fondateurs d'IAE Rouen Junior Conseil, où je m'occupe du développement commercial. Les deux me font organiser, coordonner et chercher des partenaires.",
     'about.p4': "Plus tard, j'aimerais travailler sur des projets internationaux et, un jour, encadrer une équipe multiculturelle.",
     'about.rolesTitle': 'Rôles actuels',
-    'role.jc': 'Responsable Pôle Commercial',
+    'role.jc': "Responsable développement commercial",
     'role.amb': "Ambassadeur Entrepreneuriat",
     'role.ambOrg': "Maison de l'Entrepreneuriat · Université de Rouen",
     'role.snee': 'Étudiant-Entrepreneur (SNEE)',
@@ -115,10 +115,10 @@
     'edu1.s6': "Entrepreneuriat et développement d'activité",
     'edu1.s7': 'Travail en équipe et conduite de projets',
     'edu1.p2': "Après deux années très théoriques, je voulais quelque chose de plus concret et plus proche de la vie des entreprises.",
-    'edu2.badge': "Bac +2",
-    'edu2.title': "Double licence Maths &amp; Économie",
+    'edu2.badge': "L1 + L2",
+    'edu2.title': "Double licence maths-éco, puis économie",
     'edu2.meta': 'Sept. 2024 – Juin 2026',
-    'edu2.p1': "Des maths, de l'économie, des statistiques et un peu de programmation.",
+    'edu2.p1': "Première année en double licence maths-éco, deuxième année en économie. Des maths, de l'économie, des statistiques et un peu de programmation.",
     'edu2.s1': 'Microéconomie et macroéconomie',
     'edu2.s2': 'Statistiques descriptives et probabilités',
     'edu2.s3': 'Algèbre et analyse réelle',
@@ -160,10 +160,10 @@
 
     'cta.eyebrow': "Je cherche",
     'cta.title': "Un stage de 3 à 6 mois à partir de mars 2027",
-    'cta.text': "Idéalement dans une équipe internationale, sur de la gestion de projet, de la coordination, des opérations, de la stratégie ou de la transformation.",
+    'cta.text': "En développement commercial à l'international, en coordination de projets internationaux, ou en conseil en stratégie et transformation.",
     'cta.linkedin': "Me retrouver sur LinkedIn",
 
-    'footer.tag': 'Business Developer en formation · Rouen, Normandie, France',
+    'footer.tag': "Développement commercial &amp; projets · Rouen, Normandie",
     'footer.nav': 'Navigation',
     'footer.contact': 'Contact',
     'footer.top': 'Haut de page ↑',
@@ -179,15 +179,15 @@
     'explore.eyebrow': "Explorer",
     'explore.title': "Pour aller plus <span class=\"hl\">loin</span>",
     'explore.cta': "Voir",
-    'ex1.text': "Quatre expériences depuis juillet 2025, de Boc Lab à la Maison de l'Entrepreneuriat.",
+    'ex1.text': "Cinq expériences depuis juillet 2025, de Boc Lab à la Junior Entreprise qu'on est en train de créer.",
     'ex2.text': "Silva Edita, lauréat de Proj'Impact 2026, et Naillies, monté pendant Les Jeunes Pousses.",
-    'ex3.text': "Deux ans de maths-éco, puis la gestion à l'IAE Rouen.",
+    'ex3.text': "Des maths et de l'économie, puis la gestion à l'IAE Rouen. Avec les langues et les outils.",
 
-    'exp.lead': "Quatre expériences depuis juillet 2025, du stage de deux mois au rôle d'ambassadeur que j'occupe aujourd'hui.",
+    'exp.lead': "Cinq expériences depuis juillet 2025, du stage de deux mois à la Junior Entreprise qu'on est en train de créer.",
     'proj.lead': "Deux projets lancés dans des programmes de l'université. L'un des deux continue aujourd'hui.",
     'pc1.text': "L'idée : végétaliser les toits de Rouen. On a commencé par les immeubles, puis les campus, et on vise maintenant un test sur les toits de pépinières d'entreprises.",
     'pc2.text': "Des kits créatifs pour apprendre la manucure semi-permanente. Six mois de travail avec Léa Portmann pendant Les Jeunes Pousses.",
-    'edu.lead': "Deux ans de maths-éco, puis le passage à la gestion.",
+    'edu.lead': "Des maths et de l'économie d'abord, puis le passage à la gestion.",
 
     'proj1.eyebrow': "Étude de cas · Proj'Impact 2026",
     'case1.title': 'Silva Edita',
@@ -247,11 +247,35 @@
     'bar.amb': 'Ambassadeur Entrepreneuriat',
     'bar.naillies': 'Naillies · Jeunes Pousses',
     'bar.silva': 'Silva Edita',
-    'bar.dl': 'Double Licence Maths &amp; Éco',
+    'bar.dl': "Maths-éco, puis économie",
     'bar.l3': 'L3 Gestion · IAE Rouen',
     'deck.hint': 'Glissez, utilisez les flèches du clavier ou cliquez sur une carte',
 
     /* @xp-pages */
+    'jc.title': "Responsable développement commercial",
+    'jc.meta': "Sept. 2026 – Aujourd’hui · Rouen · Équipe fondatrice",
+    'jc.p1': "On est en train de créer la Junior Entreprise de l'IAE Rouen. Je fais partie des membres fondateurs et je m'occupe du développement commercial.",
+    'jc.b1': "Chercher nos premiers clients",
+    'jc.b2': "Trouver les étudiants qui réaliseront les missions",
+    'jc.b3': "Réseauter pendant des événements professionnels",
+    'jc.b4': "Créer le site internet",
+    'jc.goal': "Objectif : une structure opérationnelle en décembre 2026.",
+    'bar.jc': "IAE Rouen Junior Conseil",
+    'bac.badge': "Mention Bien",
+    'bac.title': "Baccalauréat général",
+    'bac.meta': "Obtenu en 2024",
+    'bac.p1': "Spécialités : mathématiques et sciences économiques et sociales.",
+    'skills.g5': "Langues",
+    'lang.fr': "Français",
+    'lang.frL': "Langue maternelle",
+    'lang.en': "Anglais",
+    'lang.enNote': "TOEIC en janvier 2027",
+    'lang.de': "Allemand",
+    'lang.ja': "Japonais",
+    'skills.g6': "Outils",
+    'tool.office': "Pack Office",
+    'tool.ai': "Prompt et usage de l'IA",
+    'tool.web': "Création de sites web",
     'xp.context': "Le contexte",
     'xp.did': "Ce que j'ai fait",
     'xp.takeaway': "Ce que j'en retiens",
@@ -291,14 +315,23 @@
     'xp3.f1': "Août – sept. 2026 · 2 mois",
     'xp3.f3': "Rouen · Sur site",
     'xp3.f4': "Vacation étudiante",
-    'xp3.ctx': "À chaque rentrée, l'université accueille de nouveaux étudiants internationaux qui ont des démarches à faire en arrivant. J'étais au guichet qui s'occupe de leurs dossiers.",
+    'xp3.ctx': "L'Espace Monde, c'est le guichet d'accueil des étudiants internationaux de l'Université de Rouen : il les aide dans leurs démarches et leur installation. J'y ai travaillé à la rentrée 2026.",
+    'xp3.d0': "Une journée de formation au logiciel Saphire en juillet 2026",
     'xp4.eyebrow': "Expérience · En cours",
     'xp4.lead': "Depuis septembre 2026, je représente la Maison de l'Entrepreneuriat de l'Université de Rouen auprès des étudiants.",
     'xp4.f1': "Sept. 2026 – Aujourd’hui",
     'xp4.f3': "Rouen · Hybride",
     'xp4.f4': "Contrat",
     'xp4.ctx': "La Maison de l'Entrepreneuriat aide les étudiants qui veulent se lancer : accompagnement individuel, formations thématiques, événements réseau. C'est aussi elle qui organise Les Jeunes Pousses, le programme que j'ai suivi avec Naillies.",
-    'xp4.take': "Comme j'ai moi-même suivi Les Jeunes Pousses, je peux en parler aux étudiants en connaissance de cause."
+    'xp4.take': "Comme j'ai moi-même suivi Les Jeunes Pousses, je peux en parler aux étudiants en connaissance de cause.",
+    'xp5.eyebrow': "Expérience · En création",
+    'xp5.lead': "Je fais partie des membres fondateurs d'IAE Rouen Junior Conseil, la Junior Entreprise qu'on crée à l'IAE Rouen Normandie. Je m'occupe du développement commercial.",
+    'xp5.f1': "Sept. 2026 – Aujourd’hui",
+    'xp5.f4': "Équipe fondatrice",
+    'xp5.ctx': "Une Junior Entreprise est une association étudiante qui réalise des missions de conseil pour des entreprises, menées par des étudiants. On monte celle de l'IAE Rouen, avec l'objectif d'être opérationnels en décembre 2026.",
+    'xp5.d5': "Structuration de l'association et démarches administratives",
+    'xp5.take': "Trop tôt pour en tirer un bilan : je mettrai cette page à jour dès les premières missions signées.",
+    'xp5.site': "Le site que j'ai réalisé"
     /* @xp-pages-end */
   };
 
@@ -360,7 +393,7 @@
   var body = document.body;
   var curtainLabel = document.querySelector('.curtain__label');
   var LABELS = { 'index': 'nav.home', '': 'nav.home', 'experience': 'nav.experience', 'projects': 'nav.projects', 'education': 'nav.eduskills',
-    'snee': 'bar.snee', 'boc-lab': 'bar.boc', 'international-students': 'bar.intl', 'ambassador': 'bar.amb' };
+    'snee': 'bar.snee', 'boc-lab': 'bar.boc', 'international-students': 'bar.intl', 'ambassador': 'bar.amb', 'junior-conseil': 'bar.jc' };
   var LITERAL = { 'silva-edita': 'Silva Edita', 'jeunes-pousses': 'Naillies' };
 
   function labelFor(url) {
@@ -546,7 +579,12 @@
 
   // Language first (so titles are split in the right language), then animations
   var param = new URLSearchParams(window.location.search).get('lang');
-  var initial = param === 'fr' || param === 'en' ? param : stored();
+  // No explicit choice yet: follow the browser (French browsers get the French version)
+  function browserLang() {
+    var list = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+    return /^fr\b/i.test(list[0] || '') ? 'fr' : null;
+  }
+  var initial = param === 'fr' || param === 'en' ? param : (stored() || browserLang());
   var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
   if (initial === 'fr') applyLang('fr', false);
   ready.then(function () { if (splitEls.length) splitEls.forEach(splitLines); startObservers(); });
