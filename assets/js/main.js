@@ -1,11 +1,16 @@
 /* Naël Imberti · Portfolio
-   English is the source language (written in index.html).
-   French strings below replace it when the FR toggle is used. */
+   English is the source language (written in the HTML pages).
+   French strings below replace it when the FR toggle is used.
+   Transitions inspired by the IAE Rouen Junior Conseil site: page curtain,
+   titles revealed line by line, cascades, clip reveals, magnetic buttons. */
 
 (function () {
   'use strict';
 
-  document.documentElement.classList.add('js');
+  var root = document.documentElement;
+  root.classList.add('js');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var finePointer = window.matchMedia('(pointer: fine)').matches;
 
   /* ───────── Translations (FR) ───────── */
   var FR = {
@@ -165,8 +170,76 @@
     'footer.tag': 'Business Developer en formation · Rouen, Normandie, France',
     'footer.nav': 'Navigation',
     'footer.contact': 'Contact',
-    'footer.top': 'Haut de page ↑'
+    'footer.top': 'Haut de page ↑',
+
+    /* ── Multi-page additions ── */
+    'nav.home': 'Accueil',
+    'nav.eduskills': 'Formation &amp; compétences',
+    'common.next': 'Page suivante',
+    'common.nextProject': 'Projet suivant',
+    'common.back': 'Retour à',
+    'common.case': "Lire l'étude de cas",
+
+    'explore.eyebrow': 'Explorer',
+    'explore.title': 'Mon parcours en <span class="hl">trois</span> chapitres',
+    'explore.cta': 'Découvrir',
+    'ex1.text': "Quatre rôles : accompagnement entrepreneurial, projets d'un dirigeant et accueil des étudiants.",
+    'ex2.text': "Silva Edita, lauréat Proj'Impact 2026, et Naillies, construit dans le programme Les Jeunes Pousses 2026.",
+    'ex3.text': "D'une Double Licence Mathématiques &amp; Économie à la Licence de Gestion à l'IAE Rouen Normandie.",
+
+    'exp.lead': "De l'accompagnement d'un dirigeant à l'accueil de 527 étudiants internationaux : des rôles où j'ai appris à coordonner, communiquer et livrer.",
+    'proj.lead': "Deux projets portés dans les programmes entrepreneuriaux de l'Université de Rouen, de la première idée jusqu'au pitch final.",
+    'pc1.text': "Végétaliser les toits de Rouen : des barres d'immeubles et des campus jusqu'à une expérimentation sur les toits de pépinières d'entreprises.",
+    'pc2.text': "Apprendre la manucure semi-permanente grâce à des kits créatifs : un projet structuré sur six mois dans le programme Jeunes Pousses.",
+    'edu.lead': "Un parcours en deux temps : la rigueur analytique d'abord, puis la gestion et l'entrepreneuriat.",
+
+    'proj1.eyebrow': "Étude de cas · Proj'Impact 2026",
+    'case1.title': 'Silva Edita',
+    'case1.next': 'Silva Edita',
+    'case2.eyebrow': 'Étude de cas · Les Jeunes Pousses 2026',
+    'case2.title': 'Naillies',
+    'case2.next': 'Naillies · Les Jeunes Pousses',
+    'case.evolution': 'L’évolution du projet',
+    'case.goal': 'L’objectif',
+    'case.skills': 'Compétences mobilisées',
+    'case.role': 'Mon rôle',
+    'case.programme': 'Le programme, étape par étape',
+
+    'fact.period': 'Période',
+    'fact.field': 'Domaine',
+    'fact.recognition': 'Distinction',
+    'fact.next': 'Prochaine étape',
+    'fact.programme': 'Programme',
+    'fact.role': 'Mon rôle',
+    'fact.lead': 'Porteuse du projet',
+    'fact.support': 'Accompagnement',
+    'fact.silvaPeriod': 'Janv. 2026 – Aujourd’hui',
+    'fact.silvaField': 'Végétalisation urbaine',
+    'fact.silvaRec': "Lauréat Proj'Impact 2026",
+    'fact.silvaNext': 'Expérimentation sur les toits de Rouen Normandie Création',
+    'fact.jpPeriod': 'Oct. 2025 – Avr. 2026',
+    'fact.jpRole': 'Apporteur de compétences',
+
+    'jp.photo': 'Soirée de clôture des Jeunes Pousses, avril 2026',
+    'jp.s1.date': 'Octobre – novembre 2025',
+    'jp.s1.title': 'Soirées de lancement à Rouen et Évreux',
+    'jp.s2.date': 'Novembre 2025 – mars 2026',
+    'jp.s2.title': 'Neuf ateliers de formation',
+    'jp.s3.date': 'Avril 2026',
+    'jp.s3.title': 'Soirée de clôture, pitch et remises de prix',
+    'ws.1': 'Formaliser mon projet',
+    'ws.2': 'Proposition de valeur',
+    'ws.3': 'Offre commerciale',
+    'ws.4': 'Étudier mon marché',
+    'ws.5': 'Choisir mon statut juridique',
+    'ws.6': 'Financer mon projet',
+    'ws.7': 'Gouvernance et partenariats',
+    'ws.8': 'Marketing et communication',
+    'ws.9': 'Pitcher et vendre mon projet',
+    'jp.doc1': 'Dossier final, co-rédigé avec Léa Portmann',
+    'jp.doc2': "Calendrier officiel du programme, Maison de l'Entrepreneuriat"
   };
+
 
   /* ───────── i18n engine ───────── */
   var nodes = document.querySelectorAll('[data-i18n]');
@@ -176,28 +249,38 @@
     if (!(key in EN)) EN[key] = el.innerHTML;
   });
   var metaDesc = document.querySelector('meta[name="description"]');
-  EN['meta.title'] = document.title;
-  EN['meta.description'] = metaDesc ? metaDesc.getAttribute('content') : '';
+  var EN_META = { title: document.title, desc: metaDesc ? metaDesc.getAttribute('content') : '' };
+  var PAGE_FR = {
+    home: ['Naël Imberti · Business Developer en formation', FR['meta.description']],
+    experience: ['Expériences · Naël Imberti'],
+    projects: ['Projets · Naël Imberti'],
+    education: ['Formation &amp; compétences · Naël Imberti']
+  };
 
   var STORAGE_KEY = 'ni-lang';
+  var lang = 'en';
+  function store(v) { try { localStorage.setItem(STORAGE_KEY, v); } catch (e) { /* storage unavailable */ } }
+  function stored() { try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; } }
+  function t(key) { return (lang === 'fr' && FR[key] != null) ? FR[key] : EN[key]; }
 
-  function store(lang) {
-    try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) { /* storage unavailable */ }
-  }
-  function stored() {
-    try { return localStorage.getItem(STORAGE_KEY); } catch (e) { return null; }
-  }
-
-  function setLang(lang, persist) {
+  function applyLang(next, persist) {
+    lang = next;
     var dict = lang === 'fr' ? FR : EN;
     nodes.forEach(function (el) {
       var key = el.getAttribute('data-i18n');
       var value = dict[key] != null ? dict[key] : EN[key];
       if (value != null && el.innerHTML !== value) el.innerHTML = value;
     });
-    document.title = dict['meta.title'];
-    if (metaDesc) metaDesc.setAttribute('content', dict['meta.description']);
-    document.documentElement.lang = lang;
+    var page = document.body.getAttribute('data-page');
+    var fr = PAGE_FR[page];
+    if (lang === 'fr' && fr) {
+      var tmp = document.createElement('textarea'); tmp.innerHTML = fr[0]; document.title = tmp.value;
+      if (fr[1] && metaDesc) metaDesc.setAttribute('content', fr[1]);
+    } else {
+      document.title = EN_META.title;
+      if (metaDesc) metaDesc.setAttribute('content', EN_META.desc);
+    }
+    root.lang = lang;
     document.querySelectorAll('.lang__btn').forEach(function (b) {
       b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang));
     });
@@ -207,18 +290,85 @@
       if (lang === 'fr') url.searchParams.set('lang', 'fr'); else url.searchParams.delete('lang');
       history.replaceState(null, '', url.pathname + url.search + url.hash);
     }
+    resplitAll();
   }
 
+  /* ───────── Curtain (page transitions) ───────── */
+  var body = document.body;
+  var curtainLabel = document.querySelector('.curtain__label');
+  var LABELS = { 'index': 'nav.home', '': 'nav.home', 'experience': 'nav.experience', 'projects': 'nav.projects', 'education': 'nav.eduskills' };
+  var LITERAL = { 'silva-edita': 'Silva Edita', 'jeunes-pousses': 'Naillies' };
+
+  function labelFor(url) {
+    var file = url.pathname.split('/').pop().replace(/\.html$/, '');
+    if (LITERAL[file]) return LITERAL[file];
+    var key = LABELS[file];
+    return key ? t(key) : '';
+  }
+  function setLabel(text) {
+    if (!curtainLabel) return;
+    var tmp = document.createElement('textarea'); tmp.innerHTML = text || ''; curtainLabel.textContent = tmp.value;
+  }
+  function session(k, v) {
+    try { if (v === undefined) return sessionStorage.getItem(k); sessionStorage.setItem(k, v); } catch (e) { return null; }
+  }
+
+  // Entry: the curtain lifts by CSS alone; JS only shows the label and settles the final state
+  var carried = session('ni-curtain');
+  session('ni-curtain', '');
+  setLabel(carried || labelFor(location));
+  function settle() { body.classList.add('curtain-done'); }
+  var curtainMain = document.querySelector('.curtain__gold');
+  if (curtainMain) curtainMain.addEventListener('animationend', settle, { once: true });
+  setTimeout(settle, 2200);
+
+  function isInternal(a) {
+    var href = a.getAttribute('href');
+    if (!href || a.target === '_blank' || a.hasAttribute('download')) return null;
+    if (href.charAt(0) === '#' || /^(mailto|tel):/.test(href)) return null;
+    try {
+      var url = new URL(href, location.href);
+      if (url.origin !== location.origin) return null;
+      if (url.pathname === location.pathname && url.hash) return null;
+      return url;
+    } catch (e) { return null; }
+  }
+
+  document.addEventListener('click', function (e) {
+    if (e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    var a = e.target.closest && e.target.closest('a');
+    if (!a) return;
+    var url = isInternal(a);
+    if (!url) return;
+    if (lang === 'fr') url.searchParams.set('lang', 'fr'); else url.searchParams.delete('lang');
+    if (reduce) { if (lang === 'fr') { e.preventDefault(); location.href = url.href; } return; }
+    e.preventDefault();
+    closeMenu();
+    var label = labelFor(url);
+    setLabel(label);
+    session('ni-curtain', label);
+    body.classList.add('curtain-done', 'is-leaving');
+    setTimeout(function () { location.href = url.href; }, 760);
+  });
+  // Back/forward cache: reopen the page
+  window.addEventListener('pageshow', function (e) { if (e.persisted) body.classList.remove('is-leaving'); });
+
+  /* ───────── Language toggle (with curtain) ───────── */
   document.querySelectorAll('.lang__btn').forEach(function (b) {
-    b.addEventListener('click', function () { setLang(b.getAttribute('data-lang'), true); });
+    b.addEventListener('click', function () {
+      var next = b.getAttribute('data-lang');
+      if (next === lang) return;
+      if (reduce) { applyLang(next, true); return; }
+      setLabel(next === 'fr' ? 'Français' : 'English');
+      body.classList.add('curtain-done', 'is-leaving');
+      setTimeout(function () {
+        applyLang(next, true);
+        body.classList.remove('is-leaving');
+      }, 820);
+    });
   });
 
-  // English by default; ?lang=fr or a previous choice switches to French.
-  var param = new URLSearchParams(window.location.search).get('lang');
-  var initial = param === 'fr' || param === 'en' ? param : stored();
-  if (initial === 'fr') setLang('fr', false);
-
-  /* ───────── Header: scroll state, mobile menu, active link ───────── */
+  /* ───────── Header: scroll state, mobile menu ───────── */
   var header = document.querySelector('.header');
   var nav = document.getElementById('nav');
   var burger = document.querySelector('.burger');
@@ -238,21 +388,60 @@
   nav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
 
-  var links = nav.querySelectorAll('a[href^="#"]');
-  if ('IntersectionObserver' in window) {
-    var spy = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        var id = '#' + entry.target.id;
-        links.forEach(function (l) { l.classList.toggle('is-active', l.getAttribute('href') === id); });
+  /* ───────── Titles revealed line by line (masked) ───────── */
+  var splitEls = reduce ? [] : Array.prototype.slice.call(document.querySelectorAll('.section__head .title, .cta__title'));
+  function escapeHtml(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+  function splitLines(el) {
+    var source = el._src != null ? el._src : el.innerHTML;
+    el._src = source;
+    el.innerHTML = source;
+    var tokens = [];
+    (function walk(node, cls) {
+      node.childNodes.forEach(function (n) {
+        if (n.nodeType === 3) {
+          n.textContent.split(/(\s+)/).forEach(function (p) {
+            if (p === '') return;
+            if (/^\s+$/.test(p)) tokens.push({ space: true }); else tokens.push({ text: p, cls: cls });
+          });
+        } else if (n.nodeType === 1) {
+          if (n.tagName === 'BR') tokens.push({ br: true }); else walk(n, n.getAttribute('class') || cls);
+        }
       });
-    }, { rootMargin: '-45% 0px -50% 0px' });
-    document.querySelectorAll('main section[id]').forEach(function (s) { spy.observe(s); });
+    })(el, '');
+    el.innerHTML = tokens.map(function (tk) {
+      return tk.br ? '<br>' : tk.space ? ' ' : '<span class="w" data-cls="' + (tk.cls || '') + '">' + escapeHtml(tk.text) + '</span>';
+    }).join('');
+    var words = el.querySelectorAll('.w'), lines = [], cur = null, lastTop = null;
+    words.forEach(function (w) {
+      var top = w.offsetTop;
+      if (lastTop === null || Math.abs(top - lastTop) > 3) { cur = []; lines.push(cur); lastTop = top; }
+      cur.push(w);
+    });
+    el.innerHTML = lines.map(function (line, li) {
+      var html = '', i = 0;
+      while (i < line.length) {
+        var cls = line[i].getAttribute('data-cls'), seg = [], j = i;
+        while (j < line.length && line[j].getAttribute('data-cls') === cls) { seg.push(line[j].textContent); j++; }
+        var txt = escapeHtml(seg.join(' '));
+        html += cls ? '<span class="' + cls + '">' + txt + '</span>' : txt;
+        if (j < line.length) html += ' ';
+        i = j;
+      }
+      return '<span class="rl"><span class="ri" style="--d:' + (li * 0.09).toFixed(2) + 's">' + html + '</span></span>';
+    }).join('');
+    el.classList.add('is-split');
+  }
+  function resplitAll() {
+    splitEls.forEach(function (el) {
+      el._src = null; // the i18n engine has just written fresh source HTML
+      var wasIn = el.classList.contains('split-in');
+      splitLines(el);
+      if (wasIn) el.classList.add('split-in');
+    });
   }
 
-  /* ───────── Reveal on scroll + counters ───────── */
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
+  /* ───────── Reveals, cascades, clip reveals, counters ───────── */
   function countUp(el) {
     var target = parseInt(el.getAttribute('data-count'), 10);
     if (reduce || !target) return;
@@ -266,8 +455,13 @@
     requestAnimationFrame(step);
   }
 
-  var revealables = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window && !reduce) {
+  function startObservers() {
+    var watched = document.querySelectorAll('.reveal, [data-stagger], .reveal-media');
+    if (!('IntersectionObserver' in window) || reduce) {
+      watched.forEach(function (el) { el.classList.add('is-visible'); });
+      splitEls.forEach(function (el) { el.classList.add('split-in'); });
+      return;
+    }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
@@ -275,10 +469,52 @@
         entry.target.querySelectorAll('[data-count]').forEach(countUp);
         io.unobserve(entry.target);
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    revealables.forEach(function (el) { io.observe(el); });
-  } else {
-    revealables.forEach(function (el) { el.classList.add('is-visible'); });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    watched.forEach(function (el) { io.observe(el); });
+
+    var splitIO = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) { entry.target.classList.add('split-in'); splitIO.unobserve(entry.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    splitEls.forEach(function (el) { splitIO.observe(el); });
+  }
+
+  // Language first (so titles are split in the right language), then animations
+  var param = new URLSearchParams(window.location.search).get('lang');
+  var initial = param === 'fr' || param === 'en' ? param : stored();
+  var ready = document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve();
+  if (initial === 'fr') applyLang('fr', false);
+  ready.then(function () { if (splitEls.length) splitEls.forEach(splitLines); startObservers(); });
+
+  var rz;
+  window.addEventListener('resize', function () {
+    clearTimeout(rz);
+    rz = setTimeout(function () {
+      splitEls.forEach(function (el) {
+        var wasIn = el.classList.contains('split-in');
+        splitLines(el);
+        if (wasIn) el.classList.add('split-in');
+      });
+    }, 200);
+  });
+
+  /* ───────── Magnetic buttons (fine pointer) ───────── */
+  if (finePointer && !reduce) {
+    document.querySelectorAll('.btn, .next__arrow').forEach(function (el) {
+      var strength = el.classList.contains('next__arrow') ? .3 : .2;
+      el.setAttribute('data-magnetic', '');
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        var mx = e.clientX - (r.left + r.width / 2), my = e.clientY - (r.top + r.height / 2);
+        el.style.transition = 'transform .18s cubic-bezier(.16,1,.3,1)';
+        el.style.transform = 'translate(' + (mx * strength).toFixed(1) + 'px,' + (my * strength).toFixed(1) + 'px)';
+      });
+      el.addEventListener('pointerleave', function () {
+        el.style.transition = 'transform .55s cubic-bezier(.34,1.56,.64,1)';
+        el.style.transform = '';
+      });
+    });
   }
 
   /* ───────── Ambient: golden silk ribbons ─────────
@@ -478,7 +714,7 @@
   })();
 
   /* ───────── Cursor light on glass surfaces ───────── */
-  var GLASS = '.figures__card, .roles, .card, .feature, .skills__group';
+  var GLASS = '.figures__card, .roles, .card, .feature, .skills__group, .explore__card, .project, .facts';
   document.addEventListener('pointermove', function (e) {
     if (e.pointerType !== 'mouse' || !e.target.closest) return;
     var el = e.target.closest(GLASS);

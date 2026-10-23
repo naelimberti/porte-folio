@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Naël Imberti · Business Developer in training</title>
-  <meta name="description" content="Naël Imberti, Business Development & Management student at IAE Rouen Normandie, student-entrepreneur (SNEE · Pépite Normandie). Looking for a 3 to 6-month internship starting March 2027.">
+  <meta name="description" content="Naël Imberti, Business Development &amp; Management student at IAE Rouen Normandie, student-entrepreneur (SNEE · Pépite Normandie). Looking for a 3 to 6-month internship starting March 2027.">
   <meta name="author" content="Naël Imberti">
   <meta name="theme-color" content="#12061f">
   <meta name="color-scheme" content="dark">
@@ -12,15 +12,16 @@
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Naël Imberti · Business Developer in training">
-  <meta property="og:description" content="Business Development & Management student at IAE Rouen Normandie · Student-entrepreneur (SNEE · Pépite Normandie) · Proj'Impact 2026 laureate.">
+  <meta property="og:description" content="Naël Imberti, Business Development &amp; Management student at IAE Rouen Normandie, student-entrepreneur (SNEE · Pépite Normandie). Looking for a 3 to 6-month internship starting March 2027.">
   <meta property="og:image" content="assets/img/og-image.jpg">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
+  <noscript><style>.curtain{display:none!important}</style></noscript>
 </head>
-<body>
+<body data-page="home">
 
 <!-- Ambient background: gradient, aurora, golden ribbon (canvas), vignette, grain -->
 <div class="ambient" aria-hidden="true">
@@ -31,22 +32,35 @@
   <div class="ambient__grain"></div>
 </div>
 
+<!-- Page transition curtain (lifts on load, drops before leaving) -->
+<div class="curtain" aria-hidden="true">
+  <div class="curtain__gold"></div>
+  <div class="curtain__main">
+    <div class="curtain__inner">
+      <div class="curtain__mark">
+        <svg class="curtain__ring" viewBox="0 0 120 120"><circle cx="60" cy="60" r="56"/></svg>
+        <img src="assets/img/logo-round.png" alt="" width="84" height="84">
+      </div>
+      <span class="curtain__label"></span>
+    </div>
+  </div>
+</div>
+
 <a class="skip" href="#main" data-i18n="skip">Skip to content</a>
 
 <!-- ───────── HEADER ───────── -->
 <header class="header" id="top">
   <div class="container header__inner">
-    <a href="#top" class="brand" aria-label="Naël Imberti, home">
+    <a href="index.html" class="brand" aria-label="Naël Imberti, home">
       <img src="assets/img/logo-round.png" alt="" width="40" height="40">
       <span>Naël <strong>Imberti</strong></span>
     </a>
 
     <nav class="nav" id="nav" aria-label="Main">
-      <a href="#about" data-i18n="nav.about">About</a>
-      <a href="#experience" data-i18n="nav.experience">Experience</a>
-      <a href="#projects" data-i18n="nav.projects">Projects</a>
-      <a href="#education" data-i18n="nav.education">Education</a>
-      <a href="#skills" data-i18n="nav.skills">Skills</a>
+      <a href="index.html" class="is-active" aria-current="page" data-i18n="nav.home">Home</a>
+      <a href="experience.html" data-i18n="nav.experience">Experience</a>
+      <a href="projects.html" data-i18n="nav.projects">Projects</a>
+      <a href="education.html" data-i18n="nav.eduskills">Education &amp; Skills</a>
       <a href="#contact" class="nav__cta-mobile" data-i18n="nav.contact">Contact</a>
     </nav>
 
@@ -80,7 +94,7 @@
         <li data-i18n="hero.tag3">Proj'Impact 2026 laureate</li>
       </ul>
       <div class="hero__ctas">
-        <a href="#projects" class="btn btn--gold" data-i18n="hero.cta1">See my projects</a>
+        <a href="projects.html" class="btn btn--gold" data-i18n="hero.cta1">See my projects</a>
         <a href="#contact" class="btn btn--ghost" data-i18n="hero.cta2">Get in touch</a>
       </div>
     </div>
@@ -118,7 +132,7 @@
 </section>
 
 <!-- ───────── ABOUT ───────── -->
-<section class="section" id="about">
+<section class="section section--tint" id="about">
   <div class="container about">
     <div class="about__text reveal">
       <p class="eyebrow" data-i18n="about.eyebrow">About me</p>
@@ -152,256 +166,32 @@
   </div>
 </section>
 
-<!-- ───────── EXPERIENCE ───────── -->
-<section class="section section--tint" id="experience">
+<!-- ───────── EXPLORE ───────── -->
+<section class="section" id="explore">
   <div class="container">
     <div class="section__head reveal">
-      <p class="eyebrow" data-i18n="exp.eyebrow">Experience</p>
-      <h2 class="title" data-i18n="exp.title">Learning by <span class="hl">doing</span></h2>
+      <p class="eyebrow" data-i18n="explore.eyebrow">Explore</p>
+      <h2 class="title" data-i18n="explore.title">My path in <span class="hl">three</span> chapters</h2>
     </div>
-
-    <div class="cards cards--2">
-      <article class="card reveal">
-        <header class="card__head">
-          <span class="badge badge--live" data-i18n="common.present">Present</span>
-          <h3 data-i18n="exp1.title">Entrepreneurship Ambassador</h3>
-          <p class="card__org" data-i18n="exp1.org">Maison de l'Entrepreneuriat · Université de Rouen Normandie</p>
-          <p class="card__meta" data-i18n="exp1.meta">Sep 2026 – Present · Hybrid</p>
-        </header>
-        <ul class="ticks">
-          <li data-i18n="exp1.b1">Promote entrepreneurship and make it accessible to students at the University of Rouen and IAE.</li>
-          <li data-i18n="exp1.b2">Raise student awareness of entrepreneurial opportunities and support schemes.</li>
-          <li data-i18n="exp1.b3">Take part in events, forums and entrepreneurship promotion actions.</li>
-          <li data-i18n="exp1.b4">Run stands and talk directly with students to raise the profile of the Maison de l'Entrepreneuriat.</li>
-          <li data-i18n="exp1.b5">Showcase entrepreneurial initiatives and events on LinkedIn and social media.</li>
-          <li data-i18n="exp1.b6">Act as a link between students and the Maison de l'Entrepreneuriat.</li>
-        </ul>
-        <ul class="chips chips--sm">
-          <li data-i18n="sk.pm">Project organisation &amp; management</li>
-          <li data-i18n="sk.digital">Digital communication &amp; social media</li>
-          <li data-i18n="sk.sbd">Small Business Development</li>
-        </ul>
-      </article>
-
-      <article class="card reveal">
-        <header class="card__head">
-          <span class="badge badge--live" data-i18n="common.present">Present</span>
-          <h3 data-i18n="exp2.title">National Student-Entrepreneur Status (SNEE)</h3>
-          <p class="card__org">Pépite Normandie</p>
-          <p class="card__meta" data-i18n="exp2.meta">Jul 2025 – Present · Rouen, Normandy · Hybrid</p>
-        </header>
-        <p data-i18n="exp2.p1">Holder of the National Student-Entrepreneur Status through Pépite Normandie since July 2025, alongside my studies, to build and structure entrepreneurial projects.</p>
-        <p data-i18n="exp2.p2">This experience develops my skills in business development, market analysis, strategy, project management and offer design across several projects and initiatives.</p>
-        <ul class="ticks">
-          <li data-i18n="exp2.b1">Proj'Impact 2026 laureate with Silva Edita, an urban rooftop greening project.</li>
-          <li data-i18n="exp2.b2">Les Jeunes Pousses 2026 participant with Naillies, building a business plan in the beauty sector.</li>
-        </ul>
-        <ul class="chips chips--sm">
-          <li data-i18n="sk.curiosity">Curiosity &amp; initiative</li>
-          <li data-i18n="sk.adapt">Adaptability</li>
-          <li data-i18n="sk.autonomy">Autonomous work</li>
-        </ul>
-      </article>
-
-      <article class="card reveal">
-        <header class="card__head">
-          <span class="badge" data-i18n="exp3.badge">Internship</span>
-          <h3 data-i18n="exp3.title">Executive Assistant Intern</h3>
-          <p class="card__org">Boc Lab</p>
-          <p class="card__meta" data-i18n="exp3.meta">Jun 2026 – Jul 2026 · Rouen · Hybrid</p>
-        </header>
-        <p data-i18n="exp3.p1">Supported the founder in developing entrepreneurial projects, from opportunity assessment to operational implementation.</p>
-        <p data-i18n="exp3.p2">Worked on a wide range of topics: market analysis, project management, budget forecasting, regulatory monitoring, stakeholder coordination, business development and structuring new projects.</p>
-        <p data-i18n="exp3.p3">This experience gave me a concrete understanding of the strategic, organisational and financial challenges of creating and growing a business.</p>
-        <ul class="chips chips--sm">
-          <li data-i18n="sk.entre">Entrepreneurship</li>
-          <li data-i18n="sk.strat">Strategic analysis</li>
-          <li data-i18n="sk.budget">Budget management</li>
-          <li data-i18n="sk.market">Market research</li>
-          <li data-i18n="sk.bizdev">Business development</li>
-        </ul>
-      </article>
-
-      <article class="card reveal">
-        <header class="card__head">
-          <span class="badge" data-i18n="exp4.badge">Contract</span>
-          <h3 data-i18n="exp4.title">Student Assistant · International Students Office</h3>
-          <p class="card__org">Université de Rouen Normandie</p>
-          <p class="card__meta" data-i18n="exp4.meta">Aug 2026 – Sep 2026 · On-site</p>
-        </header>
-        <p data-i18n="exp4.p1">Supported <strong>527 international students</strong> with their administrative procedures and their arrival at the University of Rouen Normandie.</p>
-        <ul class="ticks">
-          <li data-i18n="exp4.b1">Front-desk reception</li>
-          <li data-i18n="exp4.b2">Creating physical and digital files</li>
-          <li data-i18n="exp4.b3">Checking physical and digital files</li>
-        </ul>
-        <ul class="chips chips--sm">
-          <li data-i18n="sk.oral">Oral communication</li>
-          <li data-i18n="sk.adapt">Adaptability</li>
-        </ul>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ───────── PROJECTS ───────── -->
-<section class="section" id="projects">
-  <div class="container">
-    <div class="section__head reveal">
-      <p class="eyebrow" data-i18n="proj.eyebrow">Entrepreneurial projects</p>
-      <h2 class="title" data-i18n="proj.title">From an idea to a <span class="hl">jury</span></h2>
-    </div>
-
-    <article class="feature reveal">
-      <div class="feature__media">
-        <img src="assets/img/silva-team.webp" alt="Silva Edita team receiving the Proj'Impact 2026 award" loading="lazy" width="1200" height="800">
-        <span class="feature__award" data-i18n="proj1.award">🏆 Proj'Impact 2026 laureate</span>
-      </div>
-      <div class="feature__body">
-        <p class="card__meta" data-i18n="proj1.meta">Jan 2026 – Present · Urban greening</p>
-        <h3>Silva Edita</h3>
-        <p data-i18n="proj1.p1">The project started from a reflection on greening the rooftops of Rouen, first focused on apartment blocks, then on university campuses.</p>
-        <p data-i18n="proj1.p2">After several discussions with local stakeholders and innovation players, the project is now moving towards an experiment on the rooftops of the Rouen Normandie Création business incubators.</p>
-        <p class="feature__goal"><strong data-i18n="proj1.goalLabel">Goal:</strong> <span data-i18n="proj1.goal">design light, modular and accessible greening solutions that improve urban spaces while creating a collective momentum around the ecological transition.</span></p>
-        <ul class="chips chips--sm">
-          <li data-i18n="sk.network">Professional networking</li>
-          <li data-i18n="sk.market">Market research</li>
-          <li data-i18n="sk.curiosity">Curiosity &amp; initiative</li>
-        </ul>
-      </div>
-    </article>
-
-    <div class="gallery reveal">
-      <figure><img src="assets/img/silva-pitch.webp" alt="Naël Imberti pitching Silva Edita" loading="lazy" width="1200" height="800"><figcaption data-i18n="gal.1">Pitching Silva Edita</figcaption></figure>
-      <figure><img src="assets/img/silva-award.webp" alt="Proj'Impact 2026 award ceremony" loading="lazy" width="1200" height="800"><figcaption data-i18n="gal.2">Proj'Impact 2026 award ceremony</figcaption></figure>
-    </div>
-
-    <article class="feature feature--reverse reveal">
-      <div class="feature__media feature__media--doc">
-        <img src="assets/img/naillies-cover.webp" alt="Cover of the Naillies final report, Les Jeunes Pousses programme" loading="lazy" width="637" height="900">
-      </div>
-      <div class="feature__body">
-        <p class="card__meta" data-i18n="proj2.meta">Oct 2025 – Apr 2026 · Les Jeunes Pousses 2026 · Pépite Normandie</p>
-        <h3>Naillies</h3>
-        <p data-i18n="proj2.p1">Development of an entrepreneurial project around learning semi-permanent manicure through accessible and creative learning kits.</p>
-        <p data-i18n="proj2.p2">Contributed to structuring the project as a skills contributor: product thinking, market research, positioning, pitch and value proposition development within the Jeunes Pousses programme.</p>
-        <p class="feature__goal"><strong data-i18n="proj2.teamLabel">Team:</strong> <span data-i18n="proj2.team">Léa Portmann (project lead) · Naël Imberti (skills contributor)</span></p>
-        <ul class="chips chips--sm">
-          <li data-i18n="sk.bp">Business plan development</li>
-          <li data-i18n="sk.watch">Marketing intelligence</li>
-          <li data-i18n="sk.story">Content writing &amp; storytelling</li>
-        </ul>
-      </div>
-    </article>
-  </div>
-</section>
-
-<!-- ───────── EDUCATION ───────── -->
-<section class="section section--tint" id="education">
-  <div class="container">
-    <div class="section__head reveal">
-      <p class="eyebrow" data-i18n="edu.eyebrow">Education</p>
-      <h2 class="title" data-i18n="edu.title">From <span class="hl">numbers</span> to management</h2>
-    </div>
-
-    <div class="timeline">
-      <article class="timeline__item reveal">
-        <div class="timeline__date">2026 – 2027</div>
-        <div class="card">
-          <header class="card__head">
-            <span class="badge badge--live" data-i18n="common.current">Current</span>
-            <h3 data-i18n="edu1.title">Bachelor's in Management (Licence 3 Gestion) · Management track</h3>
-            <p class="card__org">IAE Rouen Normandie</p>
-            <p class="card__meta" data-i18n="edu1.meta">Sep 2026 – Jul 2027</p>
-          </header>
-          <p data-i18n="edu1.p1">A programme focused on developing skills in business administration, management and understanding of organisations.</p>
-          <ul class="chips chips--sm">
-            <li data-i18n="edu1.s1">Management of organisations</li>
-            <li data-i18n="edu1.s2">Marketing &amp; sales strategy</li>
-            <li data-i18n="edu1.s3">Project management</li>
-            <li data-i18n="edu1.s4">Analysis &amp; decision making</li>
-            <li data-i18n="edu1.s5">Professional communication</li>
-            <li data-i18n="edu1.s6">Entrepreneurship &amp; business development</li>
-            <li data-i18n="edu1.s7">Teamwork &amp; project delivery</li>
-          </ul>
-          <p class="muted" data-i18n="edu1.p2">This programme complements my scientific and economic background by strengthening my skills in management, business development and entrepreneurship, with a more practical, organisation-focused approach.</p>
-        </div>
-      </article>
-
-      <article class="timeline__item reveal">
-        <div class="timeline__date">2024 – 2026</div>
-        <div class="card">
-          <header class="card__head">
-            <span class="badge" data-i18n="edu2.badge">2 years of higher education</span>
-            <h3 data-i18n="edu2.title">Double Bachelor's in Mathematics &amp; Economics</h3>
-            <p class="card__org">Université de Rouen Normandie</p>
-            <p class="card__meta" data-i18n="edu2.meta">Sep 2024 – Jun 2026</p>
-          </header>
-          <p data-i18n="edu2.p1">A multidisciplinary programme combining analytical reasoning, quantitative tools and an understanding of contemporary economic issues.</p>
-          <ul class="chips chips--sm">
-            <li data-i18n="edu2.s1">Micro &amp; macroeconomics</li>
-            <li data-i18n="edu2.s2">Descriptive statistics &amp; probability</li>
-            <li data-i18n="edu2.s3">Algebra &amp; real analysis</li>
-            <li data-i18n="edu2.s4">Python programming &amp; web development</li>
-            <li data-i18n="edu2.s5">Data analysis &amp; quantitative methods</li>
-            <li data-i18n="edu2.s6">Writing, English &amp; tutored projects</li>
-          </ul>
-          <p class="muted" data-i18n="edu2.p2">This demanding programme built my analytical rigour, autonomy and adaptability, while gradually shaping my move towards management, business development and entrepreneurship.</p>
-        </div>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- ───────── SKILLS ───────── -->
-<section class="section section--dark" id="skills">
-  <div class="container">
-    <div class="section__head reveal">
-      <p class="eyebrow eyebrow--gold" data-i18n="skills.eyebrow">Skills</p>
-      <h2 class="title title--light" data-i18n="skills.title">What I bring to a <span class="hl hl--gold">team</span></h2>
-    </div>
-    <div class="skills">
-      <div class="skills__group reveal">
-        <h3 data-i18n="skills.g1">Business &amp; strategy</h3>
-        <ul class="chips chips--dark">
-          <li data-i18n="sk.bizdev">Business development</li>
-          <li data-i18n="sk.sbd">Small Business Development</li>
-          <li data-i18n="sk.entre">Entrepreneurship</li>
-          <li data-i18n="sk.strat">Strategic analysis</li>
-          <li data-i18n="sk.mkstrat">Marketing strategy</li>
-          <li data-i18n="sk.watch">Marketing intelligence</li>
-          <li data-i18n="sk.market">Market research</li>
-          <li data-i18n="sk.bp">Business plan development</li>
-        </ul>
-      </div>
-      <div class="skills__group reveal">
-        <h3 data-i18n="skills.g2">Management &amp; analysis</h3>
-        <ul class="chips chips--dark">
-          <li data-i18n="sk.pm">Project organisation &amp; management</li>
-          <li data-i18n="sk.budget">Budget management</li>
-          <li data-i18n="sk.decision">Decision making</li>
-          <li data-i18n="sk.eco">Micro &amp; macroeconomics</li>
-          <li data-i18n="sk.stats">Descriptive statistics &amp; probability</li>
-        </ul>
-      </div>
-      <div class="skills__group reveal">
-        <h3 data-i18n="skills.g3">Communication &amp; network</h3>
-        <ul class="chips chips--dark">
-          <li data-i18n="sk.oral">Oral communication</li>
-          <li data-i18n="sk.network">Professional networking</li>
-          <li data-i18n="sk.digital">Digital communication &amp; social media</li>
-          <li data-i18n="sk.story">Content writing &amp; storytelling</li>
-        </ul>
-      </div>
-      <div class="skills__group reveal">
-        <h3 data-i18n="skills.g4">Soft skills</h3>
-        <ul class="chips chips--dark">
-          <li data-i18n="sk.team">Teamwork</li>
-          <li data-i18n="sk.autonomy">Autonomous work</li>
-          <li data-i18n="sk.adapt">Adaptability</li>
-          <li data-i18n="sk.curiosity">Curiosity &amp; initiative</li>
-        </ul>
-      </div>
+    <div class="explore" data-stagger>
+      <a class="explore__card" href="experience.html">
+        <span class="explore__num">01</span>
+        <h3 data-i18n="nav.experience">Experience</h3>
+        <p data-i18n="ex1.text">Four roles across entrepreneurship support, a founder's projects and student services.</p>
+        <span class="explore__cta"><span data-i18n="explore.cta">Discover</span> <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="explore__card" href="projects.html">
+        <span class="explore__num">02</span>
+        <h3 data-i18n="nav.projects">Projects</h3>
+        <p data-i18n="ex2.text">Silva Edita, Proj'Impact 2026 laureate, and Naillies, built within Les Jeunes Pousses 2026.</p>
+        <span class="explore__cta"><span data-i18n="explore.cta">Discover</span> <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="explore__card" href="education.html">
+        <span class="explore__num">03</span>
+        <h3 data-i18n="nav.eduskills">Education &amp; Skills</h3>
+        <p data-i18n="ex3.text">From a Double Degree in Mathematics &amp; Economics to Management at IAE Rouen Normandie.</p>
+        <span class="explore__cta"><span data-i18n="explore.cta">Discover</span> <span aria-hidden="true">→</span></span>
+      </a>
     </div>
   </div>
 </section>
@@ -453,11 +243,10 @@
     <div>
       <p class="footer__h" data-i18n="footer.nav">Navigate</p>
       <ul class="footer__links">
-        <li><a href="#about" data-i18n="nav.about">About</a></li>
-        <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
-        <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
-        <li><a href="#education" data-i18n="nav.education">Education</a></li>
-        <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+        <li><a href="index.html" data-i18n="nav.home">Home</a></li>
+        <li><a href="experience.html" data-i18n="nav.experience">Experience</a></li>
+        <li><a href="projects.html" data-i18n="nav.projects">Projects</a></li>
+        <li><a href="education.html" data-i18n="nav.eduskills">Education &amp; Skills</a></li>
       </ul>
     </div>
     <div>
