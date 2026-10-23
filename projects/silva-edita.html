@@ -81,23 +81,31 @@
 <main id="main">
 
 <!-- ───────── PAGE HERO ───────── -->
-<section class="page-hero">
-  <div class="container">
+<section class="page-hero page-hero--media">
+  <div class="container page-hero__grid">
+    <div class="page-hero__text">
     <nav class="crumbs" aria-label="Breadcrumb"><a href="../projects.html" data-i18n="nav.projects">Projects</a><span aria-hidden="true">/</span><span>Silva Edita</span></nav>
-    <p class="eyebrow" data-i18n="proj1.eyebrow">Case study · Proj'Impact 2026</p>
-    <h1 class="page-hero__title" data-i18n="case1.title">Silva Edita</h1>
-    <p class="page-hero__lead" data-i18n="proj1.p1">The project started from a reflection on greening the rooftops of Rouen, first focused on apartment blocks, then on university campuses.</p>
+      <p class="eyebrow" data-i18n="proj1.eyebrow">Case study · Proj'Impact 2026</p>
+      <h1 class="page-hero__title" data-i18n="case1.title">Silva Edita</h1>
+      <p class="page-hero__lead" data-i18n="proj1.p1">The project started from a reflection on greening the rooftops of Rouen, first focused on apartment blocks, then on university campuses.</p>
+    </div>
+    <figure class="page-hero__media reveal-media">
+      <img src="../assets/img/silva-team.webp" alt="Silva Edita team with the Proj'Impact 2026 award" width="1200" height="800">
+      <span class="feature__award" data-i18n="proj1.award">🏆 Proj'Impact 2026 laureate</span>
+    </figure>
   </div>
 </section>
 
 <section class="section section--flush">
   <div class="container">
-    <figure class="case__hero reveal-media">
-      <img src="../assets/img/silva-team.webp" alt="Silva Edita team with the Proj'Impact 2026 award" width="1200" height="800">
-      <span class="feature__award" data-i18n="proj1.award">🏆 Proj'Impact 2026 laureate</span>
-    </figure>
-    <div class="case">
-      <div class="case__main">
+    <dl class="facts facts--row" data-stagger>
+        <div><dt data-i18n="fact.period">Period</dt><dd data-i18n="fact.silvaPeriod">Jan 2026 – Present</dd></div>
+        <div><dt data-i18n="fact.field">Field</dt><dd data-i18n="fact.silvaField">Urban greening</dd></div>
+        <div><dt data-i18n="fact.recognition">Recognition</dt><dd data-i18n="fact.silvaRec">Proj'Impact 2026 laureate</dd></div>
+        <div><dt data-i18n="fact.next">Next step</dt><dd data-i18n="fact.silvaNext">Rooftop experiment with Rouen Normandie Création</dd></div>
+    </dl>
+    <div class="case case--silva">
+      <div class="case__text">
         <div class="case__block reveal">
           <h2 class="case__h" data-i18n="case.evolution">How it evolved</h2>
           <p data-i18n="proj1.p2">After several discussions with local stakeholders and innovation players, the project is now moving towards an experiment on the rooftops of the Rouen Normandie Création business incubators.</p>
@@ -105,10 +113,6 @@
         <div class="case__block reveal">
           <h2 class="case__h" data-i18n="case.goal">The goal</h2>
           <p class="feature__goal" data-i18n="proj1.goal">design light, modular and accessible greening solutions that improve urban spaces while creating a collective momentum around the ecological transition.</p>
-        </div>
-        <div class="gallery" data-stagger>
-          <figure><img src="../assets/img/silva-pitch.webp" alt="Naël Imberti pitching Silva Edita" loading="lazy" width="1200" height="800"><figcaption data-i18n="gal.1">Pitching Silva Edita</figcaption></figure>
-          <figure><img src="../assets/img/silva-award.webp" alt="Proj'Impact 2026 award ceremony" loading="lazy" width="1200" height="800"><figcaption data-i18n="gal.2">Proj'Impact 2026 award ceremony</figcaption></figure>
         </div>
         <div class="case__block reveal">
           <h2 class="case__h" data-i18n="case.skills">Skills developed</h2>
@@ -121,14 +125,8 @@
           </ul>
         </div>
       </div>
-      <aside class="case__aside">
-      <dl class="facts reveal">
-        <div><dt data-i18n="fact.period">Period</dt><dd data-i18n="fact.silvaPeriod">Jan 2026 – Present</dd></div>
-        <div><dt data-i18n="fact.field">Field</dt><dd data-i18n="fact.silvaField">Urban greening</dd></div>
-        <div><dt data-i18n="fact.recognition">Recognition</dt><dd data-i18n="fact.silvaRec">Proj'Impact 2026 laureate</dd></div>
-        <div><dt data-i18n="fact.next">Next step</dt><dd data-i18n="fact.silvaNext">Rooftop experiment with Rouen Normandie Création</dd></div>
-      </dl>
-      </aside>
+      <figure class="case__fig reveal-media"><img src="../assets/img/silva-pitch.webp" alt="Naël Imberti pitching Silva Edita" loading="lazy" width="1200" height="800"><figcaption data-i18n="gal.1">Pitching Silva Edita</figcaption></figure>
+      <figure class="case__fig reveal-media"><img src="../assets/img/silva-award.webp" alt="Proj'Impact 2026 award ceremony" loading="lazy" width="1200" height="800"><figcaption data-i18n="gal.2">Proj'Impact 2026 award ceremony</figcaption></figure>
     </div>
   </div>
 </section>
