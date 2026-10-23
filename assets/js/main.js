@@ -249,7 +249,57 @@
     'bar.silva': 'Silva Edita',
     'bar.dl': 'Double Licence Maths &amp; Éco',
     'bar.l3': 'L3 Gestion · IAE Rouen',
-    'deck.hint': 'Glissez, utilisez les flèches du clavier ou cliquez sur une carte'
+    'deck.hint': 'Glissez, utilisez les flèches du clavier ou cliquez sur une carte',
+
+    /* @xp-pages */
+    'xp.context': "Le contexte",
+    'xp.did': "Ce que j'ai fait",
+    'xp.takeaway': "Ce que j'en retiens",
+    'xp.related': "Pour aller plus loin",
+    'xp.details': "Voir le détail",
+    'xp.skills': "Compétences travaillées",
+    'fact.org': "Structure",
+    'fact.place': "Lieu",
+    'fact.type': "Type",
+    'common.nextXp': "Expérience suivante",
+    'xp1.eyebrow': "Expérience · Statut",
+    'xp1.lead': "Depuis juillet 2025, j'ai le statut national d'étudiant-entrepreneur. C'est ce qui me permet de mener des projets en parallèle de ma licence.",
+    'xp1.f1': "Juil. 2025 – Aujourd’hui",
+    'xp1.f3': "Rouen · Hybride",
+    'xp1.f4': "Statut",
+    'xp1.ctx': "Le SNEE est un statut national pour les étudiants qui veulent monter un projet d'entreprise pendant leurs études. En Normandie, il passe par Pépite Normandie. Je l'ai obtenu en juillet 2025.",
+    'xp1.d1': "Silva Edita : un projet de toitures végétalisées, lauréat de Proj'Impact 2026.",
+    'xp1.d2': "Naillies : six mois avec Léa Portmann dans Les Jeunes Pousses, à construire un business plan dans la beauté.",
+    'xp1.d3': "Des études de marché, des offres, des business plans et des pitchs au fil des projets.",
+    'xp1.take': "C'est ce statut qui m'a orienté vers le business development et le développement commercial, avec un vrai intérêt pour l'entrepreneuriat responsable.",
+    'xp2.eyebrow': "Expérience · Stage",
+    'xp2.lead': "Deux mois aux côtés du dirigeant de Boc Lab, pour aider à créer Magic Lab, une école de magie à Rouen.",
+    'xp2.f1': "Juin – juil. 2026 · 2 mois",
+    'xp2.f3': "Rouen · Hybride",
+    'xp2.f4': "Stage",
+    'xp2.ctx': "Boc Lab est à l'origine de Magic Lab, une école de magie à Rouen pour les enfants et les ados de 6 à 17 ans. Mon stage portait sur le passage de l'idée au lancement de l'école, en direct avec le dirigeant.",
+    'xp2.d1': "Étude de marché et vérification de l'opportunité",
+    'xp2.d2': "Budget prévisionnel et modèle économique",
+    'xp2.d3': "Veille réglementaire, notamment les règles ERP (établissement recevant du public)",
+    'xp2.d4': "Coordination des différents intervenants",
+    'xp2.d5': "Réflexion sur l'expérience client",
+    'xp2.d6': "Conception et développement du site de présentation de l'école",
+    'xp2.take': "C'est là que j'ai vu de près ce que demande vraiment le lancement d'une activité : les chiffres, les règles et les gens à coordonner.",
+    'xp2.site': "Le site que j'ai réalisé",
+    'xp3.eyebrow': "Expérience · Vacation",
+    'xp3.lead': "À la rentrée 2026, j'ai aidé 527 étudiants internationaux à s'installer à l'Université de Rouen Normandie.",
+    'xp3.f1': "Août – sept. 2026 · 2 mois",
+    'xp3.f3': "Rouen · Sur site",
+    'xp3.f4': "Vacation étudiante",
+    'xp3.ctx': "À chaque rentrée, l'université accueille de nouveaux étudiants internationaux qui ont des démarches à faire en arrivant. J'étais au guichet qui s'occupe de leurs dossiers.",
+    'xp4.eyebrow': "Expérience · En cours",
+    'xp4.lead': "Depuis septembre 2026, je représente la Maison de l'Entrepreneuriat de l'Université de Rouen auprès des étudiants.",
+    'xp4.f1': "Sept. 2026 – Aujourd’hui",
+    'xp4.f3': "Rouen · Hybride",
+    'xp4.f4': "Contrat",
+    'xp4.ctx': "La Maison de l'Entrepreneuriat aide les étudiants qui veulent se lancer : accompagnement individuel, formations thématiques, événements réseau. C'est aussi elle qui organise Les Jeunes Pousses, le programme que j'ai suivi avec Naillies.",
+    'xp4.take': "Comme j'ai moi-même suivi Les Jeunes Pousses, je peux en parler aux étudiants en connaissance de cause."
+    /* @xp-pages-end */
   };
 
 
@@ -309,7 +359,8 @@
   /* ───────── Curtain (page transitions) ───────── */
   var body = document.body;
   var curtainLabel = document.querySelector('.curtain__label');
-  var LABELS = { 'index': 'nav.home', '': 'nav.home', 'experience': 'nav.experience', 'projects': 'nav.projects', 'education': 'nav.eduskills' };
+  var LABELS = { 'index': 'nav.home', '': 'nav.home', 'experience': 'nav.experience', 'projects': 'nav.projects', 'education': 'nav.eduskills',
+    'snee': 'bar.snee', 'boc-lab': 'bar.boc', 'international-students': 'bar.intl', 'ambassador': 'bar.amb' };
   var LITERAL = { 'silva-edita': 'Silva Edita', 'jeunes-pousses': 'Naillies' };
 
   function labelFor(url) {

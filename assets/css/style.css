@@ -953,3 +953,36 @@ strong { color: var(--ink); font-weight: 600; }
   .page-hero__title { font-size: 2rem; }
   .next__title { font-size: 1.6rem; }
 }
+
+/* ==========================================================================
+   Experience detail pages
+   ========================================================================== */
+.card__more { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; margin-top: 6px; color: var(--gold); font-weight: 600; font-size: 14.5px; text-decoration: none; }
+.card__more span:last-child { transition: transform .35s var(--ease-out); }
+.card__more:hover span:last-child { transform: translateX(6px); }
+
+/* key facts next to the title */
+.facts--hero { aspect-ratio: auto; margin: 0; padding: 30px 32px; background: linear-gradient(180deg, var(--glass-hi), transparent 40%), var(--glass); overflow: visible; }
+.facts--hero dd { font-size: 1.05rem; }
+@media (min-width: 1100px) { .page-hero--media .facts--hero { align-self: end; } }
+
+/* two columns: context / what I did */
+.xp { display: grid; grid-template-columns: minmax(0, 1fr); gap: 48px; }
+.xp__col { display: flex; flex-direction: column; gap: 48px; }
+@media (min-width: 960px) { .xp { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(40px, 5vw, 96px); } }
+.xp .ticks li { font-size: 1.02rem; }
+
+/* related links */
+.related { margin-top: 72px; }
+.related__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 20px; }
+.related__item {
+  position: relative; display: flex; flex-direction: column; gap: 4px; padding: 24px 56px 24px 24px; border-radius: var(--radius);
+  text-decoration: none; color: var(--text); border: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--glass-hi), transparent 40%), var(--glass); transition: border-color .3s, transform .4s var(--ease-out);
+}
+.related__item:hover { border-color: rgba(255, 216, 77, .4); }
+.related__label { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.related__title { font-family: var(--display); font-weight: 600; font-size: 1.3rem; color: var(--ink); }
+.related__sub { font-size: 14px; color: var(--gold); }
+.related__arrow { position: absolute; right: 22px; top: 50%; transform: translateY(-50%); color: var(--gold); font-size: 1.3rem; transition: transform .35s var(--ease-out); }
+.related__item:hover .related__arrow { transform: translate(5px, -50%); }
