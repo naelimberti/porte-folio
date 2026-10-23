@@ -139,7 +139,7 @@ strong { color: var(--ink); font-weight: 600; }
   transform-origin: 0 50%; transform: scaleX(var(--p, 0));
 }
 
-.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-family: var(--display); font-size: 18px; font-weight: 600; flex-shrink: 0; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); font-family: var(--display); font-size: 18px; font-weight: 800; flex-shrink: 0; }
 .brand strong { font-weight: 800; color: var(--gold); }
 .brand img { width: 40px; height: 40px; filter: drop-shadow(0 0 12px rgba(148, 64, 221, .5)); }
 
@@ -623,7 +623,7 @@ strong { color: var(--ink); font-weight: 600; }
   transform: scaleX(0); transform-origin: left; transition: transform .6s var(--ease-out);
 }
 .js [data-stagger].is-visible > .explore__card { transition: opacity .8s var(--ease-out), transform .45s var(--ease-out), border-color .35s; }
-.explore__card:hover { transform: translateY(-6px) !important; border-color: rgba(183, 110, 245, .35); }
+.explore__card:hover { border-color: rgba(183, 110, 245, .35); }
 .explore__card:hover::before { transform: scaleX(1); }
 .explore__num { font-family: var(--display); font-weight: 800; font-size: 3.4rem; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(255, 216, 77, .55); transition: color .4s; }
 .explore__card:hover .explore__num { color: rgba(255, 216, 77, .15); }
@@ -637,7 +637,7 @@ strong { color: var(--ink); font-weight: 600; }
 .projects { display: grid; gap: 28px; }
 .project { display: grid; grid-template-columns: 1.1fr 1fr; border-radius: 24px; overflow: hidden; text-decoration: none; color: var(--text); }
 .js [data-stagger].is-visible > .project { transition: opacity .8s var(--ease-out), transform .45s var(--ease-out), border-color .35s; }
-.project:hover { border-color: rgba(183, 110, 245, .35); transform: translateY(-4px) !important; }
+.project:hover { border-color: rgba(183, 110, 245, .35); }
 .project:nth-child(even) .project__media { order: 2; }
 .project__media { position: relative; min-height: 380px; overflow: hidden; background: var(--purple-800); }
 .project__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1s var(--ease-out); }
@@ -835,3 +835,97 @@ strong { color: var(--ink); font-weight: 600; }
   .cta__inner { grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); }
 }
 @media (max-width: 350px) { .page-hero__title { font-size: 1.6rem; } }
+
+/* ==========================================================================
+   Interactive chronology + 3D card deck (Experience) and 3D tilt
+   ========================================================================== */
+
+/* ───────── Timeline ───────── */
+.chrono { position: relative; margin-bottom: 72px; padding: 28px 28px 22px; border-radius: 24px; border: 1px solid var(--line); background: linear-gradient(180deg, var(--glass-hi), transparent 40%), var(--glass); box-shadow: var(--shadow); }
+.chrono__top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; margin-bottom: 18px; }
+.chrono__hint { color: var(--muted); font-size: 14.5px; }
+.chrono__legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--muted); }
+.chrono__legend li { display: inline-flex; align-items: center; gap: 8px; }
+.chrono__legend li::before { content: ''; width: 18px; height: 8px; border-radius: 4px; background: var(--c); }
+.is-exp { --c: linear-gradient(90deg, var(--gold-deep), var(--gold)); }
+.is-proj { --c: linear-gradient(90deg, var(--violet), var(--violet-soft)); }
+.is-edu { --c: linear-gradient(90deg, #5866d8, #8a9bff); }
+.chrono__scroll { overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: thin; scrollbar-color: var(--purple-600) transparent; padding-bottom: 6px; }
+.chrono__grid { --label: 128px; position: relative; min-width: 760px; padding-top: 30px; }
+.chrono__years { position: absolute; left: var(--label); right: 0; top: 0; bottom: 0; pointer-events: none; }
+.chrono__tick { position: absolute; top: 0; bottom: 0; left: var(--x); border-left: 1px dashed rgba(255, 255, 255, .1); }
+.chrono__tick span { position: absolute; top: 0; left: 8px; font-family: var(--display); font-weight: 700; font-size: 13px; color: var(--muted); }
+.chrono__lane { display: grid; grid-template-columns: var(--label) minmax(0, 1fr); align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+.chrono__label { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.chrono__track { position: relative; height: calc(var(--rows) * 38px); }
+.chrono__bar {
+  position: absolute; left: var(--s, 0%); width: var(--w, 10%); top: calc((var(--r, 1) - 1) * 38px + 4px); height: 30px; min-width: 14px;
+  display: flex; align-items: center; padding: 0 10px; border: 0; border-radius: 8px; cursor: pointer;
+  background: var(--c); color: var(--purple-900); font: 600 12.5px/1 var(--sans); text-decoration: none; text-align: left;
+  opacity: .78; transition: opacity .3s, transform .35s var(--ease-out), box-shadow .35s;
+}
+.chrono__bar span { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.chrono__bar.is-proj, .chrono__bar.is-edu { color: #fff; opacity: .5; }
+.chrono__bar.is-ongoing { border-radius: 8px 0 0 8px; }
+.chrono__bar.is-ongoing::before { content: ''; position: absolute; right: -1px; top: 0; bottom: 0; width: 3px; background: #4ade80; box-shadow: 0 0 10px #4ade80; border-radius: 2px; }
+.chrono__bar:hover, .chrono__bar:focus-visible { opacity: 1; transform: translateY(-2px); }
+.chrono__bar.is-active { opacity: 1; box-shadow: 0 0 0 2px var(--purple-900), 0 0 0 4px var(--gold), 0 10px 30px rgba(255, 216, 77, .35); }
+.chrono__today { position: absolute; top: 22px; bottom: 0; left: calc(var(--label) + (100% - var(--label)) * var(--t, .7)); width: 2px; background: #4ade80; box-shadow: 0 0 12px #4ade80; pointer-events: none; }
+.chrono__today span { position: absolute; top: -22px; left: 50%; transform: translateX(-50%); padding: 2px 8px; border-radius: 999px; background: #4ade80; color: #062b14; font-size: 11px; font-weight: 700; white-space: nowrap; }
+@media (max-width: 760px) { .chrono { padding: 20px 16px 16px; } .chrono__grid { --label: 92px; } }
+
+/* ───────── 3D deck ───────── */
+.deck { position: relative; }
+.deck__nav, .deck__hint { display: none; }
+.deck:not(.deck--3d) .deck__stage { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 24px; }
+.deck--3d .deck__nav { display: flex; justify-content: center; align-items: center; gap: 18px; margin-top: 28px; }
+.deck--3d .deck__hint { display: block; text-align: center; margin-top: 10px; font-size: 13px; color: var(--muted); }
+.deck--3d .deck__stage { position: relative; height: var(--deck-h, 640px); perspective: 1800px; transition: height .5s var(--ease-out); touch-action: pan-y; cursor: grab; outline: none; }
+.deck--3d .deck__stage:active { cursor: grabbing; }
+.deck--3d .deck__stage:focus-visible { outline: 2px solid var(--gold); outline-offset: 12px; border-radius: 24px; }
+.deck--3d .deck__stage > .card {
+  position: absolute; top: 0; left: 0; right: 0; margin: 0 auto; width: min(620px, 84%);
+  transform: translateX(calc(var(--d, 0) * 62%)) translateZ(calc(var(--ad, 0) * -260px)) rotateY(calc(var(--d, 0) * -34deg + var(--ry, 0deg))) rotateX(var(--rx, 0deg));
+  opacity: calc(1 - var(--ad, 0) * .32); filter: brightness(calc(1 - var(--ad, 0) * .3)) saturate(calc(1 - var(--ad, 0) * .3));
+  z-index: calc(10 - var(--ad, 0));
+  transition: transform .9s var(--ease-out), opacity .6s, filter .6s, border-color .4s, box-shadow .4s;
+  user-select: none;
+}
+.deck--3d .deck__stage > .card.is-far { opacity: 0; pointer-events: none; }
+.deck--3d .deck__stage > .card:not(.is-active) { cursor: pointer; }
+.deck--3d .deck__stage > .card:not(.is-active) * { pointer-events: none; }
+.deck--3d .deck__stage > .card.is-active { border-color: rgba(255, 216, 77, .45); box-shadow: var(--shadow-lg), 0 0 60px rgba(148, 64, 221, .35); transition: transform .9s var(--ease-out), opacity .6s, filter .6s, border-color .4s, box-shadow .4s; }
+.deck--3d .deck__stage > .card.is-active.is-tilting { transition: transform .12s linear, opacity .6s, filter .6s; }
+.deck__btn {
+  display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%;
+  border: 1px solid var(--line-strong); background: rgba(255, 255, 255, .04); color: var(--gold); font-size: 20px; cursor: pointer;
+  transition: background-color .3s, color .3s, transform .3s var(--ease-out);
+}
+.deck__btn:hover { background: var(--gold); color: var(--purple-900); }
+.deck__count { min-width: 80px; text-align: center; font-family: var(--display); font-weight: 700; color: var(--ink); letter-spacing: .1em; }
+.deck__count b { color: var(--gold); }
+@media (max-width: 760px) {
+  .deck--3d .deck__stage > .card { width: 88%; transform: translateX(calc(var(--d, 0) * 96%)) translateZ(calc(var(--ad, 0) * -200px)) rotateY(calc(var(--d, 0) * -24deg)); }
+}
+
+/* ───────── 3D tilt (fine pointer) ───────── */
+[data-tilt] { transform-style: preserve-3d; will-change: transform; }
+.hero__visual[data-tilt] .portrait__logo { transform: translateZ(60px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .deck--3d .deck__stage > .card { transition: none !important; }
+}
+.hero__visual[data-tilt] .portrait { transform-style: preserve-3d; }
+/* full label above short (truncated) bars */
+.chrono__bar.is-truncated:hover::after, .chrono__bar.is-truncated:focus-visible::after, .chrono__bar.is-truncated.is-active::after {
+  content: attr(data-label); position: absolute; left: 50%; bottom: calc(100% + 8px); transform: translateX(-50%); z-index: 5;
+  padding: 5px 10px; border-radius: 8px; white-space: nowrap; pointer-events: none;
+  background: var(--purple-900); color: var(--gold); border: 1px solid rgba(255, 216, 77, .35); box-shadow: 0 10px 24px rgba(0, 0, 0, .45);
+  font: 600 12px/1.2 var(--sans);
+}
+.chrono__bar:hover, .chrono__bar:focus-visible, .chrono__bar.is-active { z-index: 4; }
+/* the cards of the deck are opaque so the ones behind never show through */
+.deck--3d .deck__stage > .card { background: linear-gradient(180deg, rgba(255, 255, 255, .05), transparent 40%), #1a0b2e; }
+@media (max-width: 760px) { .deck--3d .deck__stage > .card:not(.is-active) { opacity: calc(.45 - var(--ad, 0) * .1); } }
+@media (max-width: 480px) { .brand { font-size: 15.5px; gap: 8px; } .brand img { width: 34px; height: 34px; } .header__actions { gap: 6px; } }
+.chrono__bar.is-right::after { left: auto !important; right: 0; transform: none !important; }

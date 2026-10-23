@@ -93,8 +93,104 @@
 
 <section class="section section--flush">
   <div class="container">
-    <div class="cards cards--2" data-stagger>
-      <article class="card">
+    <div class="chrono reveal" role="group" aria-label="Timeline">
+      <div class="chrono__top">
+        <p class="chrono__hint" data-i18n="chrono.hint">Pick a period on the timeline, or browse the cards below.</p>
+        <ul class="chrono__legend">
+          <li class="is-exp" data-i18n="chrono.exp">Experience</li>
+          <li class="is-proj" data-i18n="chrono.proj">Projects</li>
+          <li class="is-edu" data-i18n="chrono.edu">Education</li>
+        </ul>
+      </div>
+      <div class="chrono__scroll">
+        <div class="chrono__grid" data-from="2024-09" data-to="2027-07">
+          <div class="chrono__years" aria-hidden="true"></div>
+          <div class="chrono__lane">
+            <span class="chrono__label" data-i18n="chrono.exp">Experience</span>
+            <div class="chrono__track" style="--rows: 3">
+            <button type="button" class="chrono__bar is-exp" data-target="exp-snee" data-start="2025-07" data-end="now" data-row="1"><span data-i18n="bar.snee">SNEE · Pépite Normandie</span></button>
+            <button type="button" class="chrono__bar is-exp" data-target="exp-boc" data-start="2026-06" data-end="2026-07" data-row="2"><span data-i18n="bar.boc">Boc Lab</span></button>
+            <button type="button" class="chrono__bar is-exp" data-target="exp-intl" data-start="2026-08" data-end="2026-09" data-row="3"><span data-i18n="bar.intl">International students office</span></button>
+            <button type="button" class="chrono__bar is-exp" data-target="exp-amb" data-start="2026-09" data-end="now" data-row="2"><span data-i18n="bar.amb">Entrepreneurship Ambassador</span></button>
+            </div>
+          </div>
+          <div class="chrono__lane">
+            <span class="chrono__label" data-i18n="chrono.proj">Projects</span>
+            <div class="chrono__track" style="--rows: 2">
+            <a class="chrono__bar is-proj" href="projects/jeunes-pousses.html" data-start="2025-10" data-end="2026-04" data-row="1"><span data-i18n="bar.naillies">Naillies · Jeunes Pousses</span></a>
+            <a class="chrono__bar is-proj" href="projects/silva-edita.html" data-start="2026-01" data-end="now" data-row="2"><span data-i18n="bar.silva">Silva Edita</span></a>
+            </div>
+          </div>
+          <div class="chrono__lane">
+            <span class="chrono__label" data-i18n="chrono.edu">Education</span>
+            <div class="chrono__track" style="--rows: 1">
+            <a class="chrono__bar is-edu" href="education.html" data-start="2024-09" data-end="2026-06" data-row="1"><span data-i18n="bar.dl">Double Degree Maths &amp; Economics</span></a>
+            <a class="chrono__bar is-edu" href="education.html" data-start="2026-09" data-end="2027-07" data-row="1"><span data-i18n="bar.l3">L3 Management · IAE Rouen</span></a>
+            </div>
+          </div>
+          <div class="chrono__today" aria-hidden="true"><span data-i18n="chrono.today">Today</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="deck" data-deck>
+      <div class="deck__stage" tabindex="0" aria-roledescription="carousel" aria-label="Experience">
+      <article class="card" id="exp-snee" data-deck-card>
+        <header class="card__head">
+          <span class="badge badge--live" data-i18n="common.present">Present</span>
+          <h3 data-i18n="exp2.title">National Student-Entrepreneur Status (SNEE)</h3>
+          <p class="card__org">Pépite Normandie</p>
+          <p class="card__meta" data-i18n="exp2.meta">Jul 2025 – Present · Rouen, Normandy · Hybrid</p>
+        </header>
+        <p data-i18n="exp2.p1">Holder of the National Student-Entrepreneur Status through Pépite Normandie since July 2025, alongside my studies, to build and structure entrepreneurial projects.</p>
+        <p data-i18n="exp2.p2">This experience develops my skills in business development, market analysis, strategy, project management and offer design across several projects and initiatives.</p>
+        <ul class="ticks">
+          <li data-i18n="exp2.b1">Proj'Impact 2026 laureate with Silva Edita, an urban rooftop greening project.</li>
+          <li data-i18n="exp2.b2">Les Jeunes Pousses 2026 participant with Naillies, building a business plan in the beauty sector.</li>
+        </ul>
+        <ul class="chips chips--sm">
+          <li data-i18n="sk.curiosity">Curiosity &amp; initiative</li>
+          <li data-i18n="sk.adapt">Adaptability</li>
+          <li data-i18n="sk.autonomy">Autonomous work</li>
+        </ul>
+      </article>
+      <article class="card" id="exp-boc" data-deck-card>
+        <header class="card__head">
+          <span class="badge" data-i18n="exp3.badge">Internship</span>
+          <h3 data-i18n="exp3.title">Executive Assistant Intern</h3>
+          <p class="card__org">Boc Lab</p>
+          <p class="card__meta" data-i18n="exp3.meta">Jun 2026 – Jul 2026 · Rouen · Hybrid</p>
+        </header>
+        <p data-i18n="exp3.p1">Supported the founder in developing entrepreneurial projects, from opportunity assessment to operational implementation.</p>
+        <p data-i18n="exp3.p2">Worked on a wide range of topics: market analysis, project management, budget forecasting, regulatory monitoring, stakeholder coordination, business development and structuring new projects.</p>
+        <p data-i18n="exp3.p3">This experience gave me a concrete understanding of the strategic, organisational and financial challenges of creating and growing a business.</p>
+        <ul class="chips chips--sm">
+          <li data-i18n="sk.entre">Entrepreneurship</li>
+          <li data-i18n="sk.strat">Strategic analysis</li>
+          <li data-i18n="sk.budget">Budget management</li>
+          <li data-i18n="sk.market">Market research</li>
+          <li data-i18n="sk.bizdev">Business development</li>
+        </ul>
+      </article>
+      <article class="card" id="exp-intl" data-deck-card>
+        <header class="card__head">
+          <span class="badge" data-i18n="exp4.badge">Contract</span>
+          <h3 data-i18n="exp4.title">Student Assistant · International Students Office</h3>
+          <p class="card__org">Université de Rouen Normandie</p>
+          <p class="card__meta" data-i18n="exp4.meta">Aug 2026 – Sep 2026 · On-site</p>
+        </header>
+        <p data-i18n="exp4.p1">Supported <strong>527 international students</strong> with their administrative procedures and their arrival at the University of Rouen Normandie.</p>
+        <ul class="ticks">
+          <li data-i18n="exp4.b1">Front-desk reception</li>
+          <li data-i18n="exp4.b2">Creating physical and digital files</li>
+          <li data-i18n="exp4.b3">Checking physical and digital files</li>
+        </ul>
+        <ul class="chips chips--sm">
+          <li data-i18n="sk.oral">Oral communication</li>
+          <li data-i18n="sk.adapt">Adaptability</li>
+        </ul>
+      </article>
+      <article class="card" id="exp-amb" data-deck-card>
         <header class="card__head">
           <span class="badge badge--live" data-i18n="common.present">Present</span>
           <h3 data-i18n="exp1.title">Entrepreneurship Ambassador</h3>
@@ -115,64 +211,13 @@
           <li data-i18n="sk.sbd">Small Business Development</li>
         </ul>
       </article>
-
-      <article class="card">
-        <header class="card__head">
-          <span class="badge badge--live" data-i18n="common.present">Present</span>
-          <h3 data-i18n="exp2.title">National Student-Entrepreneur Status (SNEE)</h3>
-          <p class="card__org">Pépite Normandie</p>
-          <p class="card__meta" data-i18n="exp2.meta">Jul 2025 – Present · Rouen, Normandy · Hybrid</p>
-        </header>
-        <p data-i18n="exp2.p1">Holder of the National Student-Entrepreneur Status through Pépite Normandie since July 2025, alongside my studies, to build and structure entrepreneurial projects.</p>
-        <p data-i18n="exp2.p2">This experience develops my skills in business development, market analysis, strategy, project management and offer design across several projects and initiatives.</p>
-        <ul class="ticks">
-          <li data-i18n="exp2.b1">Proj'Impact 2026 laureate with Silva Edita, an urban rooftop greening project.</li>
-          <li data-i18n="exp2.b2">Les Jeunes Pousses 2026 participant with Naillies, building a business plan in the beauty sector.</li>
-        </ul>
-        <ul class="chips chips--sm">
-          <li data-i18n="sk.curiosity">Curiosity &amp; initiative</li>
-          <li data-i18n="sk.adapt">Adaptability</li>
-          <li data-i18n="sk.autonomy">Autonomous work</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <header class="card__head">
-          <span class="badge" data-i18n="exp3.badge">Internship</span>
-          <h3 data-i18n="exp3.title">Executive Assistant Intern</h3>
-          <p class="card__org">Boc Lab</p>
-          <p class="card__meta" data-i18n="exp3.meta">Jun 2026 – Jul 2026 · Rouen · Hybrid</p>
-        </header>
-        <p data-i18n="exp3.p1">Supported the founder in developing entrepreneurial projects, from opportunity assessment to operational implementation.</p>
-        <p data-i18n="exp3.p2">Worked on a wide range of topics: market analysis, project management, budget forecasting, regulatory monitoring, stakeholder coordination, business development and structuring new projects.</p>
-        <p data-i18n="exp3.p3">This experience gave me a concrete understanding of the strategic, organisational and financial challenges of creating and growing a business.</p>
-        <ul class="chips chips--sm">
-          <li data-i18n="sk.entre">Entrepreneurship</li>
-          <li data-i18n="sk.strat">Strategic analysis</li>
-          <li data-i18n="sk.budget">Budget management</li>
-          <li data-i18n="sk.market">Market research</li>
-          <li data-i18n="sk.bizdev">Business development</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <header class="card__head">
-          <span class="badge" data-i18n="exp4.badge">Contract</span>
-          <h3 data-i18n="exp4.title">Student Assistant · International Students Office</h3>
-          <p class="card__org">Université de Rouen Normandie</p>
-          <p class="card__meta" data-i18n="exp4.meta">Aug 2026 – Sep 2026 · On-site</p>
-        </header>
-        <p data-i18n="exp4.p1">Supported <strong>527 international students</strong> with their administrative procedures and their arrival at the University of Rouen Normandie.</p>
-        <ul class="ticks">
-          <li data-i18n="exp4.b1">Front-desk reception</li>
-          <li data-i18n="exp4.b2">Creating physical and digital files</li>
-          <li data-i18n="exp4.b3">Checking physical and digital files</li>
-        </ul>
-        <ul class="chips chips--sm">
-          <li data-i18n="sk.oral">Oral communication</li>
-          <li data-i18n="sk.adapt">Adaptability</li>
-        </ul>
-      </article>
+      </div>
+      <div class="deck__nav">
+        <button type="button" class="deck__btn" data-dir="-1" aria-label="Previous">←</button>
+        <span class="deck__count" aria-live="polite"></span>
+        <button type="button" class="deck__btn" data-dir="1" aria-label="Next">→</button>
+      </div>
+      <p class="deck__hint" data-i18n="deck.hint">Drag, use the arrow keys or click a card</p>
     </div>
   </div>
 </section>

@@ -237,7 +237,23 @@
     'ws.8': 'Marketing et communication',
     'ws.9': 'Pitcher et vendre mon projet',
     'jp.doc1': 'Dossier final, co-rédigé avec Léa Portmann',
-    'jp.doc2': "Calendrier officiel du programme, Maison de l'Entrepreneuriat"
+    'jp.doc2': "Calendrier officiel du programme, Maison de l'Entrepreneuriat",
+
+    /* ── Chronology & deck ── */
+    'chrono.hint': 'Choisissez une période sur la frise, ou parcourez les cartes ci-dessous.',
+    'chrono.exp': 'Expériences',
+    'chrono.proj': 'Projets',
+    'chrono.edu': 'Formation',
+    'chrono.today': "Aujourd'hui",
+    'bar.snee': 'SNEE · Pépite Normandie',
+    'bar.boc': 'Boc Lab',
+    'bar.intl': 'Accueil des étudiants internationaux',
+    'bar.amb': 'Ambassadeur Entrepreneuriat',
+    'bar.naillies': 'Naillies · Jeunes Pousses',
+    'bar.silva': 'Silva Edita',
+    'bar.dl': 'Double Licence Maths &amp; Éco',
+    'bar.l3': 'L3 Gestion · IAE Rouen',
+    'deck.hint': 'Glissez, utilisez les flèches du clavier ou cliquez sur une carte'
   };
 
 
@@ -291,6 +307,7 @@
       history.replaceState(null, '', url.pathname + url.search + url.hash);
     }
     resplitAll();
+    document.dispatchEvent(new Event('ni:lang'));
   }
 
   /* ───────── Curtain (page transitions) ───────── */
@@ -712,6 +729,159 @@
     document.addEventListener('visibilitychange', function () { if (document.hidden) stop(); else start(); });
     start();
   })();
+
+  /* ───────── Chronology (Experience page) ─────────
+     Bars are placed on a real time axis from their data-start / data-end
+     (YYYY-MM, end month included, "now" = today). */
+  function monthIndex(v, now) {
+    if (v === 'now') return now.getFullYear() * 12 + now.getMonth() + now.getDate() / 31;
+    var p = v.split('-');
+    return parseInt(p[0], 10) * 12 + parseInt(p[1], 10) - 1;
+  }
+  var chronoGrid = document.querySelector('.chrono__grid');
+  if (chronoGrid) {
+    var now = new Date();
+    var from = monthIndex(chronoGrid.getAttribute('data-from'), now);
+    var to = monthIndex(chronoGrid.getAttribute('data-to'), now) + 1;
+    var span = to - from;
+    var pct = function (m) { return Math.max(0, Math.min(100, (m - from) / span * 100)); };
+    chronoGrid.querySelectorAll('.chrono__bar').forEach(function (b) {
+      var endRaw = b.getAttribute('data-end');
+      var s = monthIndex(b.getAttribute('data-start'), now);
+      var e = endRaw === 'now' ? monthIndex('now', now) : monthIndex(endRaw, now) + 1;
+      b.style.setProperty('--s', pct(s) + '%');
+      b.style.setProperty('--w', (pct(e) - pct(s)) + '%');
+      b.style.setProperty('--r', b.getAttribute('data-row') || 1);
+      if (endRaw === 'now') b.classList.add('is-ongoing');
+    });
+    var years = chronoGrid.querySelector('.chrono__years');
+    for (var y = Math.ceil(from / 12); y * 12 < to; y++) {
+      var tick = document.createElement('div');
+      tick.className = 'chrono__tick';
+      tick.style.setProperty('--x', pct(y * 12) + '%');
+      tick.innerHTML = '<span>' + y + '</span>';
+      years.appendChild(tick);
+    }
+    var today = chronoGrid.querySelector('.chrono__today');
+    if (today) today.style.setProperty('--t', pct(monthIndex('now', now)) / 100);
+    // Short bars get their full name in a label (hover / selected)
+    function labelBars() {
+      chronoGrid.querySelectorAll('.chrono__bar').forEach(function (b) {
+        var sp = b.querySelector('span');
+        b.setAttribute('data-label', sp.textContent);
+        b.classList.toggle('is-truncated', sp.scrollWidth > sp.clientWidth + 1);
+        b.classList.toggle('is-right', b.offsetLeft + b.offsetWidth / 2 > b.parentElement.clientWidth * .6);
+      });
+    }
+    labelBars();
+    window.addEventListener('resize', labelBars, { passive: true });
+    document.addEventListener('ni:lang', labelBars);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(labelBars);
+    // On narrow screens, start the scrollable timeline around today
+    var scroller = chronoGrid.parentElement;
+    if (scroller.scrollWidth > scroller.clientWidth) scroller.scrollLeft = (scroller.scrollWidth - scroller.clientWidth) * .75;
+  }
+
+  /* ───────── 3D card deck ───────── */
+  var deck = document.querySelector('[data-deck]');
+  if (deck) {
+    var stage = deck.querySelector('.deck__stage');
+    var cards = Array.prototype.slice.call(stage.querySelectorAll('[data-deck-card]'));
+    var count = deck.querySelector('.deck__count');
+    var bars = document.querySelectorAll('.chrono__bar[data-target]');
+    var active = cards.length - 1; // most recent first
+    deck.classList.add('deck--3d');
+
+    function measure() {
+      var h = 0;
+      cards.forEach(function (c) { h = Math.max(h, c.offsetHeight); });
+      stage.style.setProperty('--deck-h', (h + 24) + 'px');
+    }
+    function render() {
+      cards.forEach(function (c, i) {
+        var d = i - active, ad = Math.abs(d);
+        c.style.setProperty('--d', d);
+        c.style.setProperty('--ad', ad);
+        c.classList.toggle('is-active', d === 0);
+        c.classList.toggle('is-far', ad > 2);
+        c.setAttribute('aria-hidden', String(d !== 0));
+        c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg');
+      });
+      bars.forEach(function (b) { b.classList.toggle('is-active', b.getAttribute('data-target') === cards[active].id); });
+      if (count) count.innerHTML = '<b>' + String(active + 1).padStart(2, '0') + '</b> / ' + String(cards.length).padStart(2, '0');
+    }
+    function go(i) { active = (i + cards.length) % cards.length; render(); }
+
+    deck.querySelectorAll('.deck__btn').forEach(function (b) {
+      b.addEventListener('click', function () { go(active + parseInt(b.getAttribute('data-dir'), 10)); });
+    });
+    cards.forEach(function (c, i) {
+      c.addEventListener('click', function () { if (i !== active && !dragged) go(i); });
+    });
+    bars.forEach(function (b) {
+      b.addEventListener('click', function () {
+        var i = cards.findIndex(function (c) { return c.id === b.getAttribute('data-target'); });
+        if (i < 0) return;
+        go(i);
+        var r = deck.getBoundingClientRect();
+        if (r.top > window.innerHeight * .6 || r.bottom < 0) deck.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+      });
+    });
+    stage.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { go(active + 1); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { go(active - 1); e.preventDefault(); }
+    });
+
+    // Drag / swipe
+    var startX = null, dragged = false;
+    stage.addEventListener('pointerdown', function (e) { startX = e.clientX; dragged = false; });
+    window.addEventListener('pointerup', function (e) {
+      if (startX === null) return;
+      var dx = e.clientX - startX;
+      startX = null;
+      if (Math.abs(dx) > 50) { dragged = true; go(active + (dx < 0 ? 1 : -1)); setTimeout(function () { dragged = false; }, 50); }
+    });
+
+    // Tilt of the front card follows the pointer
+    if (finePointer && !reduce) {
+      stage.addEventListener('pointermove', function (e) {
+        var c = cards[active], r = c.getBoundingClientRect();
+        if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom || startX !== null) return;
+        c.classList.add('is-tilting');
+        c.style.setProperty('--ry', (((e.clientX - r.left) / r.width - .5) * 10).toFixed(2) + 'deg');
+        c.style.setProperty('--rx', (-((e.clientY - r.top) / r.height - .5) * 8).toFixed(2) + 'deg');
+      });
+      stage.addEventListener('pointerleave', function () {
+        var c = cards[active];
+        c.classList.remove('is-tilting');
+        c.style.setProperty('--rx', '0deg'); c.style.setProperty('--ry', '0deg');
+      });
+    }
+
+    measure(); render();
+    window.addEventListener('resize', measure, { passive: true });
+    document.addEventListener('ni:lang', measure);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+  }
+
+  /* ───────── 3D tilt on cards and visuals (fine pointer) ───────── */
+  if (finePointer && !reduce) {
+    document.querySelectorAll('.explore__card, .project, .hero__visual, .docs__frame, .case__fig').forEach(function (el) {
+      var lift = el.matches('.explore__card, .project') ? -6 : 0;
+      var max = el.matches('.hero__visual') ? 10 : 6;
+      el.setAttribute('data-tilt', '');
+      el.addEventListener('pointermove', function (e) {
+        var r = el.getBoundingClientRect();
+        var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        el.style.transition = 'transform .12s linear';
+        el.style.transform = 'perspective(1000px) rotateX(' + (-y * max).toFixed(2) + 'deg) rotateY(' + (x * max).toFixed(2) + 'deg) translateY(' + lift + 'px)';
+      });
+      el.addEventListener('pointerleave', function () {
+        el.style.transition = 'transform .7s cubic-bezier(.16,1,.3,1)';
+        el.style.transform = '';
+      });
+    });
+  }
 
   /* ───────── Cursor light on glass surfaces ───────── */
   var GLASS = '.figures__card, .roles, .card, .feature, .skills__group, .explore__card, .project, .facts';
