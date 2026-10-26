@@ -261,10 +261,13 @@
     'jc.b4': "Créer le site internet",
     'jc.goal': "Objectif : une structure opérationnelle en décembre 2026.",
     'bar.jc': "IAE Rouen Junior Conseil",
-    'job.badge': "Job étudiant",
-    'job.title': "Job étudiant · Accueil des étudiants internationaux",
-    'job.meta': "Juil. – sept. 2026 · Sur site",
-    'job.p1': "À la rentrée, j'ai aidé <strong>527 étudiants internationaux</strong> à constituer leur dossier d'inscription à l'Université de Rouen Normandie.",
+    'job.badge': "En parallèle des études",
+    'job.title': "Jobs étudiants",
+    'job.meta': "Depuis août 2025 · Rouen et alentours",
+    'job.p1': "Trois jobs en parallèle de mes études, dont un CDI.",
+    'job.t1': "Agent d'entretien chez PH+ : août 2025, février 2026 et août 2026",
+    'job.t2': "Préparateur de commandes drive chez E.Leclerc Bois-Guillaume, en CDI depuis septembre 2026",
+    'job.t3': "Étudiant vacataire à l'Université de Rouen (Espace Monde), de septembre 2026 à juin 2027",
     'xp6.d1': "Une journée de formation au logiciel Saphire en juillet 2026",
     'xp6.d2': "Accueillir les étudiants au guichet",
     'xp6.d3': "Les aider à constituer leur dossier d'inscription administrative",
@@ -276,9 +279,13 @@
     'sk.flow': "Gestion de flux",
     'sk.admin': "Démarches administratives",
     'chrono.mark': "Jalon",
-    'chrono.work': "Stage &amp; jobs",
+    'chrono.work': "Stage &amp; missions",
+    'chrono.jobs': "Jobs étudiants",
     'chrono.commit': "Engagements",
-    'bar.job': "Job étudiant",
+    'bar.ph': "PH+",
+    'bar.leclerc': "Leclerc",
+    'bar.univ': "Espace Monde",
+    'bar.job': "Jobs étudiants",
     'mark.intern': "Stage dès mars 2027",
     'chrono.project': "Projet",
     'chrono.step': "Étape du programme",
@@ -368,7 +375,36 @@
     'xp5.ctx': "Une Junior Entreprise est une association étudiante qui réalise des missions de conseil pour des entreprises, menées par des étudiants. On monte celle de l'IAE Rouen, avec l'objectif d'être opérationnels en décembre 2026.",
     'xp5.d5': "Structuration de l'association et démarches administratives",
     'xp5.take': "Trop tôt pour en tirer un bilan : je mettrai cette page à jour dès les premières missions signées.",
-    'xp5.site': "Le site que j'ai réalisé"
+    'xp5.site': "Le site que j'ai réalisé",
+    'jobs.f1': "Depuis août 2025",
+    'fact.employers': "Employeurs",
+    'fact.contracts': "Contrats",
+    'jobs.f3': "Jobs de vacances, CDI, vacation",
+    'fact.when': "Quand",
+    'jobs.f4': "En parallèle de mes études",
+    'jobs.eyebrow': "Expérience · Jobs étudiants",
+    'jobs.lead': "Je travaille en parallèle de mes études : trois jobs depuis août 2025, dont un CDI.",
+    'chrono.hintJobs': "Cliquez sur une période pour voir le job.",
+    'lane.ph': "PH+",
+    'lane.leclerc': "E.Leclerc",
+    'bar.leclerc2': "CDI",
+    'lane.univ': "Université de Rouen",
+    'bar.univ2': "Vacataire · Espace Monde",
+    'mark.saphire': "Formation Saphire",
+    'jobs.ph.badge': "Jobs de vacances",
+    'jobs.ph.title': "Agent d'entretien",
+    'jobs.ph.meta': "Août 2025 · févr. 2026 · août 2026",
+    'jobs.ph.text': "Trois périodes chez le même employeur, qui m'a repris à chaque fois.",
+    'jobs.lec.badge': "CDI",
+    'jobs.lec.title': "Préparateur de commandes drive",
+    'jobs.lec.meta': "Depuis sept. 2026",
+    'jobs.lec.text': "Je prépare les commandes du drive, en CDI, en parallèle de ma L3.",
+    'jobs.univ.badge': "Vacation",
+    'jobs.univ.title': "Étudiant vacataire",
+    'jobs.univ.meta': "Sept. 2026 – juin 2027",
+    'jobs.univ.text': "Tout le mois de septembre pour la rentrée, puis jusqu'en juin. J'ai aidé <strong>527 étudiants internationaux</strong> à s'inscrire.",
+    'jobs.more': "Plus de détails",
+    'jobs.zoom': "Zoom sur l'Espace Monde"
     /* @xp-pages-end */
   };
 
@@ -906,6 +942,8 @@
     function labelBars() {
       chronoGrid.querySelectorAll('.chrono__bar').forEach(function (b) {
         var sp = b.querySelector('span');
+        b.classList.remove('is-short');
+        if (b.offsetWidth < 64) b.classList.add('is-short');
         b.setAttribute('data-label', sp.textContent);
         b.classList.toggle('is-truncated', sp.scrollWidth > sp.clientWidth + 1);
         b.classList.toggle('is-right', b.offsetLeft + b.offsetWidth / 2 > b.parentElement.clientWidth * .6);

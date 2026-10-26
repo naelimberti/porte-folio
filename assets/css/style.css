@@ -1033,3 +1033,15 @@ a.chrono__mark:hover span { text-decoration: underline; text-underline-offset: 3
 .chrono ~ .timeline::before, .chrono ~ .timeline .timeline__item::before { display: none; }
 @media (min-width: 1100px) { .chrono ~ .timeline { padding-top: 34px; } .chrono ~ .timeline .timeline__date { left: 0; } }
 @media (max-width: 1099px) { .chrono ~ .timeline .timeline__item { padding-left: 0; } }
+
+/* ───────── CV: the button matching the page language ───────── */
+html[lang="fr"] [data-lang-only="en"], html:not([lang="fr"]) [data-lang-only="fr"] { display: none !important; }
+@media (max-width: 480px) { .btn--hide-sm { display: none; } }
+
+/* ───────── Student jobs ───────── */
+.is-job { --c: linear-gradient(90deg, #2fb98c, #6be3b7); }
+.chrono__bar.is-job { color: #04261a; }
+.jobs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 24px; }
+.jobs__item > .card { height: 100%; }
+#espace-monde { scroll-margin-top: calc(var(--header-h) + 12px); }
+.chrono__bar.is-short { padding: 0 4px; justify-content: center; font-size: 12px; }

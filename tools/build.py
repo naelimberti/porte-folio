@@ -37,6 +37,19 @@ for k in ('skills__group reveal',):
     skills = skills.replace(k, 'skills__group')
 exp_cards = exp_cards.replace('class="card reveal"', 'class="card"')
 
+
+DL_ICON = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a1 1 0 0 1 1 1v9.6l3.3-3.3a1 1 0 1 1 1.4 1.4l-5 5a1 1 0 0 1-1.4 0l-5-5a1 1 0 1 1 1.4-1.4l3.3 3.3V4a1 1 0 0 1 1-1ZM5 19h14a1 1 0 1 1 0 2H5a1 1 0 1 1 0-2Z"/></svg>'
+def cv_buttons(cls, indent='      '):
+    return (f'{indent}<a class="btn {cls}" href="assets/cv/CV_Nael_Imberti_EN.pdf" download="CV_Nael_Imberti_EN.pdf" data-lang-only="en">{DL_ICON} <span>Download my CV</span></a>\n'
+            f'{indent}<a class="btn {cls}" href="assets/cv/CV_Nael_Imberti_FR.pdf" download="CV_Nael_Imberti_FR.pdf" data-lang-only="fr" lang="fr">{DL_ICON} <span>Télécharger mon CV</span></a>\n')
+cta = cta.replace('    <div class="cta__actions">\n', '    <div class="cta__actions">\n' + cv_buttons('btn--dark'), 1)
+cta = cta.replace('<a class="btn btn--dark" href="mailto:', '<a class="btn btn--outline-dark" href="mailto:', 1)
+footer = footer.replace('        <li><a href="mailto:nael.imberti.io@gmail.com">nael.imberti.io@gmail.com</a></li>\n',
+    '        <li><a href="mailto:nael.imberti.io@gmail.com">nael.imberti.io@gmail.com</a></li>\n'
+    '        <li><a href="assets/cv/CV_Nael_Imberti_EN.pdf" download data-lang-only="en">CV (PDF)</a><a href="assets/cv/CV_Nael_Imberti_FR.pdf" download data-lang-only="fr" lang="fr">CV (PDF)</a></li>\n', 1)
+
+hero = hero.replace('        <a href="#contact" class="btn btn--ghost"', cv_buttons('btn--ghost', '        ') + '        <a href="#contact" class="btn btn--ghost btn--hide-sm"', 1)
+
 footer_links = '''      <ul class="footer__links">
         <li><a href="index.html" data-i18n="nav.home">Home</a></li>
         <li><a href="experience.html" data-i18n="nav.experience">Experience</a></li>
@@ -267,11 +280,13 @@ _jc_article = f'''      <article class="card">
         </ul>
       </article>'''
 
-_jb = [T('job.badge', 'Student job', 'Job étudiant'),
-       T('job.title', 'Student job · International students welcome desk', 'Job étudiant · Accueil des étudiants internationaux'),
-       T('job.meta', 'Jul – Sep 2026 · On-site', 'Juil. – sept. 2026 · Sur site'),
-       T('job.p1', 'At the start of the academic year, I helped <strong>527 international students</strong> put together their enrolment files at the University of Rouen Normandie.',
-         "À la rentrée, j'ai aidé <strong>527 étudiants internationaux</strong> à constituer leur dossier d'inscription à l'Université de Rouen Normandie."),
+_jb = [T('job.badge', 'Alongside my studies', 'En parallèle des études'),
+       T('job.title', 'Student jobs', 'Jobs étudiants'),
+       T('job.meta', 'Since Aug 2025 · Rouen area', 'Depuis août 2025 · Rouen et alentours'),
+       T('job.p1', 'Three jobs alongside my studies, including a permanent contract.', 'Trois jobs en parallèle de mes études, dont un CDI.'),
+       T('job.t1', 'Cleaning agent at PH+: Aug 2025, Feb 2026 and Aug 2026', "Agent d'entretien chez PH+ : août 2025, février 2026 et août 2026"),
+       T('job.t2', 'Drive order picker at E.Leclerc Bois-Guillaume, permanent contract since Sep 2026', 'Préparateur de commandes drive chez E.Leclerc Bois-Guillaume, en CDI depuis septembre 2026'),
+       T('job.t3', 'Student assistant at the University of Rouen (Espace Monde), Sep 2026 – Jun 2027', "Étudiant vacataire à l'Université de Rouen (Espace Monde), de septembre 2026 à juin 2027"),
        T('xp6.d1', 'A one-day training on the Saphire software in July 2026', 'Une journée de formation au logiciel Saphire en juillet 2026'),
        T('xp6.d2', 'Welcoming students at the front desk', 'Accueillir les étudiants au guichet'),
        T('xp6.d3', 'Helping them put together their administrative enrolment file', "Les aider à constituer leur dossier d'inscription administrative"),
@@ -285,21 +300,21 @@ _jb = [T('job.badge', 'Student job', 'Job étudiant'),
 _JB = dict(_jb)
 _job_article = f'''      <article class="card">
         <header class="card__head">
-          <span class="badge" data-i18n="job.badge">{_JB['job.badge']}</span>
+          <span class="badge badge--live" data-i18n="job.badge">{_JB['job.badge']}</span>
           <h3 data-i18n="job.title">{_JB['job.title']}</h3>
-          <p class="card__org">Espace Monde · Université de Rouen Normandie</p>
+          <p class="card__org">PH+ · E.Leclerc · Université de Rouen</p>
           <p class="card__meta" data-i18n="job.meta">{_JB['job.meta']}</p>
         </header>
         <p data-i18n="job.p1">{_JB['job.p1']}</p>
         <ul class="ticks">
-          <li data-i18n="xp6.d1">{_JB['xp6.d1']}</li>
-          <li data-i18n="xp6.d2">{_JB['xp6.d2']}</li>
-          <li data-i18n="xp6.d3">{_JB['xp6.d3']}</li>
+          <li data-i18n="job.t1">{_JB['job.t1']}</li>
+          <li data-i18n="job.t2">{_JB['job.t2']}</li>
+          <li data-i18n="job.t3">{_JB['job.t3']}</li>
         </ul>
         <ul class="chips chips--sm">
-          <li data-i18n="sk.oral">Oral communication</li>
-          <li data-i18n="sk.intercultural">{_JB['sk.intercultural']}</li>
           <li data-i18n="sk.adapt">Adaptability</li>
+          <li data-i18n="sk.team">Teamwork</li>
+          <li data-i18n="sk.autonomy">Autonomous work</li>
         </ul>
       </article>'''
 _meta = [(_snee, 'exp-snee'), (_boc, 'exp-boc'), (_job_article, 'exp-job'), (_amb, 'exp-amb'), (_jc_article, 'exp-jc')]
@@ -348,15 +363,25 @@ def bar(tag, cls, label_key, label, start, end, row, target='', href=''):
         return f'            <button type="button" class="chrono__bar {cls}" data-target="{target}" {attrs}><span data-i18n="{label_key}">{label}</span></button>'
     return f'            <a class="chrono__bar {cls}" href="{href}" {attrs}><span data-i18n="{label_key}">{label}</span></a>'
 
-L_WORK = T('chrono.work', 'Jobs &amp; internship', 'Stage &amp; jobs')
+L_WORK = T('chrono.work', 'Internship &amp; roles', 'Stage &amp; missions')
+L_JOBS = T('chrono.jobs', 'Student jobs', 'Jobs étudiants')
 L_COMMIT = T('chrono.commit', 'Commitments', 'Engagements')
-exp_chrono = chrono_block('2025-06', '2027-06', ('chrono.hint', 'Click a period on the timeline or flip through the cards.'),
-    [('is-exp', L_WORK), ('is-proj', L_COMMIT), ('is-markleg', L_MARK)],
+B_PH = T('bar.ph', 'PH+', 'PH+')
+B_LEC = T('bar.leclerc', 'Leclerc', 'Leclerc')
+B_UNIV = T('bar.univ', 'Espace Monde', 'Espace Monde')
+T('bar.job', 'Student jobs', 'Jobs étudiants')
+exp_chrono = chrono_block('2025-06', '2027-07', ('chrono.hint', 'Click a period on the timeline or flip through the cards.'),
+    [('is-exp', L_WORK), ('is-job', L_JOBS), ('is-proj', L_COMMIT), ('is-markleg', L_MARK)],
     [(L_WORK, 2, [
         bar('button', 'is-exp', 'bar.boc', 'Boc Lab', '2026-06', '2026-07', 1, 'exp-boc'),
-        bar('button', 'is-exp', *T('bar.job', 'Student job', 'Job étudiant'), '2026-07', '2026-09', 2, 'exp-job'),
         bar('button', 'is-exp', 'bar.jc', 'IAE Rouen Junior Conseil', '2026-09', 'now', 1, 'exp-jc'),
         mark(T('mark.intern', 'Internship from March 2027', 'Stage dès mars 2027'), '2027-03', 2, '#contact')]),
+     (L_JOBS, 3, [
+        bar('button', 'is-job', *B_PH, '2025-08', '2025-08', 1, 'exp-job'),
+        bar('button', 'is-job', *B_PH, '2026-02', '2026-02', 1, 'exp-job'),
+        bar('button', 'is-job', *B_PH, '2026-08', '2026-08', 1, 'exp-job'),
+        bar('button', 'is-job', *B_LEC, '2026-09', 'now', 2, 'exp-job'),
+        bar('button', 'is-job', *B_UNIV, '2026-09', '2027-06', 3, 'exp-job')]),
      (L_COMMIT, 2, [
         bar('button', 'is-proj', 'bar.snee', 'SNEE · Pépite Normandie', '2025-07', 'now', 1, 'exp-snee'),
         bar('button', 'is-proj', 'bar.amb', 'Entrepreneurship Ambassador', '2026-09', 'now', 2, 'exp-amb')])])
@@ -733,7 +758,7 @@ XPS = [
                   "C'est là que j'ai vu de près ce que demande vraiment le lancement d'une activité : les chiffres, les règles et les gens à coordonner."),
        skills=['sk.bizdev', 'sk.budget', 'sk.strat', 'sk.market', 'sk.entre', 'sk.pm'],
        related=[('https://ecole-magie.vercel.app', T('xp2.site', 'The website I built', "Le site que j'ai réalisé"), 'Magic Lab', 'ecole-magie.vercel.app')]),
-  dict(slug='student-job', card='exp-job', name='Student job',
+  dict(slug='student-job', card='exp-job', name='Student jobs', custom=True,
        eyebrow=T('xp6.eyebrow', 'Experience · Student job', 'Expérience · Job étudiant'),
        title_key='job.title', title='Student job · International students welcome desk',
        lead=T('xp6.lead', "Alongside my degree, I work as a student assistant at the University of Rouen Normandie. At the start of the 2026 academic year, I was at Espace Monde, the welcome desk for international students.",
@@ -791,8 +816,111 @@ def _en_of(key, html_source):
     m = re.search(r'data-i18n="' + re.escape(key) + r'"[^>]*>(.*?)</', html_source, flags=re.S)
     return m.group(1) if m else key
 
+def jobs_page(i, x, nxt):
+    facts_html = '\n'.join(
+        f'      <div><dt data-i18n="{fk}">{fl}</dt><dd{(" data-i18n=" + chr(34) + vk + chr(34)) if vk else ""}>{v}</dd></div>'
+        for (fk, fl), (vk, v) in [
+            (('fact.period', 'Period'), T('jobs.f1', 'Since Aug 2025', 'Depuis août 2025')),
+            (T('fact.employers', 'Employers', 'Employeurs'), (None, 'PH+ · E.Leclerc · Université de Rouen')),
+            (T('fact.contracts', 'Contracts', 'Contrats'), T('jobs.f3', 'Holiday jobs, permanent contract (CDI), vacation', 'Jobs de vacances, CDI, vacation')),
+            (T('fact.when', 'When', 'Quand'), T('jobs.f4', 'Alongside my studies', 'En parallèle de mes études'))])
+    media = f'    <dl class="page-hero__media facts facts--hero">\n{facts_html}\n    </dl>\n'
+    crumbs_html = '      <nav class="crumbs" aria-label="Breadcrumb"><a href="experience.html" data-i18n="nav.experience">Experience</a><span aria-hidden="true">/</span><span data-i18n="bar.job">Student jobs</span></nav>\n'
+    ek, ev = T('jobs.eyebrow', 'Experience · Student jobs', 'Expérience · Jobs étudiants')
+    lk, lv = T('jobs.lead', 'I work alongside my studies: three jobs since August 2025, including a permanent contract.',
+               "Je travaille en parallèle de mes études : trois jobs depuis août 2025, dont un CDI.")
+    chrono = chrono_block('2025-06', '2027-07', T('chrono.hintJobs', 'Click a period to see the job.', 'Cliquez sur une période pour voir le job.'),
+        [('is-job', L_JOBS), ('is-markleg', L_MARK)],
+        [(T('lane.ph', 'PH+', 'PH+'), 1, [
+            bar('button', 'is-job', *B_PH, '2025-08', '2025-08', 1, 'job-ph'),
+            bar('button', 'is-job', *B_PH, '2026-02', '2026-02', 1, 'job-ph'),
+            bar('button', 'is-job', *B_PH, '2026-08', '2026-08', 1, 'job-ph')]),
+         (T('lane.leclerc', 'E.Leclerc', 'E.Leclerc'), 1, [
+            bar('button', 'is-job', *T('bar.leclerc2', 'CDI', 'CDI'), '2026-09', 'now', 1, 'job-leclerc')]),
+         (T('lane.univ', 'University of Rouen', 'Université de Rouen'), 2, [
+            bar('button', 'is-job', *T('bar.univ2', 'Student assistant · Espace Monde', 'Vacataire · Espace Monde'), '2026-09', '2027-06', 1, 'job-univ'),
+            mark(T('mark.saphire', 'Saphire training', 'Formation Saphire'), '2026-07', 2)])])
+    def job(id_, badge, title, org, meta, text, extra=''):
+        (bk, bv), (tk, tv), (mk, mv), (xk, xv) = badge, title, meta, text
+        return f'''      <div class="jobs__item" id="{id_}">
+        <article class="card">
+          <header class="card__head">
+            <span class="badge" data-i18n="{bk}">{bv}</span>
+            <h3 data-i18n="{tk}">{tv}</h3>
+            <p class="card__org">{org}</p>
+            <p class="card__meta" data-i18n="{mk}">{mv}</p>
+          </header>
+          <p data-i18n="{xk}">{xv}</p>{extra}
+        </article>
+      </div>'''
+    cards = '\n'.join([
+        job('job-ph', T('jobs.ph.badge', 'Holiday jobs', 'Jobs de vacances'), T('jobs.ph.title', 'Cleaning agent', "Agent d'entretien"), 'PH+',
+            T('jobs.ph.meta', 'Aug 2025 · Feb 2026 · Aug 2026', 'Août 2025 · févr. 2026 · août 2026'),
+            T('jobs.ph.text', 'Three periods with the same employer, who took me back each time.', "Trois périodes chez le même employeur, qui m'a repris à chaque fois.")),
+        job('job-leclerc', T('jobs.lec.badge', 'Permanent contract', 'CDI'), T('jobs.lec.title', 'Drive order picker', 'Préparateur de commandes drive'), 'E.Leclerc · Bois-Guillaume',
+            T('jobs.lec.meta', 'Since Sep 2026', 'Depuis sept. 2026'),
+            T('jobs.lec.text', 'I prepare drive orders, on a permanent contract alongside my third year.', 'Je prépare les commandes du drive, en CDI, en parallèle de ma L3.')),
+        job('job-univ', T('jobs.univ.badge', 'Vacation', 'Vacation'), T('jobs.univ.title', 'Student assistant (vacataire)', 'Étudiant vacataire'), 'Espace Monde · Université de Rouen Normandie',
+            T('jobs.univ.meta', 'Sep 2026 – Jun 2027', 'Sept. 2026 – juin 2027'),
+            T('jobs.univ.text', 'All of September for the start of the academic year, then until June. I helped <strong>527 international students</strong> with their enrolment.',
+              "Tout le mois de septembre pour la rentrée, puis jusqu'en juin. J'ai aidé <strong>527 étudiants internationaux</strong> à s'inscrire."),
+            '\n          <a class="card__more" href="#espace-monde"><span data-i18n="jobs.more">More below</span> <span aria-hidden="true">↓</span></a>')])
+    T('jobs.more', 'More below', 'Plus de détails')
+    did = '\n'.join(f'          <li data-i18n="{k}">{EN_OF[k]}</li>' for k in ('xp6.d1', 'xp6.d2', 'xp6.d3', 'xp6.d4', 'xp6.d5'))
+    skills = '\n'.join(f'          <li data-i18n="{k}">{_en_of(k, src)}</li>' for k in ('sk.oral', 'sk.intercultural', 'sk.english', 'sk.listening', 'sk.flow', 'sk.admin', 'sk.adapt', 'sk.team'))
+    zk, zv = T('jobs.zoom', 'Close-up: Espace Monde', "Zoom sur l'Espace Monde")
+    ck, cv_ = x['context']; tk, tv = x['takeaway']
+    body = '\n\n'.join([
+        page_hero(ek, ev, 'job.title', 'Student jobs', lk, lv, crumbs_html, media=media),
+        f'''<section class="section section--flush">
+  <div class="container">
+{chrono}
+    <div class="jobs" data-stagger>
+{cards}
+    </div>
+  </div>
+</section>''',
+        f'''<section class="section section--tint" id="espace-monde">
+  <div class="container">
+    <div class="section__head reveal">
+      <p class="eyebrow" data-i18n="jobs.univ.title">Student assistant (vacataire)</p>
+      <h2 class="title" data-i18n="{zk}">{zv}</h2>
+    </div>
+    <div class="xp">
+      <div class="xp__col">
+        <div class="case__block reveal">
+          <h2 class="case__h" data-i18n="xp.context">Context</h2>
+          <p data-i18n="{ck}">{cv_}</p>
+        </div>
+        <div class="case__block reveal">
+          <h2 class="case__h" data-i18n="xp.takeaway">What I took from it</h2>
+          <p class="feature__goal" data-i18n="{tk}">{tv}</p>
+        </div>
+      </div>
+      <div class="xp__col">
+        <div class="case__block reveal">
+          <h2 class="case__h" data-i18n="xp.did">What I did</h2>
+          <ul class="ticks">
+{did}
+          </ul>
+        </div>
+        <div class="case__block reveal">
+          <h2 class="case__h" data-i18n="xp.skills">Skills used</h2>
+          <ul class="chips">
+{skills}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>''',
+        next_band(f"experience/{nxt['slug']}.html", f"bar.{nxt['card'][4:]}", nxt['name'], 'common.nextXp', 'Next experience')])
+    PAGES['experience/student-job.html'] = assemble('experience', 'Student jobs · Naël Imberti', lv, body, prefix='../')
+
 def xp_page(i, x):
     nxt = XPS[(i + 1) % len(XPS)]
+    if x.get('custom'):
+        return jobs_page(i, x, nxt)
     k, en = x['eyebrow']; lk, lead = x['lead']
     facts_html = '\n'.join(
         f'      <div><dt data-i18n="{fk}">{fl}</dt><dd{(" data-i18n=" + chr(34) + vk + chr(34)) if vk else ""}>{v}</dd></div>'
