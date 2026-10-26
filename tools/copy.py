@@ -125,3 +125,7 @@ COPY.update({
               "Des maths et de l'économie, puis la gestion à l'IAE Rouen. Avec les langues et les outils."),
  'edu.lead': ("Maths and economics first, then a switch to management.", "Des maths et de l'économie d'abord, puis le passage à la gestion."),
 })
+
+COPY.update({
+ 'fact.silvaRec': ("Proj'Impact 2026 award · 5 February 2026", "Lauréat Proj'Impact 2026 · 5 février 2026"),
+})

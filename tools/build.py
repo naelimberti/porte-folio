@@ -398,8 +398,9 @@ proj_chrono = chrono_block('2025-09', '2027-01', T('chrono.hintProj', 'Click a p
         bar('a', 'is-step', *T('step.launch', 'Launch', 'Lancement'), '2025-10', '2025-10', 2, href='projects/jeunes-pousses.html'),
         bar('a', 'is-step', *T('step.workshops', '9 workshops', '9 ateliers'), '2025-11', '2026-03', 2, href='projects/jeunes-pousses.html'),
         mark(T('mark.closing', 'Closing evening · 9 April', 'Soirée de clôture · 9 avril'), '2026-04-09', 2, 'projects/jeunes-pousses.html')]),
-     (T('lane.silva', 'Silva Edita', 'Silva Edita'), 1, [
-        bar('a', 'is-proj', 'bar.silva', 'Silva Edita', '2026-01', 'now', 1, href='projects/silva-edita.html')])])
+     (T('lane.silva', 'Silva Edita', 'Silva Edita'), 2, [
+        bar('a', 'is-proj', 'bar.silva', 'Silva Edita', '2026-01', 'now', 1, href='projects/silva-edita.html'),
+        mark(T('mark.projimpact', "Proj'Impact award · 5 Feb", "Lauréat Proj'Impact · 5 févr."), '2026-02-05', 2, 'projects/silva-edita.html')])])
 projects_list = '''<section class="section section--flush">
   <div class="container">
 ''' + proj_chrono + '''
@@ -744,7 +745,8 @@ XPS = [
        context=T('xp6.ctx', "Espace Monde is the University of Rouen's welcome desk for international students. Those who come through Campus France without an exchange programme go there to enrol, sort out their paperwork and settle in, and most of them arrive in the same few weeks of September.",
                  "L'Espace Monde, c'est le guichet d'accueil des étudiants internationaux de l'Université de Rouen. Ceux qui arrivent via Campus France, hors programme d'échange, y passent pour s'inscrire, faire leurs démarches et s'installer, et la plupart arrivent pendant les mêmes semaines de septembre."),
        did=[('xp6.d1', None), ('xp6.d2', None), ('xp6.d3', None), ('xp6.d4', None), ('xp6.d5', None)],
-       takeaway=None,
+       takeaway=T('xp6.take', 'In this job, you have to work on how you communicate, be patient and genuinely want to help.',
+                  "Sur ce poste, il faut travailler sa communication, être patient et avoir vraiment envie d'aider."),
        skills=['sk.oral', 'sk.intercultural', 'sk.english', 'sk.listening', 'sk.flow', 'sk.admin', 'sk.adapt', 'sk.team'],
        related=[]),
   dict(slug='ambassador', card='exp-amb', name='Entrepreneurship Ambassador',
