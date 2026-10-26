@@ -261,6 +261,33 @@
     'jc.b4': "Créer le site internet",
     'jc.goal': "Objectif : une structure opérationnelle en décembre 2026.",
     'bar.jc': "IAE Rouen Junior Conseil",
+    'job.badge': "Job étudiant",
+    'job.title': "Job étudiant · Accueil des étudiants internationaux",
+    'job.meta': "Juil. – sept. 2026 · Sur site",
+    'job.p1': "À la rentrée, j'ai aidé <strong>527 étudiants internationaux</strong> à constituer leur dossier d'inscription à l'Université de Rouen Normandie.",
+    'xp6.d1': "Une journée de formation au logiciel Saphire en juillet 2026",
+    'xp6.d2': "Accueillir les étudiants au guichet",
+    'xp6.d3': "Les aider à constituer leur dossier d'inscription administrative",
+    'xp6.d4': "Créer les dossiers, en papier et en numérique",
+    'xp6.d5': "Vérifier les dossiers",
+    'sk.intercultural': "Communication interculturelle",
+    'sk.english': "Anglais professionnel",
+    'sk.listening': "Écoute active",
+    'sk.flow': "Gestion de flux",
+    'sk.admin': "Démarches administratives",
+    'chrono.mark': "Jalon",
+    'chrono.work': "Stage &amp; jobs",
+    'chrono.commit': "Engagements",
+    'bar.job': "Job étudiant",
+    'mark.intern': "Stage dès mars 2027",
+    'chrono.project': "Projet",
+    'chrono.step': "Étape du programme",
+    'chrono.hintProj': "Cliquez sur un projet pour l’ouvrir.",
+    'lane.naillies': "Naillies",
+    'step.launch': "Lancement",
+    'step.workshops': "9 ateliers",
+    'mark.closing': "Soirée de clôture · 9 avril",
+    'lane.silva': "Silva Edita",
     'bac.badge': "Mention Bien",
     'bac.title': "Baccalauréat général",
     'bac.meta': "Obtenu en 2024",
@@ -276,6 +303,14 @@
     'tool.office': "Pack Office",
     'tool.ai': "Prompt et usage de l'IA",
     'tool.web': "Création de sites web",
+    'chrono.studies': "Études",
+    'chrono.milestones': "Jalons",
+    'chrono.hintEdu': "Cliquez sur une période pour voir la formation.",
+    'bar.bac': "Bac · Lycée Simone Veil",
+    'bar.l1': "L1 maths-éco",
+    'bar.l2': "L2 économie",
+    'mark.bac': "Bac mention Bien",
+    'mark.toeic': "TOEIC",
     'xp.context': "Le contexte",
     'xp.did': "Ce que j'ai fait",
     'xp.takeaway': "Ce que j'en retiens",
@@ -310,13 +345,13 @@
     'xp2.d6': "Conception et développement du site de présentation de l'école",
     'xp2.take': "C'est là que j'ai vu de près ce que demande vraiment le lancement d'une activité : les chiffres, les règles et les gens à coordonner.",
     'xp2.site': "Le site que j'ai réalisé",
-    'xp3.eyebrow': "Expérience · Vacation",
-    'xp3.lead': "À la rentrée 2026, j'ai aidé 527 étudiants internationaux à s'installer à l'Université de Rouen Normandie.",
-    'xp3.f1': "Août – sept. 2026 · 2 mois",
-    'xp3.f3': "Rouen · Sur site",
-    'xp3.f4': "Vacation étudiante",
-    'xp3.ctx': "L'Espace Monde, c'est le guichet d'accueil des étudiants internationaux de l'Université de Rouen : il les aide dans leurs démarches et leur installation. J'y ai travaillé à la rentrée 2026.",
-    'xp3.d0': "Une journée de formation au logiciel Saphire en juillet 2026",
+    'xp6.eyebrow': "Expérience · Job étudiant",
+    'xp6.lead': "En parallèle de ma licence, je suis étudiant vacataire à l'Université de Rouen Normandie. À la rentrée 2026, j'étais à l'Espace Monde, le guichet d'accueil des étudiants internationaux.",
+    'xp6.f1': "Juil. – sept. 2026",
+    'fact.status': "Statut",
+    'xp6.f3': "Étudiant vacataire",
+    'fact.volume': "Étudiants accueillis",
+    'xp6.ctx': "L'Espace Monde, c'est le guichet d'accueil des étudiants internationaux de l'Université de Rouen. Ceux qui arrivent via Campus France, hors programme d'échange, y passent pour s'inscrire, faire leurs démarches et s'installer, et la plupart arrivent pendant les mêmes semaines de septembre.",
     'xp4.eyebrow': "Expérience · En cours",
     'xp4.lead': "Depuis septembre 2026, je représente la Maison de l'Entrepreneuriat de l'Université de Rouen auprès des étudiants.",
     'xp4.f1': "Sept. 2026 – Aujourd’hui",
@@ -393,7 +428,7 @@
   var body = document.body;
   var curtainLabel = document.querySelector('.curtain__label');
   var LABELS = { 'index': 'nav.home', '': 'nav.home', 'experience': 'nav.experience', 'projects': 'nav.projects', 'education': 'nav.eduskills',
-    'snee': 'bar.snee', 'boc-lab': 'bar.boc', 'international-students': 'bar.intl', 'ambassador': 'bar.amb', 'junior-conseil': 'bar.jc' };
+    'snee': 'bar.snee', 'boc-lab': 'bar.boc', 'student-job': 'bar.job', 'international-students': 'bar.job', 'ambassador': 'bar.amb', 'junior-conseil': 'bar.jc' };
   var LITERAL = { 'silva-edita': 'Silva Edita', 'jeunes-pousses': 'Naillies' };
 
   function labelFor(url) {
@@ -821,7 +856,8 @@
   function monthIndex(v, now) {
     if (v === 'now') return now.getFullYear() * 12 + now.getMonth() + now.getDate() / 31;
     var p = v.split('-');
-    return parseInt(p[0], 10) * 12 + parseInt(p[1], 10) - 1;
+    var m = parseInt(p[0], 10) * 12 + parseInt(p[1], 10) - 1;
+    return p[2] ? m + (parseInt(p[2], 10) - 1) / 31 : m;
   }
   var chronoGrid = document.querySelector('.chrono__grid');
   if (chronoGrid) {
@@ -838,6 +874,21 @@
       b.style.setProperty('--w', (pct(e) - pct(s)) + '%');
       b.style.setProperty('--r', b.getAttribute('data-row') || 1);
       if (endRaw === 'now') b.classList.add('is-ongoing');
+    });
+    // Milestones (diamonds) placed on the same axis
+    chronoGrid.querySelectorAll('.chrono__mark').forEach(function (m) {
+      m.style.setProperty('--s', pct(monthIndex(m.getAttribute('data-date'), now)) + '%');
+      m.style.setProperty('--r', m.getAttribute('data-row') || 1);
+    });
+    // Bars pointing at a block of the page (not a deck card): scroll to it and highlight it
+    chronoGrid.querySelectorAll('.chrono__bar[data-target]').forEach(function (b) {
+      var target = document.getElementById(b.getAttribute('data-target'));
+      if (!target || target.hasAttribute('data-deck-card')) return;
+      b.addEventListener('click', function () {
+        chronoGrid.querySelectorAll('.chrono__bar').forEach(function (x) { x.classList.toggle('is-active', x === b); });
+        target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+        target.classList.remove('is-flash'); void target.offsetWidth; target.classList.add('is-flash');
+      });
     });
     var years = chronoGrid.querySelector('.chrono__years');
     for (var y = Math.ceil(from / 12); y * 12 < to; y++) {
@@ -856,6 +907,9 @@
         b.setAttribute('data-label', sp.textContent);
         b.classList.toggle('is-truncated', sp.scrollWidth > sp.clientWidth + 1);
         b.classList.toggle('is-right', b.offsetLeft + b.offsetWidth / 2 > b.parentElement.clientWidth * .6);
+      });
+      chronoGrid.querySelectorAll('.chrono__mark').forEach(function (m) {
+        m.classList.toggle('is-right', m.offsetLeft + m.offsetWidth > m.parentElement.clientWidth);
       });
     }
     labelBars();

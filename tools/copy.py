@@ -51,12 +51,6 @@ COPY = {
  'exp3.p2': ("I worked on a bit of everything: market research, budget forecasts, regulatory watch, project management and coordinating the people involved.",
              "J'ai touché à un peu de tout : étude de marché, budget prévisionnel, veille réglementaire, gestion de projet et coordination des différents intervenants."),
  'exp3.p3': ("It's where I saw first-hand what launching a business actually takes.", "C'est là que j'ai vu de près ce que demande vraiment le lancement d'une activité."),
- 'exp4.title': ("Student assistant · International students office", "Étudiant vacataire · Accueil des étudiants internationaux"),
- 'exp4.p1': ("At the start of the academic year, I helped <strong>527 international students</strong> with their paperwork and their arrival at the University of Rouen Normandie.",
-             "Pendant la rentrée, j'ai aidé <strong>527 étudiants internationaux</strong> dans leurs démarches administratives et leur arrivée à l'Université de Rouen Normandie."),
- 'exp4.b1': ("Front desk", "Accueil au guichet"),
- 'exp4.b2': ("Setting up files, paper and digital", "Création des dossiers, papier et numérique"),
- 'exp4.b3': ("Checking files", "Vérification des dossiers"),
 
  # Projects
  'proj.title': ("From idea to " + HL.format("pitch"), "De l'idée au " + HL.format("jury")),
@@ -127,7 +121,6 @@ COPY.update({
  'edu2.title': ("Double degree in Maths &amp; Economics, then Economics", "Double licence maths-éco, puis économie"),
  'edu2.p1': ("First year in the Maths &amp; Economics double degree, second year in Economics. Maths, economics, statistics and a bit of programming.",
              "Première année en double licence maths-éco, deuxième année en économie. Des maths, de l'économie, des statistiques et un peu de programmation."),
- 'bar.dl': ("Maths &amp; Economics, then Economics", "Maths-éco, puis économie"),
  'ex3.text': ("Maths and economics, then Management at IAE Rouen. Plus languages and tools.",
               "Des maths et de l'économie, puis la gestion à l'IAE Rouen. Avec les langues et les outils."),
  'edu.lead': ("Maths and economics first, then a switch to management.", "Des maths et de l'économie d'abord, puis le passage à la gestion."),

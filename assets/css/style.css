@@ -1008,3 +1008,28 @@ strong { color: var(--ink); font-weight: 600; }
   .timeline__item:nth-child(2) { order: 2; }
   .timeline__item:nth-child(3) { order: 1; }
 }
+
+/* ==========================================================================
+   Per-page timelines: milestones, programme steps, highlight on jump
+   ========================================================================== */
+.is-step { --c: rgba(183, 110, 245, .28); }
+.chrono__bar.is-step { color: var(--ink); opacity: .85; border: 1px dashed rgba(183, 110, 245, .6); }
+.chrono__legend li.is-markleg::before { width: 9px; height: 9px; border-radius: 1px; background: var(--gold); transform: rotate(45deg); box-shadow: 0 0 8px var(--gold); }
+.chrono__mark {
+  position: absolute; left: var(--s, 0%); top: calc((var(--r, 1) - 1) * 38px + 4px); height: 30px;
+  display: flex; align-items: center; gap: 8px; margin-left: -6px; white-space: nowrap; z-index: 3;
+  color: var(--gold); font: 600 12.5px/1 var(--sans); text-decoration: none;
+}
+.chrono__mark i { width: 12px; height: 12px; flex-shrink: 0; border-radius: 2px; background: var(--gold); transform: rotate(45deg); box-shadow: 0 0 0 3px var(--purple-900), 0 0 12px var(--gold); }
+.chrono__mark.is-right { flex-direction: row-reverse; margin-left: 0; transform: translateX(calc(-100% + 6px)); }
+a.chrono__mark:hover span { text-decoration: underline; text-underline-offset: 3px; }
+.chrono__lane .chrono__label { padding-right: 12px; }
+
+/* jump from a timeline bar to a course card */
+@keyframes flash { 0%, 100% { box-shadow: var(--shadow); } 30% { box-shadow: 0 0 0 2px var(--gold), 0 0 50px rgba(255, 216, 77, .35); } }
+.is-flash > .card { animation: flash 1.8s var(--ease-out); }
+
+/* Education: the timeline above already draws the line, keep only dates on the cards */
+.chrono ~ .timeline::before, .chrono ~ .timeline .timeline__item::before { display: none; }
+@media (min-width: 1100px) { .chrono ~ .timeline { padding-top: 34px; } .chrono ~ .timeline .timeline__date { left: 0; } }
+@media (max-width: 1099px) { .chrono ~ .timeline .timeline__item { padding-left: 0; } }

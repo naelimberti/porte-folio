@@ -4,8 +4,8 @@ Bilingual (EN by default, FR toggle) static portfolio, built from my LinkedIn pr
 
 ## Pages
 - `index.html` – home: hero, key figures, about, three chapters, ecosystem
-- `experience.html` – experience: interactive timeline + 3D cards
-- `experience/*.html` – one detail page per experience (SNEE, Boc Lab, international students office, ambassador, IAE Rouen Junior Conseil)
+- `experience.html` – experience: its own timeline (jobs & internship, commitments) + 3D cards
+- `experience/*.html` – one detail page per experience (SNEE, Boc Lab, student job, ambassador, IAE Rouen Junior Conseil)
 - `projects.html` – projects overview
 - `projects/silva-edita.html` – case study, Proj'Impact 2026
 - `projects/jeunes-pousses.html` – case study, Naillies · Les Jeunes Pousses 2026

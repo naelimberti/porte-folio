@@ -95,6 +95,37 @@
 
 <section class="section section--flush">
   <div class="container">
+    <div class="chrono reveal" role="group" aria-label="Timeline">
+      <div class="chrono__top">
+        <p class="chrono__hint" data-i18n="chrono.hintProj">Click a project to open it.</p>
+        <ul class="chrono__legend">
+          <li class="is-proj" data-i18n="chrono.project">Project</li>
+          <li class="is-step" data-i18n="chrono.step">Programme step</li>
+          <li class="is-markleg" data-i18n="chrono.mark">Milestone</li>
+        </ul>
+      </div>
+      <div class="chrono__scroll">
+        <div class="chrono__grid" data-from="2025-09" data-to="2027-01">
+          <div class="chrono__years" aria-hidden="true"></div>
+          <div class="chrono__lane">
+            <span class="chrono__label" data-i18n="lane.naillies">Naillies</span>
+            <div class="chrono__track" style="--rows: 2">
+            <a class="chrono__bar is-proj" href="projects/jeunes-pousses.html" data-start="2025-10" data-end="2026-04" data-row="1"><span data-i18n="bar.naillies">Naillies · Jeunes Pousses</span></a>
+            <a class="chrono__bar is-step" href="projects/jeunes-pousses.html" data-start="2025-10" data-end="2025-10" data-row="2"><span data-i18n="step.launch">Launch</span></a>
+            <a class="chrono__bar is-step" href="projects/jeunes-pousses.html" data-start="2025-11" data-end="2026-03" data-row="2"><span data-i18n="step.workshops">9 workshops</span></a>
+            <a class="chrono__mark" data-date="2026-04-09" data-row="2" href="projects/jeunes-pousses.html"><i aria-hidden="true"></i><span data-i18n="mark.closing">Closing evening · 9 April</span></a>
+            </div>
+          </div>
+          <div class="chrono__lane">
+            <span class="chrono__label" data-i18n="lane.silva">Silva Edita</span>
+            <div class="chrono__track" style="--rows: 1">
+            <a class="chrono__bar is-proj" href="projects/silva-edita.html" data-start="2026-01" data-end="now" data-row="1"><span data-i18n="bar.silva">Silva Edita</span></a>
+            </div>
+          </div>
+          <div class="chrono__today" aria-hidden="true"><span data-i18n="chrono.today">Today</span></div>
+        </div>
+      </div>
+    </div>
     <div class="projects" data-stagger>
       <a class="project" href="projects/silva-edita.html">
         <div class="project__media reveal-media">

@@ -95,8 +95,40 @@
 
 <section class="section section--flush">
   <div class="container">
+    <div class="chrono reveal" role="group" aria-label="Timeline">
+      <div class="chrono__top">
+        <p class="chrono__hint" data-i18n="chrono.hintEdu">Click a period to jump to the course.</p>
+        <ul class="chrono__legend">
+          <li class="is-edu" data-i18n="chrono.studies">Studies</li>
+          <li class="is-markleg" data-i18n="chrono.mark">Milestone</li>
+        </ul>
+      </div>
+      <div class="chrono__scroll">
+        <div class="chrono__grid" data-from="2021-09" data-to="2027-08">
+          <div class="chrono__years" aria-hidden="true"></div>
+          <div class="chrono__lane">
+            <span class="chrono__label" data-i18n="chrono.studies">Studies</span>
+            <div class="chrono__track" style="--rows: 1">
+            <button type="button" class="chrono__bar is-edu" data-target="edu-bac" data-start="2021-09" data-end="2024-07" data-row="1"><span data-i18n="bar.bac">Baccalauréat · Lycée Simone Veil</span></button>
+            <button type="button" class="chrono__bar is-edu" data-target="edu-dl" data-start="2024-09" data-end="2025-06" data-row="1"><span data-i18n="bar.l1">L1 Maths &amp; Economics</span></button>
+            <button type="button" class="chrono__bar is-edu" data-target="edu-dl" data-start="2025-09" data-end="2026-06" data-row="1"><span data-i18n="bar.l2">L2 Economics</span></button>
+            <button type="button" class="chrono__bar is-edu" data-target="edu-l3" data-start="2026-09" data-end="2027-07" data-row="1"><span data-i18n="bar.l3">L3 Management · IAE Rouen</span></button>
+            </div>
+          </div>
+          <div class="chrono__lane">
+            <span class="chrono__label" data-i18n="chrono.milestones">Milestones</span>
+            <div class="chrono__track" style="--rows: 1">
+            <span class="chrono__mark" data-date="2024-07" data-row="1"><i aria-hidden="true"></i><span data-i18n="mark.bac">Bac, grade Bien</span></span>
+            <span class="chrono__mark" data-date="2027-01" data-row="1"><i aria-hidden="true"></i><span data-i18n="mark.toeic">TOEIC</span></span>
+            </div>
+          </div>
+          <div class="chrono__today" aria-hidden="true"><span data-i18n="chrono.today">Today</span></div>
+        </div>
+      </div>
+    </div>
+
     <div class="timeline">
-      <article class="timeline__item reveal">
+      <article class="timeline__item reveal" id="edu-l3">
         <div class="timeline__date">2026 – 2027</div>
         <div class="card">
           <header class="card__head">
@@ -119,7 +151,7 @@
         </div>
       </article>
 
-      <article class="timeline__item reveal">
+      <article class="timeline__item reveal" id="edu-dl">
         <div class="timeline__date">2024 – 2026</div>
         <div class="card">
           <header class="card__head">
@@ -140,7 +172,7 @@
           <p class="muted" data-i18n="edu2.p2">A demanding course. It gave me rigour and the habit of working on my own, and it's where I realised I wanted to move towards management and business.</p>
         </div>
       </article>
-          <article class="timeline__item reveal">
+          <article class="timeline__item reveal" id="edu-bac">
         <div class="timeline__date">2021 – 2024</div>
         <div class="card">
           <header class="card__head">

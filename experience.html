@@ -99,36 +99,28 @@
       <div class="chrono__top">
         <p class="chrono__hint" data-i18n="chrono.hint">Click a period on the timeline or flip through the cards.</p>
         <ul class="chrono__legend">
-          <li class="is-exp" data-i18n="chrono.exp">Experience</li>
-          <li class="is-proj" data-i18n="chrono.proj">Projects</li>
-          <li class="is-edu" data-i18n="chrono.edu">Education</li>
+          <li class="is-exp" data-i18n="chrono.work">Jobs &amp; internship</li>
+          <li class="is-proj" data-i18n="chrono.commit">Commitments</li>
+          <li class="is-markleg" data-i18n="chrono.mark">Milestone</li>
         </ul>
       </div>
       <div class="chrono__scroll">
-        <div class="chrono__grid" data-from="2024-09" data-to="2027-07">
+        <div class="chrono__grid" data-from="2025-06" data-to="2027-06">
           <div class="chrono__years" aria-hidden="true"></div>
           <div class="chrono__lane">
-            <span class="chrono__label" data-i18n="chrono.exp">Experience</span>
-            <div class="chrono__track" style="--rows: 4">
-            <button type="button" class="chrono__bar is-exp" data-target="exp-snee" data-start="2025-07" data-end="now" data-row="1"><span data-i18n="bar.snee">SNEE · Pépite Normandie</span></button>
-            <button type="button" class="chrono__bar is-exp" data-target="exp-boc" data-start="2026-06" data-end="2026-07" data-row="2"><span data-i18n="bar.boc">Boc Lab</span></button>
-            <button type="button" class="chrono__bar is-exp" data-target="exp-intl" data-start="2026-08" data-end="2026-09" data-row="3"><span data-i18n="bar.intl">International students office</span></button>
-            <button type="button" class="chrono__bar is-exp" data-target="exp-amb" data-start="2026-09" data-end="now" data-row="2"><span data-i18n="bar.amb">Entrepreneurship Ambassador</span></button>
-            <button type="button" class="chrono__bar is-exp" data-target="exp-jc" data-start="2026-09" data-end="now" data-row="4"><span data-i18n="bar.jc">IAE Rouen Junior Conseil</span></button>
-            </div>
-          </div>
-          <div class="chrono__lane">
-            <span class="chrono__label" data-i18n="chrono.proj">Projects</span>
+            <span class="chrono__label" data-i18n="chrono.work">Jobs &amp; internship</span>
             <div class="chrono__track" style="--rows: 2">
-            <a class="chrono__bar is-proj" href="projects/jeunes-pousses.html" data-start="2025-10" data-end="2026-04" data-row="1"><span data-i18n="bar.naillies">Naillies · Jeunes Pousses</span></a>
-            <a class="chrono__bar is-proj" href="projects/silva-edita.html" data-start="2026-01" data-end="now" data-row="2"><span data-i18n="bar.silva">Silva Edita</span></a>
+            <button type="button" class="chrono__bar is-exp" data-target="exp-boc" data-start="2026-06" data-end="2026-07" data-row="1"><span data-i18n="bar.boc">Boc Lab</span></button>
+            <button type="button" class="chrono__bar is-exp" data-target="exp-job" data-start="2026-07" data-end="2026-09" data-row="2"><span data-i18n="bar.job">Student job</span></button>
+            <button type="button" class="chrono__bar is-exp" data-target="exp-jc" data-start="2026-09" data-end="now" data-row="1"><span data-i18n="bar.jc">IAE Rouen Junior Conseil</span></button>
+            <a class="chrono__mark" data-date="2027-03" data-row="2" href="#contact"><i aria-hidden="true"></i><span data-i18n="mark.intern">Internship from March 2027</span></a>
             </div>
           </div>
           <div class="chrono__lane">
-            <span class="chrono__label" data-i18n="chrono.edu">Education</span>
-            <div class="chrono__track" style="--rows: 1">
-            <a class="chrono__bar is-edu" href="education.html" data-start="2024-09" data-end="2026-06" data-row="1"><span data-i18n="bar.dl">Maths &amp; Economics, then Economics</span></a>
-            <a class="chrono__bar is-edu" href="education.html" data-start="2026-09" data-end="2027-07" data-row="1"><span data-i18n="bar.l3">L3 Management · IAE Rouen</span></a>
+            <span class="chrono__label" data-i18n="chrono.commit">Commitments</span>
+            <div class="chrono__track" style="--rows: 2">
+            <button type="button" class="chrono__bar is-proj" data-target="exp-snee" data-start="2025-07" data-end="now" data-row="1"><span data-i18n="bar.snee">SNEE · Pépite Normandie</span></button>
+            <button type="button" class="chrono__bar is-proj" data-target="exp-amb" data-start="2026-09" data-end="now" data-row="2"><span data-i18n="bar.amb">Entrepreneurship Ambassador</span></button>
             </div>
           </div>
           <div class="chrono__today" aria-hidden="true"><span data-i18n="chrono.today">Today</span></div>
@@ -177,24 +169,25 @@
         </ul>
         <a class="card__more" href="experience/boc-lab.html"><span data-i18n="xp.details">See details</span> <span aria-hidden="true">→</span></a>
       </article>
-      <article class="card" id="exp-intl" data-deck-card>
+      <article class="card" id="exp-job" data-deck-card>
         <header class="card__head">
-          <span class="badge" data-i18n="exp4.badge">Contract</span>
-          <h3 data-i18n="exp4.title">Student assistant · International students office</h3>
-          <p class="card__org">Université de Rouen Normandie</p>
-          <p class="card__meta" data-i18n="exp4.meta">Aug 2026 – Sep 2026 · On-site</p>
+          <span class="badge" data-i18n="job.badge">Student job</span>
+          <h3 data-i18n="job.title">Student job · International students welcome desk</h3>
+          <p class="card__org">Espace Monde · Université de Rouen Normandie</p>
+          <p class="card__meta" data-i18n="job.meta">Jul – Sep 2026 · On-site</p>
         </header>
-        <p data-i18n="exp4.p1">At the start of the academic year, I helped <strong>527 international students</strong> with their paperwork and their arrival at the University of Rouen Normandie.</p>
+        <p data-i18n="job.p1">At the start of the academic year, I helped <strong>527 international students</strong> put together their enrolment files at the University of Rouen Normandie.</p>
         <ul class="ticks">
-          <li data-i18n="exp4.b1">Front desk</li>
-          <li data-i18n="exp4.b2">Setting up files, paper and digital</li>
-          <li data-i18n="exp4.b3">Checking files</li>
+          <li data-i18n="xp6.d1">A one-day training on the Saphire software in July 2026</li>
+          <li data-i18n="xp6.d2">Welcoming students at the front desk</li>
+          <li data-i18n="xp6.d3">Helping them put together their administrative enrolment file</li>
         </ul>
         <ul class="chips chips--sm">
           <li data-i18n="sk.oral">Oral communication</li>
+          <li data-i18n="sk.intercultural">Intercultural communication</li>
           <li data-i18n="sk.adapt">Adaptability</li>
         </ul>
-        <a class="card__more" href="experience/international-students.html"><span data-i18n="xp.details">See details</span> <span aria-hidden="true">→</span></a>
+        <a class="card__more" href="experience/student-job.html"><span data-i18n="xp.details">See details</span> <span aria-hidden="true">→</span></a>
       </article>
       <article class="card" id="exp-amb" data-deck-card>
         <header class="card__head">
