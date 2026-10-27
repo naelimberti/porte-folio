@@ -129,3 +129,10 @@ COPY.update({
 COPY.update({
  'fact.silvaRec': ("Proj'Impact 2026 award · 5 February 2026", "Lauréat Proj'Impact 2026 · 5 février 2026"),
 })
+
+COPY.update({
+ 'exp.lead': ("Since July 2025: two internships, student jobs alongside my studies, and the junior enterprise we're setting up.",
+              "Depuis juillet 2025 : deux stages, des jobs étudiants en parallèle des cours et la Junior Entreprise qu'on est en train de créer."),
+ 'ex1.text': ("Two internships, three student jobs and the junior enterprise we're setting up.",
+              "Deux stages, trois jobs étudiants et la Junior Entreprise qu'on est en train de créer."),
+})

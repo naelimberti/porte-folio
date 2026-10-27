@@ -1045,3 +1045,4 @@ html[lang="fr"] [data-lang-only="en"], html:not([lang="fr"]) [data-lang-only="fr
 .jobs__item > .card { height: 100%; }
 #espace-monde { scroll-margin-top: calc(var(--header-h) + 12px); }
 .chrono__bar.is-short { padding: 0 4px; justify-content: center; font-size: 12px; }
+.page-hero__actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
