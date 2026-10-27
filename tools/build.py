@@ -57,6 +57,7 @@ hero = hero.replace('        <a href="#contact" class="btn btn--ghost"', cv_butt
 footer_links = '''      <ul class="footer__links">
         <li><a href="index.html" data-i18n="nav.home">Home</a></li>
         <li><a href="experience.html" data-i18n="nav.experience">Experience</a></li>
+        <li><a href="jobs.html" data-i18n="nav.jobs">Student jobs</a></li>
         <li><a href="projects.html" data-i18n="nav.projects">Projects</a></li>
         <li><a href="education.html" data-i18n="nav.eduskills">Education &amp; Skills</a></li>
       </ul>'''
@@ -103,10 +104,39 @@ def head(title, desc, prefix):
   <noscript><style>.curtain{{display:none!important}}</style></noscript>
 </head>'''
 
+CHEVRON = '<svg viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+NAV_GROUPS = [
+    ('index.html', 'nav.home', 'Home', ('home',), []),
+    ('experience.html', 'nav.experience', 'Experience', ('experience', 'jobs'), [
+        ('experience.html', T('nav.internships', 'Internships &amp; experience', 'Stages &amp; expériences'), 'experience'),
+        ('jobs.html', T('nav.jobs', 'Student jobs', 'Jobs étudiants'), 'jobs')]),
+    ('projects.html', 'nav.projects', 'Projects', ('projects',), [
+        ('projects.html', T('nav.allprojects', 'All projects', 'Tous les projets'), None),
+        ('projects/silva-edita.html', (None, 'Silva Edita'), None),
+        ('projects/jeunes-pousses.html', (None, 'Naillies · Les Jeunes Pousses'), None)]),
+    ('education.html', 'nav.eduskills', 'Education &amp; Skills', ('education',), [
+        ('education.html', T('nav.course', 'My studies', 'Mon parcours'), None),
+        ('education.html#skills', T('nav.skills2', 'Skills &amp; languages', 'Compétences &amp; langues'), None)]),
+]
+
 def header(page):
-    def link(href, key, label, pg):
-        active = ' class="is-active" aria-current="page"' if pg == page else ''
-        return f'      <a href="{href}"{active} data-i18n="{key}">{label}</a>'
+    items = []
+    for href, key, label, pages, subs in NAV_GROUPS:
+        cur = ' class="is-active" aria-current="page"' if page in pages else ''
+        top = f'<a href="{href}"{cur} data-i18n="{key}">{label}</a>'
+        if not subs:
+            items.append(f'      {top}')
+            continue
+        links = ''.join(
+            f'\n          <a href="{h}"' + (' aria-current="page"' if pg and pg == page else '') + (f' data-i18n="{k}"' if k else '') + f'>{l}</a>'
+            for h, (k, l), pg in subs)
+        items.append(f'''      <div class="nav__item has-sub">
+        {top}
+        <button type="button" class="nav__toggle" aria-expanded="false" aria-label="{label}: submenu">{CHEVRON}</button>
+        <div class="nav__sub">{links}
+        </div>
+      </div>''')
+    nav_html = '\n'.join(items)
     return f'''<!-- ───────── HEADER ───────── -->
 <header class="header" id="top">
   <div class="container header__inner">
@@ -116,10 +146,7 @@ def header(page):
     </a>
 
     <nav class="nav" id="nav" aria-label="Main">
-{link("index.html", "nav.home", "Home", "home")}
-{link("experience.html", "nav.experience", "Experience", "experience")}
-{link("projects.html", "nav.projects", "Projects", "projects")}
-{link("education.html", "nav.eduskills", "Education &amp; Skills", "education")}
+{nav_html}
       <a href="#contact" class="nav__cta-mobile" data-i18n="nav.contact">Contact</a>
     </nav>
 
@@ -225,14 +252,20 @@ explore = '''<!-- ───────── EXPLORE ────────�
         <p data-i18n="ex1.text">Four roles across entrepreneurship support, a founder's projects and student services.</p>
         <span class="explore__cta"><span data-i18n="explore.cta">Discover</span> <span aria-hidden="true">→</span></span>
       </a>
-      <a class="explore__card" href="projects.html">
+      <a class="explore__card" href="jobs.html">
         <span class="explore__num">02</span>
+        <h3 data-i18n="nav.jobs">Student jobs</h3>
+        <p data-i18n="exJ.text">Three jobs alongside my studies since August 2025, including a permanent contract.</p>
+        <span class="explore__cta"><span data-i18n="explore.cta">Discover</span> <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="explore__card" href="projects.html">
+        <span class="explore__num">03</span>
         <h3 data-i18n="nav.projects">Projects</h3>
         <p data-i18n="ex2.text">Silva Edita, Proj'Impact 2026 laureate, and Naillies, built within Les Jeunes Pousses 2026.</p>
         <span class="explore__cta"><span data-i18n="explore.cta">Discover</span> <span aria-hidden="true">→</span></span>
       </a>
       <a class="explore__card" href="education.html">
-        <span class="explore__num">03</span>
+        <span class="explore__num">04</span>
         <h3 data-i18n="nav.eduskills">Education &amp; Skills</h3>
         <p data-i18n="ex3.text">From a Double Degree in Mathematics &amp; Economics to Management at IAE Rouen Normandie.</p>
         <span class="explore__cta"><span data-i18n="explore.cta">Discover</span> <span aria-hidden="true">→</span></span>
@@ -241,6 +274,7 @@ explore = '''<!-- ───────── EXPLORE ────────�
   </div>
 </section>'''
 
+T('exJ.text', 'Three jobs alongside my studies since August 2025, including a permanent contract.', 'Trois jobs en parallèle de mes études depuis août 2025, dont un CDI.')
 home_body = '\n\n'.join([hero, about.replace('class="section" id="about"', 'class="section section--tint" id="about"'), explore, eco])
 PAGES['index.html'] = assemble('home', 'Naël Imberti · Business Developer in training',
     "Naël Imberti, Business Development &amp; Management student at IAE Rouen Normandie, student-entrepreneur (SNEE · Pépite Normandie). Looking for a 3 to 6-month internship starting March 2027.",
@@ -349,7 +383,7 @@ _nc_article = f'''      <article class="card">
           <li data-i18n="sk.network">Professional networking</li>
         </ul>
       </article>'''
-_meta = [(_snee, 'exp-snee'), (_boc, 'exp-boc'), (_job_article, 'exp-job'), (_amb, 'exp-amb'), (_jc_article, 'exp-jc'), (_nc_article, 'exp-nc')]
+_meta = [(_snee, 'exp-snee'), (_boc, 'exp-boc'), (_amb, 'exp-amb'), (_jc_article, 'exp-jc'), (_nc_article, 'exp-nc')]
 _slug = {'exp-snee': 'snee', 'exp-boc': 'boc-lab', 'exp-job': 'student-job', 'exp-amb': 'ambassador', 'exp-jc': 'junior-conseil', 'exp-nc': 'normandie-creation'}
 deck_cards = '\n'.join(a.replace('<article class="card">', f'<article class="card" id="{i}" data-deck-card>')
                          .replace('</article>', f'  <a class="card__more" href="experience/{_slug[i]}.html"><span data-i18n="xp.details">See details</span> <span aria-hidden="true">→</span></a>\n      </article>')
@@ -403,18 +437,12 @@ B_LEC = T('bar.leclerc', 'Leclerc', 'Leclerc')
 B_UNIV = T('bar.univ', 'Espace Monde', 'Espace Monde')
 T('bar.job', 'Student jobs', 'Jobs étudiants')
 exp_chrono = chrono_block('2025-06', '2027-07', ('chrono.hint', 'Click a period on the timeline or flip through the cards.'),
-    [('is-exp', L_WORK), ('is-job', L_JOBS), ('is-proj', L_COMMIT), ('is-markleg', L_MARK)],
+    [('is-exp', L_WORK), ('is-proj', L_COMMIT), ('is-markleg', L_MARK)],
     [(L_WORK, 2, [
         bar('button', 'is-exp', 'bar.boc', 'Boc Lab', '2026-06', '2026-07', 1, 'exp-boc'),
         bar('button', 'is-exp', 'bar.jc', 'IAE Rouen Junior Conseil', '2026-09', 'now', 1, 'exp-jc'),
         bar('button', 'is-exp', 'bar.nc', 'Normandie Création', '2026-10', '2026-10', 2, 'exp-nc'),
         mark(T('mark.intern', 'Internship from March 2027', 'Stage dès mars 2027'), '2027-03', 2, '#contact')]),
-     (L_JOBS, 3, [
-        bar('button', 'is-job', *B_PH, '2025-08', '2025-08', 1, 'exp-job'),
-        bar('button', 'is-job', *B_PH, '2026-02', '2026-02', 1, 'exp-job'),
-        bar('button', 'is-job', *B_PH, '2026-08', '2026-08', 1, 'exp-job'),
-        bar('button', 'is-job', *B_LEC, '2026-09', 'now', 2, 'exp-job'),
-        bar('button', 'is-job', *B_UNIV, '2026-09', '2027-06', 3, 'exp-job')]),
      (L_COMMIT, 2, [
         bar('button', 'is-proj', 'bar.snee', 'SNEE · Pépite Normandie', '2025-07', 'now', 1, 'exp-snee'),
         bar('button', 'is-proj', 'bar.amb', 'Entrepreneurship Ambassador', '2026-09', 'now', 2, 'exp-amb')])])
@@ -441,7 +469,7 @@ exp_body = '\n\n'.join([
     page_hero('exp.eyebrow', 'Experience', 'exp.title', 'Learning by <span class="hl">doing</span>', 'exp.lead',
               'From supporting a founder to welcoming 527 international students: roles where I learned to coordinate, communicate and deliver.'),
     chrono,
-    next_band('projects.html', 'nav.projects', 'Projects')])
+    next_band('jobs.html', 'nav.jobs', 'Student jobs')])
 PAGES['experience.html'] = assemble('experience', 'Experience · Naël Imberti',
     'Experience of Naël Imberti: Entrepreneurship Ambassador, SNEE student-entrepreneur, Executive Assistant Intern at Boc Lab, student assistant at the University of Rouen.',
     exp_body)
@@ -873,8 +901,8 @@ def jobs_page(i, x, nxt):
             (T('fact.contracts', 'Contracts', 'Contrats'), T('jobs.f3', 'Seasonal fixed-term, permanent (CDI), vacation', 'CDD saisonniers, CDI, vacation')),
             (T('fact.when', 'When', 'Quand'), T('jobs.f4', 'Alongside my studies', 'En parallèle de mes études'))])
     media = f'    <dl class="page-hero__media facts facts--hero">\n{facts_html}\n    </dl>\n'
-    crumbs_html = '      <nav class="crumbs" aria-label="Breadcrumb"><a href="experience.html" data-i18n="nav.experience">Experience</a><span aria-hidden="true">/</span><span data-i18n="bar.job">Student jobs</span></nav>\n'
-    ek, ev = T('jobs.eyebrow', 'Experience · Student jobs', 'Expérience · Jobs étudiants')
+    crumbs_html = ''
+    ek, ev = T('jobs.eyebrow', 'Alongside my studies', 'En parallèle des études')
     lk, lv = T('jobs.lead', 'I work alongside my studies: three jobs since August 2025, including a permanent contract.',
                "Je travaille en parallèle de mes études : trois jobs depuis août 2025, dont un CDI.")
     chrono = chrono_block('2025-06', '2027-07', T('chrono.hintJobs', 'Click a period to see the job.', 'Cliquez sur une période pour voir le job.'),
@@ -978,8 +1006,8 @@ def jobs_page(i, x, nxt):
     </div>
   </div>
 </section>''',
-        next_band(f"experience/{nxt['slug']}.html", f"bar.{nxt['card'][4:]}", nxt['name'], 'common.nextXp', 'Next experience')])
-    PAGES['experience/student-job.html'] = assemble('experience', 'Student jobs · Naël Imberti', lv, body, prefix='../')
+        next_band('projects.html', 'nav.projects', 'Projects')])
+    PAGES['jobs.html'] = assemble('jobs', 'Student jobs · Naël Imberti', lv, body)
 
 def xp_page(i, x):
     nxt = XPS[(i + 1) % len(XPS)]
@@ -1057,6 +1085,9 @@ def xp_page(i, x):
         next_band(f"experience/{nxt['slug']}.html", f"bar.{nxt['card'][4:]}", nxt['name'], 'common.nextXp', 'Next experience')])
     PAGES[f"experience/{x['slug']}.html"] = assemble('experience', f"{x['name']} · Naël Imberti", lead, body, prefix='../')
 
+_JOBX = next(d for d in XPS if d['slug'] == 'student-job')
+XPS.remove(_JOBX)
+jobs_page(None, _JOBX, None)
 for _i, _x in enumerate(XPS):
     xp_page(_i, _x)
 
@@ -1070,16 +1101,17 @@ _i = _js.index('var FR = {'); _j = _js.index('\n  };', _i)
 _js = _js[:_j] + _block + _js[_j:]
 open(_js_path, 'w', encoding='utf8').write(_js)
 
-PAGES['experience/international-students.html'] = """<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><title>Student job · Naël Imberti</title>
-<meta http-equiv="refresh" content="0; url=student-job.html"><link rel="canonical" href="__CANONICAL_JOB__">
+for _old in ('experience/international-students.html', 'experience/student-job.html'):
+    PAGES[_old] = """<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Student jobs · Naël Imberti</title>
+<meta http-equiv="refresh" content="0; url=../jobs.html"><link rel="canonical" href="__CANONICAL_JOB__">
 <meta name="robots" content="noindex"></head>
-<body><a href="student-job.html">Student job</a></body></html>
+<body><a href="../jobs.html">Student jobs</a></body></html>
 """
 for path, html in PAGES.items():
     full = os.path.join(ROOT, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     canon = BASE_URL + ('' if path == 'index.html' else path)
-    html = html.replace('__CANONICAL_JOB__', BASE_URL + 'experience/student-job.html')
+    html = html.replace('__CANONICAL_JOB__', BASE_URL + 'jobs.html')
     open(full, 'w', encoding='utf8').write(_ac.apply_en(html.replace('__CANONICAL__', canon)))
     print('wrote', path, len(html))

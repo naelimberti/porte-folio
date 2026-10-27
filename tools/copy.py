@@ -136,3 +136,10 @@ COPY.update({
  'ex1.text': ("Two internships, three student jobs and the junior enterprise we're setting up.",
               "Deux stages, trois jobs étudiants et la Junior Entreprise qu'on est en train de créer."),
 })
+
+COPY.update({
+ 'exp.lead': ("Since July 2025: two internships, the entrepreneurship side of my studies, and the junior enterprise we're setting up.",
+              "Depuis juillet 2025 : deux stages, mon engagement dans l'entrepreneuriat et la Junior Entreprise qu'on est en train de créer."),
+ 'ex1.text': ("Two internships, the junior enterprise we're setting up and my entrepreneurship commitments.",
+              "Deux stages, la Junior Entreprise qu'on est en train de créer et mes engagements dans l'entrepreneuriat."),
+})

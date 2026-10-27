@@ -179,11 +179,11 @@
     'explore.eyebrow': "Explorer",
     'explore.title': "Pour aller plus <span class=\"hl\">loin</span>",
     'explore.cta': "Voir",
-    'ex1.text': "Deux stages, trois jobs étudiants et la Junior Entreprise qu'on est en train de créer.",
+    'ex1.text': "Deux stages, la Junior Entreprise qu'on est en train de créer et mes engagements dans l'entrepreneuriat.",
     'ex2.text': "Silva Edita, lauréat de Proj'Impact 2026, et Naillies, monté pendant Les Jeunes Pousses.",
     'ex3.text': "Des maths et de l'économie, puis la gestion à l'IAE Rouen. Avec les langues et les outils.",
 
-    'exp.lead': "Depuis juillet 2025 : deux stages, des jobs étudiants en parallèle des cours et la Junior Entreprise qu'on est en train de créer.",
+    'exp.lead': "Depuis juillet 2025 : deux stages, mon engagement dans l'entrepreneuriat et la Junior Entreprise qu'on est en train de créer.",
     'proj.lead': "Deux projets lancés dans des programmes de l'université. L'un des deux continue aujourd'hui.",
     'pc1.text': "L'idée : végétaliser les toits de Rouen. On a commencé par les immeubles, puis les campus, et on vise maintenant un test sur les toits de pépinières d'entreprises.",
     'pc2.text': "Des kits créatifs pour apprendre la manucure semi-permanente. Six mois de travail avec Léa Portmann pendant Les Jeunes Pousses.",
@@ -252,6 +252,12 @@
     'deck.hint': 'Glissez, utilisez les flèches du clavier ou cliquez sur une carte',
 
     /* @xp-pages */
+    'nav.internships': "Stages &amp; expériences",
+    'nav.jobs': "Jobs étudiants",
+    'nav.allprojects': "Tous les projets",
+    'nav.course': "Mon parcours",
+    'nav.skills2': "Compétences &amp; langues",
+    'exJ.text': "Trois jobs en parallèle de mes études depuis août 2025, dont un CDI.",
     'jc.title': "Responsable développement commercial",
     'jc.meta': "Sept. 2026 – Aujourd’hui · Rouen · Équipe fondatrice",
     'jc.p1': "On est en train de créer la Junior Entreprise de l'IAE Rouen. Je fais partie des membres fondateurs et je m'occupe du développement commercial.",
@@ -394,7 +400,7 @@
     'jobs.f3': "CDD saisonniers, CDI, vacation",
     'fact.when': "Quand",
     'jobs.f4': "En parallèle de mes études",
-    'jobs.eyebrow': "Expérience · Jobs étudiants",
+    'jobs.eyebrow': "En parallèle des études",
     'jobs.lead': "Je travaille en parallèle de mes études : trois jobs depuis août 2025, dont un CDI.",
     'chrono.hintJobs': "Cliquez sur une période pour voir le job.",
     'lane.ph': "PH+",
@@ -487,7 +493,7 @@
   var body = document.body;
   var curtainLabel = document.querySelector('.curtain__label');
   var LABELS = { 'index': 'nav.home', '': 'nav.home', 'experience': 'nav.experience', 'projects': 'nav.projects', 'education': 'nav.eduskills',
-    'snee': 'bar.snee', 'boc-lab': 'bar.boc', 'student-job': 'bar.job', 'international-students': 'bar.job', 'ambassador': 'bar.amb', 'junior-conseil': 'bar.jc', 'normandie-creation': 'bar.nc' };
+    'snee': 'bar.snee', 'boc-lab': 'bar.boc', 'student-job': 'bar.job', 'international-students': 'bar.job', 'ambassador': 'bar.amb', 'junior-conseil': 'bar.jc', 'normandie-creation': 'bar.nc', 'jobs': 'nav.jobs' };
   var LITERAL = { 'silva-edita': 'Silva Edita', 'jeunes-pousses': 'Naillies' };
 
   function labelFor(url) {
@@ -577,7 +583,28 @@
     burger.setAttribute('aria-expanded', String(open));
   });
   nav.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closeMenu); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+
+  // Dropdown menus: open on hover/focus (CSS), and with the chevron button for touch and keyboard
+  var subs = nav.querySelectorAll('.has-sub');
+  function closeSubs(except) {
+    subs.forEach(function (it) {
+      if (it === except) return;
+      it.classList.remove('is-open');
+      it.querySelector('.nav__toggle').setAttribute('aria-expanded', 'false');
+    });
+  }
+  subs.forEach(function (it) {
+    var t = it.querySelector('.nav__toggle');
+    t.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = !it.classList.contains('is-open');
+      closeSubs(it);
+      it.classList.toggle('is-open', open);
+      t.setAttribute('aria-expanded', String(open));
+    });
+  });
+  document.addEventListener('click', function (e) { if (!e.target.closest || !e.target.closest('.has-sub')) closeSubs(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { closeMenu(); closeSubs(); } });
 
   /* ───────── Titles revealed line by line (masked) ───────── */
   var splitEls = reduce ? [] : Array.prototype.slice.call(document.querySelectorAll('.section__head .title, .cta__title'));
