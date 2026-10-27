@@ -29,7 +29,6 @@ COPY = {
  # Experience
  'exp.lead': ("Four roles since July 2025, from a two-month internship to the ambassador role I hold today.",
               "Quatre expériences depuis juillet 2025, du stage de deux mois au rôle d'ambassadeur que j'occupe aujourd'hui."),
- 'chrono.hint': ("Click a period on the timeline or flip through the cards.", "Cliquez sur une période de la frise ou faites défiler les cartes."),
  'exp1.b1': ("Talk about entrepreneurship to students at the university and IAE, and show them it's within reach.",
              "Parler d'entrepreneuriat aux étudiants de l'université et de l'IAE, et leur montrer que c'est à leur portée."),
  'exp1.b2': ("Tell them about the support schemes they can use.", "Leur présenter les dispositifs d'accompagnement qui existent."),

@@ -127,40 +127,30 @@
 
 <section class="section section--flush">
   <div class="container">
-    <div class="chrono reveal" role="group" aria-label="Timeline">
-      <div class="chrono__top">
-        <p class="chrono__hint" data-i18n="chrono.hintJobs">Click a period to see the job.</p>
-        <ul class="chrono__legend">
-          <li class="is-job" data-i18n="chrono.jobs">Student jobs</li>
-          <li class="is-markleg" data-i18n="chrono.mark">Milestone</li>
-        </ul>
+    <div class="tl-wrap cal-wrap reveal">
+      <div class="tl-head">
+        <p class="tl-hint" data-i18n="cal.hint">One square = one month. Click a job to see it below.</p>
+        <ul class="tl-legend cal-legend"><li class="is-work" data-i18n="cal.work">Month worked</li><li class="is-train" data-i18n="cal.train">Training</li><li class="is-today" data-i18n="cal.today">This month</li></ul>
       </div>
-      <div class="chrono__scroll">
-        <div class="chrono__grid" data-from="2025-06" data-to="2027-07">
-          <div class="chrono__years" aria-hidden="true"></div>
-          <div class="chrono__lane">
-            <span class="chrono__label" data-i18n="lane.ph">PH+</span>
-            <div class="chrono__track" style="--rows: 1">
-            <button type="button" class="chrono__bar is-job" data-target="job-ph" data-start="2025-08" data-end="2025-08" data-row="1"><span data-i18n="bar.ph">PH+</span></button>
-            <button type="button" class="chrono__bar is-job" data-target="job-ph" data-start="2026-02" data-end="2026-02" data-row="1"><span data-i18n="bar.ph">PH+</span></button>
-            <button type="button" class="chrono__bar is-job" data-target="job-ph" data-start="2026-08" data-end="2026-08" data-row="1"><span data-i18n="bar.ph">PH+</span></button>
-            </div>
-          </div>
-          <div class="chrono__lane">
-            <span class="chrono__label" data-i18n="lane.leclerc">E.Leclerc</span>
-            <div class="chrono__track" style="--rows: 1">
-            <button type="button" class="chrono__bar is-job" data-target="job-leclerc" data-start="2026-09" data-end="now" data-row="1"><span data-i18n="bar.leclerc2">CDI</span></button>
-            </div>
-          </div>
-          <div class="chrono__lane">
-            <span class="chrono__label" data-i18n="lane.univ">University of Rouen</span>
-            <div class="chrono__track" style="--rows: 2">
-            <button type="button" class="chrono__bar is-job" data-target="job-univ" data-start="2026-09" data-end="2027-06" data-row="1"><span data-i18n="bar.univ2">Student assistant · Espace Monde</span></button>
-            <span class="chrono__mark" data-date="2026-07" data-row="2"><i aria-hidden="true"></i><span data-i18n="mark.saphire">Saphire training</span></span>
-            </div>
-          </div>
-          <div class="chrono__today" aria-hidden="true"><span data-i18n="chrono.today">Today</span></div>
+      <div class="cal-scroll">
+      <div class="cal" data-from="2025-08">
+        <div class="cal__row cal__row--head">
+          <span class="cal__name" aria-hidden="true"></span>
+          <div class="cal__months" data-head></div>
         </div>
+        <div class="cal__row" data-periods="2025-08,2026-02,2026-08">
+          <button type="button" class="cal__name" data-target="job-ph"><strong data-i18n="cal.ph">Cleaning agent</strong><span data-i18n="cal.phs">PH+ · seasonal contracts</span></button>
+          <div class="cal__months"></div>
+        </div>
+        <div class="cal__row" data-periods="2026-09..now">
+          <button type="button" class="cal__name" data-target="job-leclerc"><strong data-i18n="cal.lec">Drive order picker</strong><span data-i18n="cal.lecs">E.Leclerc · permanent, 9 h/week</span></button>
+          <div class="cal__months"></div>
+        </div>
+        <div class="cal__row" data-periods="2026-07:train,2026-09">
+          <button type="button" class="cal__name" data-target="job-univ"><strong data-i18n="cal.univ">Student assistant</strong><span data-i18n="cal.univs">Espace Monde · University of Rouen</span></button>
+          <div class="cal__months"></div>
+        </div>
+      </div>
       </div>
     </div>
     <div class="jobs" data-stagger>
@@ -204,9 +194,9 @@
             <span class="badge" data-i18n="jobs.univ.badge">Vacation</span>
             <h3 data-i18n="jobs.univ.title">Student assistant (vacataire)</h3>
             <p class="card__org">Espace Monde · Université de Rouen Normandie</p>
-            <p class="card__meta" data-i18n="jobs.univ.meta">Sep 2026 – Jun 2027</p>
+            <p class="card__meta" data-i18n="jobs.univ.meta">Sep 2026</p>
           </header>
-          <p data-i18n="jobs.univ.text">All of September for the start of the academic year, then until June. I helped <strong>527 international students</strong> with their enrolment.</p>
+          <p data-i18n="jobs.univ.text">The whole of September, for the start of the academic year. I helped <strong>527 international students</strong> with their enrolment.</p>
           <a class="card__more" href="#espace-monde"><span data-i18n="jobs.more">More below</span> <span aria-hidden="true">↓</span></a>
         </article>
       </div>

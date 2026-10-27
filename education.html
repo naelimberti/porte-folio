@@ -117,35 +117,19 @@
 
 <section class="section section--flush">
   <div class="container">
-    <div class="chrono reveal" role="group" aria-label="Timeline">
-      <div class="chrono__top">
-        <p class="chrono__hint" data-i18n="chrono.hintEdu">Click a period to jump to the course.</p>
-        <ul class="chrono__legend">
-          <li class="is-edu" data-i18n="chrono.studies">Studies</li>
-          <li class="is-markleg" data-i18n="chrono.mark">Milestone</li>
-        </ul>
+    <div class="tl-wrap reveal">
+      <div class="tl-head">
+        <p class="tl-hint" data-i18n="tl.hintEdu">Click a step to see the course below.</p>
+        <ul class="tl-legend"><li class="is-past" data-i18n="tl.past">Done</li><li class="is-now" data-i18n="tl.now">Ongoing</li><li class="is-next" data-i18n="tl.next">Coming up</li></ul>
       </div>
-      <div class="chrono__scroll">
-        <div class="chrono__grid" data-from="2021-09" data-to="2027-08">
-          <div class="chrono__years" aria-hidden="true"></div>
-          <div class="chrono__lane">
-            <span class="chrono__label" data-i18n="chrono.studies">Studies</span>
-            <div class="chrono__track" style="--rows: 1">
-            <button type="button" class="chrono__bar is-edu" data-target="edu-bac" data-start="2021-09" data-end="2024-07" data-row="1"><span data-i18n="bar.bac">Baccalauréat · Lycée Simone Veil</span></button>
-            <button type="button" class="chrono__bar is-edu" data-target="edu-dl" data-start="2024-09" data-end="2025-06" data-row="1"><span data-i18n="bar.l1">L1 Maths &amp; Economics</span></button>
-            <button type="button" class="chrono__bar is-edu" data-target="edu-dl" data-start="2025-09" data-end="2026-06" data-row="1"><span data-i18n="bar.l2">L2 Economics</span></button>
-            <button type="button" class="chrono__bar is-edu" data-target="edu-l3" data-start="2026-09" data-end="2027-07" data-row="1"><span data-i18n="bar.l3">L3 Management · IAE Rouen</span></button>
-            </div>
-          </div>
-          <div class="chrono__lane">
-            <span class="chrono__label" data-i18n="chrono.milestones">Milestones</span>
-            <div class="chrono__track" style="--rows: 1">
-            <span class="chrono__mark" data-date="2024-07" data-row="1"><i aria-hidden="true"></i><span data-i18n="mark.bac">Bac, grade Bien</span></span>
-            <span class="chrono__mark" data-date="2027-01" data-row="1"><i aria-hidden="true"></i><span data-i18n="mark.toeic">TOEIC</span></span>
-            </div>
-          </div>
-          <div class="chrono__today" aria-hidden="true"><span data-i18n="chrono.today">Today</span></div>
-        </div>
+      <div class="tl-group">
+        <ol class="tl" style="--n: 5">
+          <li class="tl__stop is-past"><button type="button" class="tl__btn" data-target="edu-bac"><span class="tl__date">2021 – 2024</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title" data-i18n="tl.d1t">Baccalauréat, grade Bien</span><span class="tl__sub">Lycée Simone Veil · Liffré</span></button></li>
+          <li class="tl__stop is-past"><button type="button" class="tl__btn" data-target="edu-dl"><span class="tl__date">2024 – 2025</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title" data-i18n="tl.d2t">L1 Maths &amp; Economics</span><span class="tl__sub" data-i18n="tl.d2s">Double degree, University of Rouen</span></button></li>
+          <li class="tl__stop is-past"><button type="button" class="tl__btn" data-target="edu-dl"><span class="tl__date">2025 – 2026</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title" data-i18n="tl.d3t">L2 Economics</span><span class="tl__sub" data-i18n="tl.d3s">University of Rouen</span></button></li>
+          <li class="tl__stop is-now"><button type="button" class="tl__btn" data-target="edu-l3"><span class="tl__date">2026 – 2027</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title" data-i18n="tl.d4t">L3 Management</span><span class="tl__sub">IAE Rouen Normandie</span><span class="tl__badge" data-i18n="tl.now">Ongoing</span></button></li>
+          <li class="tl__stop is-next"><div class="tl__btn"><span class="tl__date" data-i18n="tl.d5d">Jan 2027</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title">TOEIC</span><span class="tl__sub" data-i18n="tl.d5s">English, currently B2</span><span class="tl__badge" data-i18n="tl.next">Coming up</span></div></li>
+        </ol>
       </div>
     </div>
 

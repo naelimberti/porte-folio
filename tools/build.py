@@ -324,7 +324,7 @@ _jb = [T('job.badge', 'Alongside my studies', 'En parallèle des études'),
        T('job.p1', 'Three jobs alongside my studies, including a permanent contract.', 'Trois jobs en parallèle de mes études, dont un CDI.'),
        T('job.t1', 'Cleaning agent at Propreté Hygiène + (seasonal contracts): Aug 2025, Feb 2026 and Aug 2026', "Agent d'entretien chez Propreté Hygiène + (CDD saisonniers) : août 2025, février 2026 et août 2026"),
        T('job.t2', 'Drive order picker at E.Leclerc Bois-Guillaume, permanent contract (9 h/week) since Sep 2026', 'Préparateur de commandes drive chez E.Leclerc Bois-Guillaume, en CDI (9 h/semaine) depuis septembre 2026'),
-       T('job.t3', 'Student assistant at the University of Rouen (Espace Monde), Sep 2026 – Jun 2027', "Étudiant vacataire à l'Université de Rouen (Espace Monde), de septembre 2026 à juin 2027"),
+       T('job.t3', 'Student assistant at the University of Rouen (Espace Monde), Sep 2026', "Étudiant vacataire à l'Université de Rouen (Espace Monde), en septembre 2026"),
        T('xp6.d1', 'A one-day training on the Saphire software in July 2026', 'Une journée de formation au logiciel Saphire en juillet 2026'),
        T('xp6.d2', 'Welcoming students at the front desk', 'Accueillir les étudiants au guichet'),
        T('xp6.d3', 'Helping them put together their administrative enrolment file', "Les aider à constituer leur dossier d'inscription administrative"),
@@ -416,6 +416,66 @@ def chrono_block(frm, to, hint, legend, lanes):
       </div>
     </div>'''
 
+TL_NOW = T('tl.now', 'Ongoing', 'En cours')
+TL_NEXT = T('tl.next', 'Coming up', 'À venir')
+TL_PAST = T('tl.past', 'Done', 'Terminé')
+T('cal.work', 'Month worked', 'Mois travaillé'); T('cal.train', 'Training', 'Formation'); T('cal.today', 'This month', 'Mois en cours')
+
+def stop(date, title, sub=None, state='past', target=None, href=None):
+    return dict(date=date, title=title, sub=sub, state=state, target=target, href=href)
+
+def _attr(key):
+    return f' data-i18n="{key}"' if key else ''
+
+def path_block(hint, groups):
+    """A readable path: evenly spaced stops with dates and labels written out.
+    groups: [(heading html or '', [stop, ...])]"""
+    states = {st['state'] for _, stops in groups for st in stops}
+    legend = ''.join(f'<li class="is-{k}"{_attr(v[0])}>{v[1]}</li>'
+                     for k, v in (('past', TL_PAST), ('now', TL_NOW), ('next', TL_NEXT)) if k in states)
+    out = []
+    for heading, stops in groups:
+        lis = []
+        for st in stops:
+            (dk, dv), (tk, tv) = st['date'], st['title']
+            sub = f'<span class="tl__sub"{_attr(st["sub"][0])}>{st["sub"][1]}</span>' if st['sub'] else ''
+            badge = {'now': TL_NOW, 'next': TL_NEXT}.get(st['state'])
+            badge = f'<span class="tl__badge"{_attr(badge[0])}>{badge[1]}</span>' if badge else ''
+            if st['target']:
+                o, c = f'<button type="button" class="tl__btn" data-target="{st["target"]}">', '</button>'
+            elif st['href']:
+                o, c = f'<a class="tl__btn" href="{st["href"]}">', '</a>'
+            else:
+                o, c = '<div class="tl__btn">', '</div>'
+            lis.append(f'          <li class="tl__stop is-{st["state"]}">{o}<span class="tl__date"{_attr(dk)}>{dv}</span>'
+                       f'<span class="tl__dot" aria-hidden="true"></span><span class="tl__title"{_attr(tk)}>{tv}</span>{sub}{badge}{c}</li>')
+        head = f'\n        <h3 class="tl__heading">{heading}</h3>' if heading else ''
+        out.append(f'      <div class="tl-group">{head}\n        <ol class="tl" style="--n: {len(stops)}">\n'
+                   + '\n'.join(lis) + '\n        </ol>\n      </div>')
+    hk, hv = hint
+    return (f'    <div class="tl-wrap reveal">\n      <div class="tl-head">\n'
+            f'        <p class="tl-hint"{_attr(hk)}>{hv}</p>\n        <ul class="tl-legend">{legend}</ul>\n      </div>\n'
+            + '\n'.join(out) + '\n    </div>')
+
+def calendar_block(hint, start, rows):
+    """Month-by-month calendar: one row per job, one column per month (main.js fills it up to the current month).
+    rows: [(target, (key, title), (key, sub), periods)]; periods like '2025-08', '2026-09..now', '2026-07:train'"""
+    hk, hv = hint
+    leg = ('<li class="is-work" data-i18n="cal.work">Month worked</li>'
+           '<li class="is-train" data-i18n="cal.train">Training</li>'
+           '<li class="is-today" data-i18n="cal.today">This month</li>')
+    rs = '\n'.join(
+        f'        <div class="cal__row" data-periods="{periods}">\n'
+        f'          <button type="button" class="cal__name" data-target="{target}"><strong{_attr(tk)}>{tv}</strong><span{_attr(sk)}>{sv}</span></button>\n'
+        f'          <div class="cal__months"></div>\n        </div>'
+        for target, (tk, tv), (sk, sv), periods in rows)
+    return (f'    <div class="tl-wrap cal-wrap reveal">\n      <div class="tl-head">\n'
+            f'        <p class="tl-hint"{_attr(hk)}>{hv}</p>\n        <ul class="tl-legend cal-legend">{leg}</ul>\n      </div>\n'
+            f'      <div class="cal-scroll">\n      <div class="cal" data-from="{start}">\n'
+            f'        <div class="cal__row cal__row--head">\n          <span class="cal__name" aria-hidden="true"></span>\n'
+            f'          <div class="cal__months" data-head></div>\n        </div>\n'
+            + rs + '\n      </div>\n      </div>\n    </div>')
+
 def mark(kl, date, row, href=''):
     k, l = kl
     tag, h = ('a', f' href="{href}"') if href else ('span', '')
@@ -436,16 +496,13 @@ B_PH = T('bar.ph', 'PH+', 'PH+')
 B_LEC = T('bar.leclerc', 'Leclerc', 'Leclerc')
 B_UNIV = T('bar.univ', 'Espace Monde', 'Espace Monde')
 T('bar.job', 'Student jobs', 'Jobs étudiants')
-exp_chrono = chrono_block('2025-06', '2027-07', ('chrono.hint', 'Click a period on the timeline or flip through the cards.'),
-    [('is-exp', L_WORK), ('is-proj', L_COMMIT), ('is-markleg', L_MARK)],
-    [(L_WORK, 2, [
-        bar('button', 'is-exp', 'bar.boc', 'Boc Lab', '2026-06', '2026-07', 1, 'exp-boc'),
-        bar('button', 'is-exp', 'bar.jc', 'IAE Rouen Junior Conseil', '2026-09', 'now', 1, 'exp-jc'),
-        bar('button', 'is-exp', 'bar.nc', 'Normandie Création', '2026-10', '2026-10', 2, 'exp-nc'),
-        mark(T('mark.intern', 'Internship from March 2027', 'Stage dès mars 2027'), '2027-03', 2, '#contact')]),
-     (L_COMMIT, 2, [
-        bar('button', 'is-proj', 'bar.snee', 'SNEE · Pépite Normandie', '2025-07', 'now', 1, 'exp-snee'),
-        bar('button', 'is-proj', 'bar.amb', 'Entrepreneurship Ambassador', '2026-09', 'now', 2, 'exp-amb')])])
+exp_chrono = path_block(T('tl.hintExp', 'Click a stop to see the experience in detail below.', "Cliquez sur une étape pour voir l'expérience en détail juste en dessous."), [('', [
+    stop(T('tl.e1d', 'Jul 2025 →', 'Juil. 2025 →'), T('tl.e1t', 'Student-entrepreneur', 'Étudiant-entrepreneur'), (None, 'SNEE · Pépite Normandie'), 'now', 'exp-snee'),
+    stop(T('tl.e2d', 'Jun – Jul 2026', 'Juin – juil. 2026'), T('tl.e2t', 'Internship · Boc Lab', 'Stage · Boc Lab'), T('tl.e2s', 'Executive assistant, 2 months', 'Assistant de direction, 2 mois'), 'past', 'exp-boc'),
+    stop(T('tl.e3d', 'Sep 2026 →', 'Sept. 2026 →'), T('tl.e3t', 'Entrepreneurship Ambassador', 'Ambassadeur Entrepreneuriat'), (None, "Maison de l'Entrepreneuriat"), 'now', 'exp-amb'),
+    stop(T('tl.e4d', 'Sep 2026 →', 'Sept. 2026 →'), (None, 'IAE Rouen Junior Conseil'), T('tl.e4s', 'Business development, founding team', 'Développement commercial, équipe fondatrice'), 'now', 'exp-jc'),
+    stop(T('tl.e5d', 'Oct 2026', 'Oct. 2026'), T('tl.e5t', 'Observation internship', "Stage d'observation"), (None, 'Normandie Création'), 'past', 'exp-nc'),
+    stop(T('tl.e6d', 'Mar 2027', 'Mars 2027'), T('tl.e6t', 'My next internship', 'Mon prochain stage'), T('tl.e6s', '3 to 6 months, what I am looking for', '3 à 6 mois, ce que je cherche'), 'next', href='#contact')])])
 
 chrono = f'''<section class="section section--flush">
   <div class="container">
@@ -477,16 +534,17 @@ PAGES['experience.html'] = assemble('experience', 'Experience · Naël Imberti',
 # ───────────────────────── PROJECTS ─────────────────────────
 L_PROJ = T('chrono.project', 'Project', 'Projet')
 L_STEP = T('chrono.step', 'Programme step', 'Étape du programme')
-proj_chrono = chrono_block('2025-09', '2027-01', T('chrono.hintProj', 'Click a project to open it.', 'Cliquez sur un projet pour l’ouvrir.'),
-    [('is-proj', L_PROJ), ('is-step', L_STEP), ('is-markleg', L_MARK)],
-    [(T('lane.naillies', 'Naillies', 'Naillies'), 2, [
-        bar('a', 'is-proj', 'bar.naillies', 'Naillies · Jeunes Pousses', '2025-10', '2026-04', 1, href='projects/jeunes-pousses.html'),
-        bar('a', 'is-step', *T('step.launch', 'Launch', 'Lancement'), '2025-10', '2025-10', 2, href='projects/jeunes-pousses.html'),
-        bar('a', 'is-step', *T('step.workshops', '9 workshops', '9 ateliers'), '2025-11', '2026-03', 2, href='projects/jeunes-pousses.html'),
-        mark(T('mark.closing', 'Closing evening · 9 April', 'Soirée de clôture · 9 avril'), '2026-04-09', 2, 'projects/jeunes-pousses.html')]),
-     (T('lane.silva', 'Silva Edita', 'Silva Edita'), 2, [
-        bar('a', 'is-proj', 'bar.silva', 'Silva Edita', '2026-01', 'now', 1, href='projects/silva-edita.html'),
-        mark(T('mark.projimpact', "Proj'Impact award · 5 Feb", "Lauréat Proj'Impact · 5 févr."), '2026-02-05', 2, 'projects/silva-edita.html')])])
+proj_chrono = path_block(T('tl.hintProj', 'Each project, step by step. Click a step to open the project.', 'Chaque projet, étape par étape. Cliquez sur une étape pour ouvrir le projet.'), [
+    ('<a href="projects/jeunes-pousses.html">Naillies · Les Jeunes Pousses 2026</a>', [
+        stop(T('tl.n1d', 'Oct – Nov 2025', 'Oct. – nov. 2025'), T('tl.n1t', 'Launch evenings', 'Soirées de lancement'), T('tl.n1s', 'Rouen and Évreux', 'Rouen et Évreux'), 'past', href='projects/jeunes-pousses.html'),
+        stop(T('tl.n2d', 'Nov 2025 – Mar 2026', 'Nov. 2025 – mars 2026'), T('tl.n2t', 'Nine workshops', 'Neuf ateliers'), T('tl.n2s', 'Market, offer, financing, pitch', 'Marché, offre, financement, pitch'), 'past', href='projects/jeunes-pousses.html'),
+        stop(T('tl.n3d', '9 April 2026', '9 avril 2026'), T('tl.n3t', 'Closing evening', 'Soirée de clôture'), T('tl.n3s', 'Final pitch and awards', 'Pitch final et remise des prix'), 'past', href='projects/jeunes-pousses.html')]),
+    ('<a href="projects/silva-edita.html">Silva Edita</a>', [
+        stop(T('tl.s1d', 'Jan 2026', 'Janv. 2026'), T('tl.s1t', 'The idea', "L'idée"), T('tl.s1s', "Greening Rouen's rooftops", 'Végétaliser les toits de Rouen'), 'past', href='projects/silva-edita.html'),
+        stop(T('tl.s2d', '5 Feb 2026', '5 févr. 2026'), T('tl.s2t', "Proj'Impact award", "Lauréat Proj'Impact"), T('tl.s2s', 'Pitch in front of the jury', 'Pitch devant le jury'), 'past', href='projects/silva-edita.html'),
+        stop(T('tl.s3d', '2026', '2026'), T('tl.s3t', 'Meeting local players', 'Rencontres avec les acteurs locaux'), T('tl.s3s', 'Campuses, then business incubators', 'Campus, puis pépinières'), 'now', href='projects/silva-edita.html'),
+        stop(T('tl.s4d', 'Next step', 'Prochaine étape'), T('tl.s4t', 'Rooftop test', 'Test sur les toits'), (None, 'Normandie Création'), 'next', href='projects/silva-edita.html')])])
+
 projects_list = '''<section class="section section--flush">
   <div class="container">
 ''' + proj_chrono + '''
@@ -726,16 +784,12 @@ for _id in ('edu-l3', 'edu-dl', 'edu-bac'):
     timeline = timeline.replace('<article class="timeline__item reveal">', f'<article class="timeline__item reveal" id="{_id}">', 1)
 L_STUDIES = T('chrono.studies', 'Studies', 'Études')
 L_MILES = T('chrono.milestones', 'Milestones', 'Jalons')
-edu_chrono = chrono_block('2021-09', '2027-08', T('chrono.hintEdu', 'Click a period to jump to the course.', 'Cliquez sur une période pour voir la formation.'),
-    [('is-edu', L_STUDIES), ('is-markleg', L_MARK)],
-    [(L_STUDIES, 1, [
-        bar('button', 'is-edu', *T('bar.bac', 'Baccalauréat · Lycée Simone Veil', 'Bac · Lycée Simone Veil'), '2021-09', '2024-07', 1, 'edu-bac'),
-        bar('button', 'is-edu', *T('bar.l1', 'L1 Maths &amp; Economics', 'L1 maths-éco'), '2024-09', '2025-06', 1, 'edu-dl'),
-        bar('button', 'is-edu', *T('bar.l2', 'L2 Economics', 'L2 économie'), '2025-09', '2026-06', 1, 'edu-dl'),
-        bar('button', 'is-edu', 'bar.l3', 'L3 Management · IAE Rouen', '2026-09', '2027-07', 1, 'edu-l3')]),
-     (L_MILES, 1, [
-        mark(T('mark.bac', 'Bac, grade Bien', 'Bac mention Bien'), '2024-07', 1),
-        mark(T('mark.toeic', 'TOEIC', 'TOEIC'), '2027-01', 1)])])
+edu_chrono = path_block(T('tl.hintEdu', 'Click a step to see the course below.', 'Cliquez sur une étape pour voir la formation en dessous.'), [('', [
+    stop((None, '2021 – 2024'), T('tl.d1t', 'Baccalauréat, grade Bien', 'Bac mention Bien'), (None, 'Lycée Simone Veil · Liffré'), 'past', 'edu-bac'),
+    stop((None, '2024 – 2025'), T('tl.d2t', 'L1 Maths &amp; Economics', 'L1 maths-éco'), T('tl.d2s', 'Double degree, University of Rouen', 'Double licence, Université de Rouen'), 'past', 'edu-dl'),
+    stop((None, '2025 – 2026'), T('tl.d3t', 'L2 Economics', 'L2 économie'), T('tl.d3s', 'University of Rouen', 'Université de Rouen'), 'past', 'edu-dl'),
+    stop((None, '2026 – 2027'), T('tl.d4t', 'L3 Management', 'L3 Gestion'), (None, 'IAE Rouen Normandie'), 'now', 'edu-l3'),
+    stop(T('tl.d5d', 'Jan 2027', 'Janv. 2027'), (None, 'TOEIC'), T('tl.d5s', 'English, currently B2', 'Anglais, niveau B2 actuel'), 'next')])])
 
 edu_body = '\n\n'.join([
     page_hero('edu.eyebrow', 'Education', 'edu.title', 'From <span class="hl">numbers</span> to management', 'edu.lead',
@@ -905,17 +959,10 @@ def jobs_page(i, x, nxt):
     ek, ev = T('jobs.eyebrow', 'Alongside my studies', 'En parallèle des études')
     lk, lv = T('jobs.lead', 'I work alongside my studies: three jobs since August 2025, including a permanent contract.',
                "Je travaille en parallèle de mes études : trois jobs depuis août 2025, dont un CDI.")
-    chrono = chrono_block('2025-06', '2027-07', T('chrono.hintJobs', 'Click a period to see the job.', 'Cliquez sur une période pour voir le job.'),
-        [('is-job', L_JOBS), ('is-markleg', L_MARK)],
-        [(T('lane.ph', 'PH+', 'PH+'), 1, [
-            bar('button', 'is-job', *B_PH, '2025-08', '2025-08', 1, 'job-ph'),
-            bar('button', 'is-job', *B_PH, '2026-02', '2026-02', 1, 'job-ph'),
-            bar('button', 'is-job', *B_PH, '2026-08', '2026-08', 1, 'job-ph')]),
-         (T('lane.leclerc', 'E.Leclerc', 'E.Leclerc'), 1, [
-            bar('button', 'is-job', *T('bar.leclerc2', 'CDI', 'CDI'), '2026-09', 'now', 1, 'job-leclerc')]),
-         (T('lane.univ', 'University of Rouen', 'Université de Rouen'), 2, [
-            bar('button', 'is-job', *T('bar.univ2', 'Student assistant · Espace Monde', 'Vacataire · Espace Monde'), '2026-09', '2027-06', 1, 'job-univ'),
-            mark(T('mark.saphire', 'Saphire training', 'Formation Saphire'), '2026-07', 2)])])
+    chrono = calendar_block(T('cal.hint', 'One square = one month. Click a job to see it below.', 'Une case = un mois. Cliquez sur un job pour le voir en dessous.'), '2025-08', [
+        ('job-ph', T('cal.ph', 'Cleaning agent', "Agent d'entretien"), T('cal.phs', 'PH+ · seasonal contracts', 'PH+ · CDD saisonniers'), '2025-08,2026-02,2026-08'),
+        ('job-leclerc', T('cal.lec', 'Drive order picker', 'Préparateur drive'), T('cal.lecs', 'E.Leclerc · permanent, 9 h/week', 'E.Leclerc · CDI 9 h/sem.'), '2026-09..now'),
+        ('job-univ', T('cal.univ', 'Student assistant', 'Étudiant vacataire'), T('cal.univs', 'Espace Monde · University of Rouen', 'Espace Monde · Univ. de Rouen'), '2026-07:train,2026-09')])
     def ticks(items):
         if not items: return ''
         lis = ''.join(f'\n            <li data-i18n="{k}">{v}</li>' for k, v in items)
@@ -951,9 +998,9 @@ def jobs_page(i, x, nxt):
                    T('jobs.lec.t3', 'Procedures, deadlines and quality requirements', 'Respect des procédures, des délais et de la qualité'),
                    T('jobs.lec.t4', 'Working as a team', "Travail en équipe")]),
         job('job-univ', T('jobs.univ.badge', 'Vacation', 'Vacation'), T('jobs.univ.title', 'Student assistant (vacataire)', 'Étudiant vacataire'), 'Espace Monde · Université de Rouen Normandie',
-            T('jobs.univ.meta', 'Sep 2026 – Jun 2027', 'Sept. 2026 – juin 2027'),
-            T('jobs.univ.text', 'All of September for the start of the academic year, then until June. I helped <strong>527 international students</strong> with their enrolment.',
-              "Tout le mois de septembre pour la rentrée, puis jusqu'en juin. J'ai aidé <strong>527 étudiants internationaux</strong> à s'inscrire."),
+            T('jobs.univ.meta', 'Sep 2026', 'Sept. 2026'),
+            T('jobs.univ.text', 'The whole of September, for the start of the academic year. I helped <strong>527 international students</strong> with their enrolment.',
+              "Tout le mois de septembre, pour la rentrée. J'ai aidé <strong>527 étudiants internationaux</strong> à s'inscrire."),
             '\n          <a class="card__more" href="#espace-monde"><span data-i18n="jobs.more">More below</span> <span aria-hidden="true">↓</span></a>')])
     T('jobs.more', 'More below', 'Plus de détails')
     T('xp6.d6', 'Informing students and pointing them to the right services', 'Informer et orienter les étudiants dans leurs démarches')

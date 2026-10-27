@@ -117,36 +117,20 @@
 
 <section class="section section--flush">
   <div class="container">
-    <div class="chrono reveal" role="group" aria-label="Timeline">
-      <div class="chrono__top">
-        <p class="chrono__hint" data-i18n="chrono.hint">Click a period on the timeline or flip through the cards.</p>
-        <ul class="chrono__legend">
-          <li class="is-exp" data-i18n="chrono.work">Internship &amp; roles</li>
-          <li class="is-proj" data-i18n="chrono.commit">Commitments</li>
-          <li class="is-markleg" data-i18n="chrono.mark">Milestone</li>
-        </ul>
+    <div class="tl-wrap reveal">
+      <div class="tl-head">
+        <p class="tl-hint" data-i18n="tl.hintExp">Click a stop to see the experience in detail below.</p>
+        <ul class="tl-legend"><li class="is-past" data-i18n="tl.past">Done</li><li class="is-now" data-i18n="tl.now">Ongoing</li><li class="is-next" data-i18n="tl.next">Coming up</li></ul>
       </div>
-      <div class="chrono__scroll">
-        <div class="chrono__grid" data-from="2025-06" data-to="2027-07">
-          <div class="chrono__years" aria-hidden="true"></div>
-          <div class="chrono__lane">
-            <span class="chrono__label" data-i18n="chrono.work">Internship &amp; roles</span>
-            <div class="chrono__track" style="--rows: 2">
-            <button type="button" class="chrono__bar is-exp" data-target="exp-boc" data-start="2026-06" data-end="2026-07" data-row="1"><span data-i18n="bar.boc">Boc Lab</span></button>
-            <button type="button" class="chrono__bar is-exp" data-target="exp-jc" data-start="2026-09" data-end="now" data-row="1"><span data-i18n="bar.jc">IAE Rouen Junior Conseil</span></button>
-            <button type="button" class="chrono__bar is-exp" data-target="exp-nc" data-start="2026-10" data-end="2026-10" data-row="2"><span data-i18n="bar.nc">Normandie Création</span></button>
-            <a class="chrono__mark" data-date="2027-03" data-row="2" href="#contact"><i aria-hidden="true"></i><span data-i18n="mark.intern">Internship from March 2027</span></a>
-            </div>
-          </div>
-          <div class="chrono__lane">
-            <span class="chrono__label" data-i18n="chrono.commit">Commitments</span>
-            <div class="chrono__track" style="--rows: 2">
-            <button type="button" class="chrono__bar is-proj" data-target="exp-snee" data-start="2025-07" data-end="now" data-row="1"><span data-i18n="bar.snee">SNEE · Pépite Normandie</span></button>
-            <button type="button" class="chrono__bar is-proj" data-target="exp-amb" data-start="2026-09" data-end="now" data-row="2"><span data-i18n="bar.amb">Entrepreneurship Ambassador</span></button>
-            </div>
-          </div>
-          <div class="chrono__today" aria-hidden="true"><span data-i18n="chrono.today">Today</span></div>
-        </div>
+      <div class="tl-group">
+        <ol class="tl" style="--n: 6">
+          <li class="tl__stop is-now"><button type="button" class="tl__btn" data-target="exp-snee"><span class="tl__date" data-i18n="tl.e1d">Jul 2025 →</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title" data-i18n="tl.e1t">Student-entrepreneur</span><span class="tl__sub">SNEE · Pépite Normandie</span><span class="tl__badge" data-i18n="tl.now">Ongoing</span></button></li>
+          <li class="tl__stop is-past"><button type="button" class="tl__btn" data-target="exp-boc"><span class="tl__date" data-i18n="tl.e2d">Jun – Jul 2026</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title" data-i18n="tl.e2t">Internship · Boc Lab</span><span class="tl__sub" data-i18n="tl.e2s">Executive assistant, 2 months</span></button></li>
+          <li class="tl__stop is-now"><button type="button" class="tl__btn" data-target="exp-amb"><span class="tl__date" data-i18n="tl.e3d">Sep 2026 →</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title" data-i18n="tl.e3t">Entrepreneurship Ambassador</span><span class="tl__sub">Maison de l'Entrepreneuriat</span><span class="tl__badge" data-i18n="tl.now">Ongoing</span></button></li>
+          <li class="tl__stop is-now"><button type="button" class="tl__btn" data-target="exp-jc"><span class="tl__date" data-i18n="tl.e4d">Sep 2026 →</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title">IAE Rouen Junior Conseil</span><span class="tl__sub" data-i18n="tl.e4s">Business development, founding team</span><span class="tl__badge" data-i18n="tl.now">Ongoing</span></button></li>
+          <li class="tl__stop is-past"><button type="button" class="tl__btn" data-target="exp-nc"><span class="tl__date" data-i18n="tl.e5d">Oct 2026</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title" data-i18n="tl.e5t">Observation internship</span><span class="tl__sub">Normandie Création</span></button></li>
+          <li class="tl__stop is-next"><a class="tl__btn" href="#contact"><span class="tl__date" data-i18n="tl.e6d">Mar 2027</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title" data-i18n="tl.e6t">My next internship</span><span class="tl__sub" data-i18n="tl.e6s">3 to 6 months, what I am looking for</span><span class="tl__badge" data-i18n="tl.next">Coming up</span></a></li>
+        </ol>
       </div>
     </div>
 

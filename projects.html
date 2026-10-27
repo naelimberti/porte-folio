@@ -117,36 +117,27 @@
 
 <section class="section section--flush">
   <div class="container">
-    <div class="chrono reveal" role="group" aria-label="Timeline">
-      <div class="chrono__top">
-        <p class="chrono__hint" data-i18n="chrono.hintProj">Click a project to open it.</p>
-        <ul class="chrono__legend">
-          <li class="is-proj" data-i18n="chrono.project">Project</li>
-          <li class="is-step" data-i18n="chrono.step">Programme step</li>
-          <li class="is-markleg" data-i18n="chrono.mark">Milestone</li>
-        </ul>
+    <div class="tl-wrap reveal">
+      <div class="tl-head">
+        <p class="tl-hint" data-i18n="tl.hintProj">Each project, step by step. Click a step to open the project.</p>
+        <ul class="tl-legend"><li class="is-past" data-i18n="tl.past">Done</li><li class="is-now" data-i18n="tl.now">Ongoing</li><li class="is-next" data-i18n="tl.next">Coming up</li></ul>
       </div>
-      <div class="chrono__scroll">
-        <div class="chrono__grid" data-from="2025-09" data-to="2027-01">
-          <div class="chrono__years" aria-hidden="true"></div>
-          <div class="chrono__lane">
-            <span class="chrono__label" data-i18n="lane.naillies">Naillies</span>
-            <div class="chrono__track" style="--rows: 2">
-            <a class="chrono__bar is-proj" href="projects/jeunes-pousses.html" data-start="2025-10" data-end="2026-04" data-row="1"><span data-i18n="bar.naillies">Naillies · Jeunes Pousses</span></a>
-            <a class="chrono__bar is-step" href="projects/jeunes-pousses.html" data-start="2025-10" data-end="2025-10" data-row="2"><span data-i18n="step.launch">Launch</span></a>
-            <a class="chrono__bar is-step" href="projects/jeunes-pousses.html" data-start="2025-11" data-end="2026-03" data-row="2"><span data-i18n="step.workshops">9 workshops</span></a>
-            <a class="chrono__mark" data-date="2026-04-09" data-row="2" href="projects/jeunes-pousses.html"><i aria-hidden="true"></i><span data-i18n="mark.closing">Closing evening · 9 April</span></a>
-            </div>
-          </div>
-          <div class="chrono__lane">
-            <span class="chrono__label" data-i18n="lane.silva">Silva Edita</span>
-            <div class="chrono__track" style="--rows: 2">
-            <a class="chrono__bar is-proj" href="projects/silva-edita.html" data-start="2026-01" data-end="now" data-row="1"><span data-i18n="bar.silva">Silva Edita</span></a>
-            <a class="chrono__mark" data-date="2026-02-05" data-row="2" href="projects/silva-edita.html"><i aria-hidden="true"></i><span data-i18n="mark.projimpact">Proj'Impact award · 5 Feb</span></a>
-            </div>
-          </div>
-          <div class="chrono__today" aria-hidden="true"><span data-i18n="chrono.today">Today</span></div>
-        </div>
+      <div class="tl-group">
+        <h3 class="tl__heading"><a href="projects/jeunes-pousses.html">Naillies · Les Jeunes Pousses 2026</a></h3>
+        <ol class="tl" style="--n: 3">
+          <li class="tl__stop is-past"><a class="tl__btn" href="projects/jeunes-pousses.html"><span class="tl__date" data-i18n="tl.n1d">Oct – Nov 2025</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title" data-i18n="tl.n1t">Launch evenings</span><span class="tl__sub" data-i18n="tl.n1s">Rouen and Évreux</span></a></li>
+          <li class="tl__stop is-past"><a class="tl__btn" href="projects/jeunes-pousses.html"><span class="tl__date" data-i18n="tl.n2d">Nov 2025 – Mar 2026</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title" data-i18n="tl.n2t">Nine workshops</span><span class="tl__sub" data-i18n="tl.n2s">Market, offer, financing, pitch</span></a></li>
+          <li class="tl__stop is-past"><a class="tl__btn" href="projects/jeunes-pousses.html"><span class="tl__date" data-i18n="tl.n3d">9 April 2026</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title" data-i18n="tl.n3t">Closing evening</span><span class="tl__sub" data-i18n="tl.n3s">Final pitch and awards</span></a></li>
+        </ol>
+      </div>
+      <div class="tl-group">
+        <h3 class="tl__heading"><a href="projects/silva-edita.html">Silva Edita</a></h3>
+        <ol class="tl" style="--n: 4">
+          <li class="tl__stop is-past"><a class="tl__btn" href="projects/silva-edita.html"><span class="tl__date" data-i18n="tl.s1d">Jan 2026</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title" data-i18n="tl.s1t">The idea</span><span class="tl__sub" data-i18n="tl.s1s">Greening Rouen's rooftops</span></a></li>
+          <li class="tl__stop is-past"><a class="tl__btn" href="projects/silva-edita.html"><span class="tl__date" data-i18n="tl.s2d">5 Feb 2026</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title" data-i18n="tl.s2t">Proj'Impact award</span><span class="tl__sub" data-i18n="tl.s2s">Pitch in front of the jury</span></a></li>
+          <li class="tl__stop is-now"><a class="tl__btn" href="projects/silva-edita.html"><span class="tl__date" data-i18n="tl.s3d">2026</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title" data-i18n="tl.s3t">Meeting local players</span><span class="tl__sub" data-i18n="tl.s3s">Campuses, then business incubators</span><span class="tl__badge" data-i18n="tl.now">Ongoing</span></a></li>
+          <li class="tl__stop is-next"><a class="tl__btn" href="projects/silva-edita.html"><span class="tl__date" data-i18n="tl.s4d">Next step</span><span class="tl__dot" aria-hidden="true"></span><span class="tl__title" data-i18n="tl.s4t">Rooftop test</span><span class="tl__sub">Normandie Création</span><span class="tl__badge" data-i18n="tl.next">Coming up</span></a></li>
+        </ol>
       </div>
     </div>
     <div class="projects" data-stagger>

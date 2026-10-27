@@ -273,7 +273,7 @@
     'job.p1': "Trois jobs en parallèle de mes études, dont un CDI.",
     'job.t1': "Agent d'entretien chez Propreté Hygiène + (CDD saisonniers) : août 2025, février 2026 et août 2026",
     'job.t2': "Préparateur de commandes drive chez E.Leclerc Bois-Guillaume, en CDI (9 h/semaine) depuis septembre 2026",
-    'job.t3': "Étudiant vacataire à l'Université de Rouen (Espace Monde), de septembre 2026 à juin 2027",
+    'job.t3': "Étudiant vacataire à l'Université de Rouen (Espace Monde), en septembre 2026",
     'xp6.d1': "Une journée de formation au logiciel Saphire en juillet 2026",
     'xp6.d2': "Accueillir les étudiants au guichet",
     'xp6.d3': "Les aider à constituer leur dossier d'inscription administrative",
@@ -291,6 +291,12 @@
     'nc.t1': "Découvrir l'accompagnement des entreprises et des entrepreneur·ses",
     'nc.t2': "Observer les missions de gestion, de développement et de soutien à la création d'entreprise",
     'bar.nc': "Normandie Création",
+    'tl.now': "En cours",
+    'tl.next': "À venir",
+    'tl.past': "Terminé",
+    'cal.work': "Mois travaillé",
+    'cal.train': "Formation",
+    'cal.today': "Mois en cours",
     'chrono.mark': "Jalon",
     'chrono.work': "Stage &amp; missions",
     'chrono.jobs': "Jobs étudiants",
@@ -299,16 +305,44 @@
     'bar.leclerc': "Leclerc",
     'bar.univ': "Espace Monde",
     'bar.job': "Jobs étudiants",
-    'mark.intern': "Stage dès mars 2027",
+    'tl.hintExp': "Cliquez sur une étape pour voir l'expérience en détail juste en dessous.",
+    'tl.e1d': "Juil. 2025 →",
+    'tl.e1t': "Étudiant-entrepreneur",
+    'tl.e2d': "Juin – juil. 2026",
+    'tl.e2t': "Stage · Boc Lab",
+    'tl.e2s': "Assistant de direction, 2 mois",
+    'tl.e3d': "Sept. 2026 →",
+    'tl.e3t': "Ambassadeur Entrepreneuriat",
+    'tl.e4d': "Sept. 2026 →",
+    'tl.e4s': "Développement commercial, équipe fondatrice",
+    'tl.e5d': "Oct. 2026",
+    'tl.e5t': "Stage d'observation",
+    'tl.e6d': "Mars 2027",
+    'tl.e6t': "Mon prochain stage",
+    'tl.e6s': "3 à 6 mois, ce que je cherche",
     'chrono.project': "Projet",
     'chrono.step': "Étape du programme",
-    'chrono.hintProj': "Cliquez sur un projet pour l’ouvrir.",
-    'lane.naillies': "Naillies",
-    'step.launch': "Lancement",
-    'step.workshops': "9 ateliers",
-    'mark.closing': "Soirée de clôture · 9 avril",
-    'lane.silva': "Silva Edita",
-    'mark.projimpact': "Lauréat Proj'Impact · 5 févr.",
+    'tl.hintProj': "Chaque projet, étape par étape. Cliquez sur une étape pour ouvrir le projet.",
+    'tl.n1d': "Oct. – nov. 2025",
+    'tl.n1t': "Soirées de lancement",
+    'tl.n1s': "Rouen et Évreux",
+    'tl.n2d': "Nov. 2025 – mars 2026",
+    'tl.n2t': "Neuf ateliers",
+    'tl.n2s': "Marché, offre, financement, pitch",
+    'tl.n3d': "9 avril 2026",
+    'tl.n3t': "Soirée de clôture",
+    'tl.n3s': "Pitch final et remise des prix",
+    'tl.s1d': "Janv. 2026",
+    'tl.s1t': "L'idée",
+    'tl.s1s': "Végétaliser les toits de Rouen",
+    'tl.s2d': "5 févr. 2026",
+    'tl.s2t': "Lauréat Proj'Impact",
+    'tl.s2s': "Pitch devant le jury",
+    'tl.s3d': "2026",
+    'tl.s3t': "Rencontres avec les acteurs locaux",
+    'tl.s3s': "Campus, puis pépinières",
+    'tl.s4d': "Prochaine étape",
+    'tl.s4t': "Test sur les toits",
     'bac.badge': "Mention Bien",
     'bac.title': "Baccalauréat général",
     'bac.meta': "Obtenu en 2024",
@@ -326,12 +360,15 @@
     'tool.web': "Création de sites web",
     'chrono.studies': "Études",
     'chrono.milestones': "Jalons",
-    'chrono.hintEdu': "Cliquez sur une période pour voir la formation.",
-    'bar.bac': "Bac · Lycée Simone Veil",
-    'bar.l1': "L1 maths-éco",
-    'bar.l2': "L2 économie",
-    'mark.bac': "Bac mention Bien",
-    'mark.toeic': "TOEIC",
+    'tl.hintEdu': "Cliquez sur une étape pour voir la formation en dessous.",
+    'tl.d1t': "Bac mention Bien",
+    'tl.d2t': "L1 maths-éco",
+    'tl.d2s': "Double licence, Université de Rouen",
+    'tl.d3t': "L2 économie",
+    'tl.d3s': "Université de Rouen",
+    'tl.d4t': "L3 Gestion",
+    'tl.d5d': "Janv. 2027",
+    'tl.d5s': "Anglais, niveau B2 actuel",
     'xp.context': "Le contexte",
     'xp.did': "Ce que j'ai fait",
     'xp.takeaway': "Ce que j'en retiens",
@@ -402,13 +439,13 @@
     'jobs.f4': "En parallèle de mes études",
     'jobs.eyebrow': "En parallèle des études",
     'jobs.lead': "Je travaille en parallèle de mes études : trois jobs depuis août 2025, dont un CDI.",
-    'chrono.hintJobs': "Cliquez sur une période pour voir le job.",
-    'lane.ph': "PH+",
-    'lane.leclerc': "E.Leclerc",
-    'bar.leclerc2': "CDI",
-    'lane.univ': "Université de Rouen",
-    'bar.univ2': "Vacataire · Espace Monde",
-    'mark.saphire': "Formation Saphire",
+    'cal.hint': "Une case = un mois. Cliquez sur un job pour le voir en dessous.",
+    'cal.ph': "Agent d'entretien",
+    'cal.phs': "PH+ · CDD saisonniers",
+    'cal.lec': "Préparateur drive",
+    'cal.lecs': "E.Leclerc · CDI 9 h/sem.",
+    'cal.univ': "Étudiant vacataire",
+    'cal.univs': "Espace Monde · Univ. de Rouen",
     'jobs.ph.badge': "CDD saisonniers",
     'jobs.ph.title': "Agent d'entretien",
     'jobs.ph.meta': "Août 2025 · févr. 2026 · août 2026",
@@ -427,8 +464,8 @@
     'jobs.lec.t4': "Travail en équipe",
     'jobs.univ.badge': "Vacation",
     'jobs.univ.title': "Étudiant vacataire",
-    'jobs.univ.meta': "Sept. 2026 – juin 2027",
-    'jobs.univ.text': "Tout le mois de septembre pour la rentrée, puis jusqu'en juin. J'ai aidé <strong>527 étudiants internationaux</strong> à s'inscrire.",
+    'jobs.univ.meta': "Sept. 2026",
+    'jobs.univ.text': "Tout le mois de septembre, pour la rentrée. J'ai aidé <strong>527 étudiants internationaux</strong> à s'inscrire.",
     'jobs.more': "Plus de détails",
     'xp6.d6': "Informer et orienter les étudiants dans leurs démarches",
     'jobs.zoom': "Zoom sur l'Espace Monde"
@@ -1009,13 +1046,70 @@
     if (scroller.scrollWidth > scroller.clientWidth) scroller.scrollLeft = (scroller.scrollWidth - scroller.clientWidth) * .75;
   }
 
+
+  /* ───────── Paths (timelines): a stop pointing at a block of the page ───────── */
+  document.querySelectorAll('.tl__btn[data-target], .cal__name[data-target]').forEach(function (b) {
+    var target = document.getElementById(b.getAttribute('data-target'));
+    if (!target || target.hasAttribute('data-deck-card')) return;
+    b.addEventListener('click', function () {
+      var scope = b.closest('.tl-wrap');
+      if (scope) scope.querySelectorAll('[data-target]').forEach(function (x) { x.classList.toggle('is-active', x === b); });
+      target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+      target.classList.remove('is-flash'); void target.offsetWidth; target.classList.add('is-flash');
+    });
+  });
+
+  /* ───────── Month calendar (student jobs) ─────────
+     Columns run from data-from to the current month; rows read data-periods:
+     '2025-08' (one month), '2026-09..now' (until today), '2026-07:train' (training). */
+  var cal = document.querySelector('.cal');
+  function buildCalendar() {
+    if (!cal) return;
+    var now = new Date(), nowIdx = now.getFullYear() * 12 + now.getMonth();
+    var f = cal.getAttribute('data-from').split('-'), start = parseInt(f[0], 10) * 12 + parseInt(f[1], 10) - 1;
+    var n = Math.max(1, nowIdx - start + 1);
+    var fmt = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-GB', { month: 'short' });
+    var full = new Intl.DateTimeFormat(lang === 'fr' ? 'fr-FR' : 'en-GB', { month: 'long', year: 'numeric' });
+    function dateOf(i) { return new Date(Math.floor(i / 12), i % 12, 1); }
+    cal.style.setProperty('--m', n);
+    var head = cal.querySelector('[data-head]'), h = '';
+    for (var i = 0; i < n; i++) {
+      var idx = start + i, d = dateOf(idx), first = i === 0 || idx % 12 === 0;
+      h += '<span class="cal__m' + (idx === nowIdx ? ' is-today' : '') + (first ? ' is-year' : '') + '">' +
+        (first ? '<b>' + d.getFullYear() + '</b>' : '<b>&nbsp;</b>') + fmt.format(d).replace('.', '') + '</span>';
+    }
+    head.innerHTML = h;
+    cal.querySelectorAll('.cal__row[data-periods]').forEach(function (row) {
+      var marks = {};
+      row.getAttribute('data-periods').split(',').forEach(function (part) {
+        var kind = part.indexOf(':train') > -1 ? 'train' : 'work';
+        part = part.replace(':train', '');
+        var ends = part.split('..'), a = ends[0].split('-'), from = parseInt(a[0], 10) * 12 + parseInt(a[1], 10) - 1, to = from;
+        if (ends[1]) { if (ends[1] === 'now') to = nowIdx; else { var b = ends[1].split('-'); to = parseInt(b[0], 10) * 12 + parseInt(b[1], 10) - 1; } }
+        for (var k = from; k <= to; k++) marks[k] = kind;
+      });
+      var cells = '';
+      for (var i = 0; i < n; i++) {
+        var idx = start + i, kind = marks[idx];
+        var label = full.format(dateOf(idx)) + (kind === 'train' ? ' · ' + t('cal.train') : '');
+        cells += '<span class="cal__cell' + (kind ? ' is-' + kind : '') + (idx === nowIdx ? ' is-today' : '') + '"' +
+          (kind ? ' title="' + label + '"' : '') + '></span>';
+      }
+      row.querySelector('.cal__months').innerHTML = cells;
+    });
+  }
+  buildCalendar();
+  document.addEventListener('ni:lang', buildCalendar);
+  // On narrow screens the calendar scrolls: open it on the most recent months
+  if (cal) { var calScroll = cal.parentElement; calScroll.scrollLeft = calScroll.scrollWidth; }
+
   /* ───────── 3D card deck ───────── */
   var deck = document.querySelector('[data-deck]');
   if (deck) {
     var stage = deck.querySelector('.deck__stage');
     var cards = Array.prototype.slice.call(stage.querySelectorAll('[data-deck-card]'));
     var count = deck.querySelector('.deck__count');
-    var bars = document.querySelectorAll('.chrono__bar[data-target]');
+    var bars = document.querySelectorAll('.chrono__bar[data-target], .tl__btn[data-target]');
     var active = cards.length - 1; // most recent first
     deck.classList.add('deck--3d');
 
